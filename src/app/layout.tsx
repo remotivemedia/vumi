@@ -1,23 +1,26 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "VUMI — Your Knowledge, Finally Alive",
-  description: "VUMI turns years of expert conversations, research, and institutional knowledge into a living AI. Built on 6+ years of human-AI work — before the hype.",
+  title: "VUMI — Tu salud no espera fronteras",
+  description: "Seguro médico premium para latinoamericanos en Europa. Elige cuándo, con quién y dónde te tratas. Libre elección, sin listas de espera, asistencia 24/7 en español.",
   openGraph: {
-    title: "VUMI — Your Knowledge, Finally Alive",
-    description: "Knowledge infrastructure that actually thinks. Built by ReMotive Media.",
+    title: "VUMI — Tu salud no espera fronteras",
+    description: "Seguro médico premium para latinoamericanos en Europa.",
     type: "website",
+    locale: "es_ES",
   },
+  keywords: ["seguro médico expatriados", "seguros latinoamericanos España", "seguro salud Venezuela España", "VUMI seguro Europa"],
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="es">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body style={{ margin: 0, padding: 0, background: "#060A14" }}>
+      <body style={{ margin: 0, padding: 0, background: "#F8F5F0" }}>
         {children}
       </body>
     </html>
