@@ -305,16 +305,19 @@ function StatusBadge({ level }: { level: StatusLevel }) {
   );
 }
 
-function Card({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+function Card({ children, style, onClick }: { children: React.ReactNode; style?: React.CSSProperties; onClick?: () => void }) {
   return (
-    <div style={{
-      background: COLORS.white,
-      border: `1px solid ${COLORS.border}`,
-      borderRadius: "8px",
-      padding: "24px",
-      boxShadow: "0 4px 6px rgba(0,0,0,.04)",
-      ...style,
-    }}>
+    <div
+      onClick={onClick}
+      style={{
+        background: COLORS.white,
+        border: `1px solid ${COLORS.border}`,
+        borderRadius: "8px",
+        padding: "24px",
+        boxShadow: "0 4px 6px rgba(0,0,0,.04)",
+        ...style,
+      }}
+    >
       {children}
     </div>
   );
