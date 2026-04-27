@@ -9,11 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@nivo/bar": "^0.87.0",
+    "@nivo/core": "^0.87.0",
+    "@nivo/line": "^0.87.0",
+    "@nivo/pie": "^0.87.0",
+    "@nivo/radar": "^0.87.0",
     "@supabase/supabase-js": "^2.49.0",
     "@supabase/ssr": "^0.5.0",
+    "framer-motion": "^11.18.0",
+    "lucide-react": "^0.447.0",
     "next": "15.5.15",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^9.0.1",
+    "remark-gfm": "^4.0.0",
+    "swr": "^2.2.5"
   },
   "devDependencies": {
     "@types/node": "^20",
