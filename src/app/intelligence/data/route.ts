@@ -6,6 +6,8 @@ import { NextResponse } from 'next/server';
 const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 
+export const revalidate = 60;
+
 export async function GET() {
   try {
     const res = await fetch(`${SB_URL}/rest/v1/vumi_v_portal_payload?select=*`, {
@@ -14,7 +16,6 @@ export async function GET() {
         Authorization: `Bearer ${SB_KEY}`,
         'Content-Type': 'application/json',
       },
-      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
