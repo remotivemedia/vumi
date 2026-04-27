@@ -1,3 +1,4 @@
+import React from 'react';
 // app/intelligence/layout.tsx
 import Link from 'next/link';
 import { Suspense } from 'react';
