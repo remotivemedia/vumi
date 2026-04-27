@@ -1,9 +1,10 @@
 {
-  "framework": "nextjs",
-  "buildCommand": "next build",
-  "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "alias": [
-    "vumi-la-pipa-is-la-pipa.vercel.app"
+  "alias": ["vumi-opal.vercel.app"],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/intelligence",
+      "permanent": false
+    }
   ]
 }
