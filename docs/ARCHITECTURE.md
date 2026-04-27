@@ -1,46 +1,42 @@
-# VUMI — Architecture
+# VUMI Spain Intelligence Portal — Architecture
 
-## Stack
+## Routes
 
-```
-GitHub (remotivemedia/vumi)
-  └─► Vercel (auto-deploy on push to main)
-        └─► Next.js 15 + React 19
-              └─► Supabase (pytjweipmorwfdmxdcgi)
-                    ├─ PostgreSQL 17.6 (eu-west-1)
-                    ├─ Auth
-                    ├─ Edge Functions
-                    │    ├─ health         (public)
-                    │    └─ ai-gateway     (public, proxies Vercel AI Gateway)
-                    └─ Vault (encrypted secrets)
-                         ├─ AI_GATEWAY_API_KEY
-                         ├─ GITHUB_TOKEN
-                         ├─ VERCEL_TEAM_ID
-                         └─ SUPABASE_URL
-```
-
-## Edge Functions
-
-| Function | URL | Auth |
+| Route | Purpose | Status |
 |---|---|---|
-| `health` | `.../functions/v1/health` | public |
-| `ai-gateway` | `.../functions/v1/ai-gateway` | public |
+| `/intelligence` | Cockpit — KPIs, geo, signals, decisions | v2 |
+| `/intelligence/audiences` | LatAm diaspora profiles (VE/CO/MX) | v2 |
+| `/intelligence/geography` | City launch priority map | v2 |
+| `/intelligence/brokers` | 17-broker shortlist with fit scores | v2 |
+| `/intelligence/competitors` | IPMI landscape + product comparison | v2 |
+| `/intelligence/proposition` | Differentiation framework + messages | v2 |
+| `/intelligence/roadmap` | 30/60/90/180/365-day gates | v2 |
+| `/intelligence/gates` | Validation gaps + decision log | v2 |
+| `/intelligence/signals` | Live market signals feed | v2 |
+| `/intelligence/ask` | RAG chat over VUMI corpus | v2 |
+| `/intelligence/data` | JSON payload proxy | v2 |
+| `/intelligence/health` | Health probe | preserved |
 
-## Environment Variables (Vercel)
+## Data Layer
 
-| Key | Where |
-|---|---|
-| `NEXT_PUBLIC_SUPABASE_URL` | `https://pytjweipmorwfdmxdcgi.supabase.co` |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Supabase dashboard → API settings |
-| `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` | `sb_publishable_c0757...` |
-| `AI_GATEWAY_API_KEY` | Vercel dashboard → AI Gateway |
+- All numeric data: Supabase (`vumi_v_portal_payload`, individual tables)
+- Qualitative context: `rag-query` edge function (65 chunks, 8 docs)
+- Data library: `src/lib/intelligence.ts` — single file, all queries
 
-## Connect Vercel (one-time manual step)
+## Required Vercel Env Vars
 
-1. Go to [vercel.com/new](https://vercel.com/new)
-2. Import `remotivemedia/vumi` from GitHub
-3. Framework: **Next.js** (auto-detected)
-4. Add env vars above
-5. Deploy
+```
+NEXT_PUBLIC_SUPABASE_URL=https://pytjweipmorwfdmxdcgi.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=<anon key>
+SUPABASE_SERVICE_ROLE_KEY=<service role key — server only>
+```
 
-Or run: `./scripts/setup-vercel.sh`
+## Deployment Branch
+
+`feat/intelligence-frontend-v2` — additive, no modifications to `main` protected files.
+
+## Rollback
+
+Revert to previous commit on branch. All DB changes are additive (nullable columns, new functions) — no destructive operations.
+
+*Updated: 2026-04-27*
