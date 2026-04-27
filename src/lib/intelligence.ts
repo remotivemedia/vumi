@@ -1,10 +1,17 @@
 // lib/intelligence.ts
 // Single source of truth for all portal data fetching.
-// All queries use the Supabase REST API with service role key — server-side only.
 // Field names are exact matches to the verified database schema.
+// Fallbacks are public/anon-safe: NEXT_PUBLIC_ vars are intentionally embeddable.
 
-const SB_URL = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-const SB_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
+const SB_URL =
+  process.env.NEXT_PUBLIC_SUPABASE_URL ||
+  'https://pytjweipmorwfdmxdcgi.supabase.co';
+
+// Prefer service role (bypasses RLS) → anon key fallback (RLS SELECT policies active)
+const SB_KEY =
+  process.env.SUPABASE_SERVICE_ROLE_KEY ||
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  'sb_publishable_c0757AiQ6pM71WFVaKYBlA_EV3d8nGK';
 
 async function sbQuery(path: string, params?: Record<string, string>): Promise<any[]> {
   const url = new URL(`${SB_URL}/rest/v1/${path}`);
