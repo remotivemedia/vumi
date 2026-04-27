@@ -1,4 +1,5 @@
 import React from 'react';
+export const revalidate = 300;
 // app/intelligence/brokers/page.tsx
 import { getBrokers } from '@/lib/intelligence';
 
