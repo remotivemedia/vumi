@@ -1,11 +1,12 @@
+import React from 'react';
 // app/intelligence/audiences/page.tsx
 import { getAudienceTopline, getAudienceSegments } from '@/lib/intelligence';
 
 const S = {
-  card: { background: '#fff', border: '1px solid #E2E8F0', borderRadius: 8, padding: 24, boxShadow: '0 1px 2px rgba(0,0,0,.04)' } as React.CSSProperties,
-  h2: { fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: 18, letterSpacing: '-0.02em', color: '#2C3539', marginBottom: 4 } as React.CSSProperties,
+  card: { background: '#fff', border: '1px solid #E2E8F0', borderRadius: 8, padding: 24, boxShadow: '0 1px 2px rgba(0,0,0,.04)' },
+  h2: { fontFamily: "'Montserrat', sans-serif", fontWeight: 700, fontSize: 18, letterSpacing: '-0.02em', color: '#2C3539', marginBottom: 4 },
   kicker: { fontSize: 11, color: '#00A9E0', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.12em', marginBottom: 6 },
-  muted: { fontSize: 12, color: '#6B7785' } as React.CSSProperties,
+  muted: { fontSize: 12, color: '#6B7785' },
   label: { fontSize: 11, color: '#6B7785', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.08em' },
 };
 
