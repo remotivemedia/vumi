@@ -15,8 +15,7 @@ async function sbQuery(path: string, params?: Record<string, string>): Promise<a
       Authorization: `Bearer ${SB_KEY}`,
       'Content-Type': 'application/json',
     },
-    next: { revalidate: 300 }, // 5-min cache
-  });
+    });
   if (!res.ok) return [];
   return res.json();
 }
@@ -143,7 +142,6 @@ export async function getPortalPayload() {
       apikey: SB_KEY,
       Authorization: `Bearer ${SB_KEY}`,
     },
-    next: { revalidate: 60 },
   });
   if (!res.ok) return null;
   const rows = await res.json();
