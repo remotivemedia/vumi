@@ -1,4 +1,5 @@
 import React from 'react';
+export const revalidate = 300;
 // app/intelligence/page.tsx
 import { getCockpitKPIs, getRecentSignals, getRecentDecisions, getGeoOpportunities } from '@/lib/intelligence';
 import Link from 'next/link';
