@@ -1,10 +1,11 @@
+import React from 'react';
 // app/intelligence/brokers/page.tsx
 import { getBrokers } from '@/lib/intelligence';
 
 const S = {
-  card: { background: '#fff', border: '1px solid #E2E8F0', borderRadius: 8, padding: 24, boxShadow: '0 1px 2px rgba(0,0,0,.04)' } as React.CSSProperties,
+  card: { background: '#fff', border: '1px solid #E2E8F0', borderRadius: 8, padding: 24, boxShadow: '0 1px 2px rgba(0,0,0,.04)' },
   kicker: { fontSize: 11, color: '#00A9E0', fontWeight: 600, textTransform: 'uppercase' as const, letterSpacing: '0.12em', marginBottom: 6 },
-  muted: { fontSize: 12, color: '#6B7785' } as React.CSSProperties,
+  muted: { fontSize: 12, color: '#6B7785' },
 };
 
 const TIER_COLOR: Record<string, { bg: string; color: string }> = {
