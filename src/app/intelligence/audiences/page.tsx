@@ -1,4 +1,5 @@
 import React from 'react';
+export const revalidate = 300;
 // app/intelligence/audiences/page.tsx
 import { getAudienceTopline, getAudienceSegments } from '@/lib/intelligence';
 
