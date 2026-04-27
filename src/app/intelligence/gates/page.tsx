@@ -1,4 +1,5 @@
 import React from 'react';
+export const revalidate = 300;
 // app/intelligence/gates/page.tsx
 import { getDataGaps, getRecentDecisions, getHypotheses } from '@/lib/intelligence';
 
