@@ -1,4 +1,5 @@
 import React from 'react';
+export const revalidate = 300;
 // app/intelligence/geography/page.tsx
 import { getGeoOpportunities } from '@/lib/intelligence';
 
