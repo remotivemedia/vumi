@@ -26,7 +26,7 @@ const EXAMPLE_QUERIES_EN = [
   'Who are the P0 brokers in Madrid?',
   'Why is Venezuela the priority audience?',
   'What differentiates VUMI from Bupa Global in Spain?',
-  'What is VUMI's regulatory status in Spain (DGSFP)?',
+  "What is VUMI's regulatory status in Spain (DGSFP)?",
   'What does the corpus say about the broker channel for international health?',
 ];
 
@@ -83,7 +83,6 @@ export default function AskPage() {
   return (
     <div style={{ maxWidth:900, display:'flex', flexDirection:'column', height:'calc(100vh - 80px)' }}>
 
-      {/* Header */}
       <motion.div initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }} transition={{ duration:0.35 }}>
         <div style={{ marginBottom:20 }}>
           <div style={S.kicker}>{t('ask.kicker')}</div>
@@ -92,7 +91,6 @@ export default function AskPage() {
         </div>
       </motion.div>
 
-      {/* Message thread */}
       <div style={{ flex:1, overflowY:'auto', marginBottom:16, minHeight:0 }}>
         {messages.length === 0 && (
           <motion.div initial={{ opacity:0 }} animate={{ opacity:1 }} transition={{ delay:0.2 }}>
@@ -117,14 +115,7 @@ export default function AskPage() {
 
         <AnimatePresence initial={false}>
           {messages.map((msg, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity:0, y:8 }}
-              animate={{ opacity:1, y:0 }}
-              exit={{ opacity:0 }}
-              transition={{ duration:0.3 }}
-              style={{ marginBottom:14 }}
-            >
+            <motion.div key={i} initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }} exit={{ opacity:0 }} transition={{ duration:0.3 }} style={{ marginBottom:14 }}>
               {msg.role === 'user' ? (
                 <div style={{ display:'flex', justifyContent:'flex-end' }}>
                   <div style={{ background:'#0033A0', color:'#fff', padding:'10px 16px', borderRadius:'12px 12px 3px 12px', maxWidth:'70%', fontSize:13, lineHeight:1.5, fontWeight:500 }}>
@@ -178,7 +169,6 @@ export default function AskPage() {
         <div ref={bottomRef} />
       </div>
 
-      {/* Input */}
       <motion.div initial={{ opacity:0, y:8 }} animate={{ opacity:1, y:0 }} transition={{ delay:0.15 }}>
         <div style={{ display:'flex', gap:10, padding:'12px 14px', background:'#fff', border:'1px solid #E2E8F0', borderRadius:10, boxShadow:'0 2px 8px rgba(0,51,160,0.06)' }}>
           <input
