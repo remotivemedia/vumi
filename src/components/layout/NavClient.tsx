@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
+import { motion } from 'framer-motion';
 import { LayoutDashboard, Users, MapPin, Briefcase, BarChart2, Target, GitBranch, ShieldAlert, Radio, MessageSquare } from 'lucide-react';
 
 const NAV = [
@@ -20,21 +21,45 @@ const NAV = [
 export function NavClient() {
   const path = usePathname();
   const { t } = useTranslation();
+
   return (
     <nav style={{ flex:1, padding:'10px 8px', overflowY:'auto' }}>
       {NAV.map(({ href, key, Icon }) => {
         const active = path === href || (href !== '/intelligence' && path?.startsWith(href));
         return (
-          <Link key={href} href={href} style={{
-            display:'flex', alignItems:'center', gap:9,
-            padding:'8px 11px', borderRadius:6, marginBottom:1,
-            color: active ? '#0033A0' : '#4A5568',
-            background: active ? '#EEF2FF' : 'transparent',
-            textDecoration:'none', fontSize:13, fontWeight: active ? 600 : 500,
-            transition:'background 0.12s, color 0.12s',
-          }}>
-            <Icon size={15} style={{ color: active ? '#0033A0' : '#00A9E0', flexShrink:0 }} />
-            {t(key)}
+          <Link key={href} href={href} style={{ textDecoration:'none', display:'block', marginBottom:1 }}>
+            <motion.div
+              whileHover={{ x: active ? 0 : 2 }}
+              transition={{ duration: 0.14, ease: 'easeOut' }}
+              style={{
+                position: 'relative',
+                display:'flex', alignItems:'center', gap:9,
+                padding:'8px 11px 8px 14px', borderRadius:6,
+                color: active ? '#0033A0' : '#4A5568',
+                background: active ? '#EEF2FF' : 'transparent',
+                fontSize:13, fontWeight: active ? 600 : 400,
+                overflow: 'hidden',
+              }}
+            >
+              {/* Animated active indicator bar */}
+              {active && (
+                <motion.div
+                  layoutId="nav-active-bar"
+                  style={{
+                    position: 'absolute', left: 0,
+                    top: 6, bottom: 6,
+                    width: 3, borderRadius: 99,
+                    background: 'linear-gradient(180deg, #0033A0 0%, #00A9E0 100%)',
+                  }}
+                  transition={{ type: 'spring', stiffness: 500, damping: 38 }}
+                />
+              )}
+              <Icon
+                size={15}
+                style={{ color: active ? '#0033A0' : '#94A3B8', flexShrink:0, transition:'color 0.12s' }}
+              />
+              <span style={{ transition:'color 0.12s' }}>{t(key)}</span>
+            </motion.div>
           </Link>
         );
       })}
