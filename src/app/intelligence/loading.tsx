@@ -1,19 +1,48 @@
-// src/app/intelligence/loading.tsx
 export default function Loading() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, padding: 32, maxWidth: 1200, width: '100%' }}>
+    <div style={{ maxWidth:1200, width:'100%' }}>
       <style>{`
-        @keyframes shimmer { 0%{background-position:-800px 0} 100%{background-position:800px 0} }
-        .sk { background:linear-gradient(90deg,#E2E8F0 25%,#F5F7FA 50%,#E2E8F0 75%); background-size:800px 100%; animation:shimmer 1.4s ease-in-out infinite; border-radius:6px; }
+        @keyframes shimmer {
+          0%  { background-position: -900px 0 }
+          100%{ background-position:  900px 0 }
+        }
+        .sk {
+          background: linear-gradient(90deg, #EBF0F8 25%, #F5F7FA 50%, #EBF0F8 75%);
+          background-size: 900px 100%;
+          animation: shimmer 1.6s ease-in-out infinite;
+          border-radius: 6px;
+        }
       `}</style>
-      <div className="sk" style={{ height: 80, borderRadius: 8 }} />
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: 12 }}>
-        {[1,2,3,4,5,6].map(i => <div key={i} className="sk" style={{ height: 88 }} />)}
+
+      {/* Blocker banner */}
+      <div className="sk" style={{ height:52, borderRadius:8, marginBottom:18 }} />
+
+      {/* Hero verdict */}
+      <div className="sk" style={{ height:86, borderRadius:8, marginBottom:20 }} />
+
+      {/* 3 plan cards */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:12, marginBottom:18 }}>
+        {[1,2,3].map(i => <div key={i} className="sk" style={{ height:82 }} />)}
       </div>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
-        {[1,2].map(i => <div key={i} className="sk" style={{ height: 300 }} />)}
+
+      {/* 6 KPI cards */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(6,1fr)', gap:10, marginBottom:22 }}>
+        {[1,2,3,4,5,6].map(i => <div key={i} className="sk" style={{ height:84 }} />)}
       </div>
-      <div className="sk" style={{ height: 160 }} />
+
+      {/* 2 col section */}
+      <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:20, marginBottom:20 }}>
+        <div className="sk" style={{ height:280 }} />
+        <div className="sk" style={{ height:280 }} />
+      </div>
+
+      {/* Decision log */}
+      <div className="sk" style={{ height:180, marginBottom:20 }} />
+
+      {/* Quick nav row */}
+      <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:10 }}>
+        {[1,2,3,4,5].map(i => <div key={i} className="sk" style={{ height:56 }} />)}
+      </div>
     </div>
   );
 }
