@@ -1,45 +1,84 @@
 'use client';
+import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
 import { LANG_KEY } from '@/lib/i18n/config';
 
+const LANGS = [
+  { code: 'es', flag: '🇪🇸', label: 'ES' },
+  { code: 'en', flag: '🇬🇧', label: 'EN' },
+];
+
 export function LanguageToggle() {
   const { i18n } = useTranslation();
-  const isEN = i18n.language === 'en';
+  const current = i18n.language === 'en' ? 'en' : 'es';
 
-  const toggle = () => {
-    const next = isEN ? 'es' : 'en';
-    i18n.changeLanguage(next);
-    if (typeof window !== 'undefined') localStorage.setItem(LANG_KEY, next);
+  const switchLang = (code: string) => {
+    if (code === current) return;
+    i18n.changeLanguage(code);
+    if (typeof window !== 'undefined') localStorage.setItem(LANG_KEY, code);
   };
 
   return (
-    <button
-      onClick={toggle}
-      title={isEN ? 'Cambiar a Español' : 'Switch to English'}
+    <div
+      role="group"
+      aria-label="Language selector"
       style={{
-        display: 'inline-flex', alignItems: 'center', gap: 4,
-        padding: '3px 9px', borderRadius: 99,
-        border: '1px solid #E2E8F0',
-        background: '#fff', cursor: 'pointer',
-        fontSize: 11, fontWeight: 700,
-        color: '#0033A0', letterSpacing: '0.04em',
-        fontFamily: "'Montserrat',sans-serif",
-        transition: 'all 0.15s',
-        lineHeight: 1.4,
+        display: 'inline-flex',
+        borderRadius: 99,
+        padding: 2,
+        background: '#F0F4FF',
+        border: '1px solid #D8E2F8',
+        gap: 1,
         flexShrink: 0,
       }}
-      onMouseEnter={e => {
-        (e.currentTarget as HTMLButtonElement).style.background = '#EEF2FF';
-        (e.currentTarget as HTMLButtonElement).style.borderColor = '#0033A0';
-      }}
-      onMouseLeave={e => {
-        (e.currentTarget as HTMLButtonElement).style.background = '#fff';
-        (e.currentTarget as HTMLButtonElement).style.borderColor = '#E2E8F0';
-      }}
     >
-      <span style={{ opacity: isEN ? 0.45 : 1 }}>ES</span>
-      <span style={{ color: '#E2E8F0' }}>|</span>
-      <span style={{ opacity: isEN ? 1 : 0.45 }}>EN</span>
-    </button>
+      {LANGS.map(({ code, flag, label }) => {
+        const active = current === code;
+        return (
+          <button
+            key={code}
+            onClick={() => switchLang(code)}
+            aria-pressed={active}
+            title={code === 'es' ? 'Español' : 'English'}
+            style={{
+              position: 'relative',
+              padding: '3px 7px',
+              borderRadius: 99,
+              border: 'none',
+              background: 'transparent',
+              cursor: active ? 'default' : 'pointer',
+              fontSize: 10,
+              fontWeight: 700,
+              color: active ? '#fff' : '#6B87B0',
+              fontFamily: "'Montserrat',sans-serif",
+              letterSpacing: '0.04em',
+              zIndex: 1,
+              lineHeight: 1.4,
+              transition: 'color 0.2s',
+              userSelect: 'none',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 3,
+            }}
+          >
+            {active && (
+              <motion.div
+                layoutId="lang-pill"
+                style={{
+                  position: 'absolute', inset: 0,
+                  borderRadius: 99,
+                  background: 'linear-gradient(135deg, #0044CC 0%, #0033A0 100%)',
+                  boxShadow: '0 1px 4px rgba(0,51,160,0.35)',
+                  zIndex: -1,
+                }}
+                transition={{ type: 'spring', stiffness: 500, damping: 38 }}
+              />
+            )}
+            <span style={{ fontSize: 12, lineHeight: 1 }}>{flag}</span>
+            <span>{label}</span>
+          </button>
+        );
+      })}
+    </div>
   );
 }
