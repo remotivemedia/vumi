@@ -7,7 +7,7 @@ type Row={nationality:string;ccaa:string;value:number;metric_type:string};
 const NC:Record<string,string>={Venezuelan:'#0033A0',Colombian:'#00A9E0',Mexican:'#F59E0B'};
 const CA:Record<string,string>={'Comunidad de Madrid':'Madrid','CataluÃ±a':'CataluÃ±a','Canarias':'Canarias','Comunitat Valenciana':'Valencia','AndalucÃ­a':'AndalucÃ­a'};
 const NATS=['Venezuelan','Colombian','Mexican'];
-export function AudienceCCAAChart({lang='es'}:{long?:'es'|'en'}){
+export function AudienceCCAAChart({lang='es'}:{lang?:'es'|'en'}){
 const [rows,setRows]=useState<Row[]>([]);
 const [loading,setLoading]=useState(true);
 useEffect(()=>{sb.from('vumi_audience_segments').select('nationality,ccaa,value,metric_type').in('metric_type',['nationality_padron','flows_in']).not('ccaa','is',null).then(({data})=>{setRows((data??[]) as Row[]);setLoading(false);});},[]);
