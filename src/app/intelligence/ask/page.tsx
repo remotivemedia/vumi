@@ -56,7 +56,7 @@ export default function AskPage() {
     setMessages(prev => [...prev, { role:'user', content:q }]);
     setLoading(true);
     try {
-      const res = await fetch(`${SB_URL}/functions/v1/rag-query`, {
+      const res = await fetch(`${SB_URL}/functions/v1/rag-query-v3`, {
         method:'POST',
         headers:{ 'Content-Type':'application/json' },
         body: JSON.stringify({ query:q, top_k:6 }),
