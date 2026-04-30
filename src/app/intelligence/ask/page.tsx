@@ -24,11 +24,11 @@ const S = {
 };
 
 const EXAMPLES_ES = [
-  '¿Cuáles son los brokers P0 en Madrid?',
-  '¿Por qué Venezuela es la audiencia prioritaria?',
-  '¿Qué diferencia a VUMI de Bupa Global en España?',
-  '¿Cuál es el estado regulatorio DGSFP de VUMI?',
-  '¿Qué canal de distribución es más eficiente para IPMI en España?',
+  '�Cu�les son los brokers P0 en Madrid?',
+  '�Por qu� Venezuela es la audiencia prioritaria?',
+  '�Qu� diferencia a VUMI de Bupa Global en Espa�a?',
+  '�Cu�l es el estado regulatorio DGSFP de VUMI?',
+  '�Qu� canal de distribuci�n es m�s eficiente para IPMI en Espa�a?',
 ];
 
 const EXAMPLES_EN = [
@@ -45,7 +45,7 @@ const STATUS_LABEL: Record<VoiceStatus, string> = {
   listening: 'Escuchando...',
   speaking: 'VUMI respondiendo...',
   thinking: 'Procesando...',
-  error: 'Error de conexión',
+  error: 'Error de conexi�n',
 };
 
 const STATUS_COLOR: Record<VoiceStatus, string> = {
