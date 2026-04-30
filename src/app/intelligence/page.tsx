@@ -1,7 +1,6 @@
 import React from 'react';
 export const revalidate = 300;
 import { getCockpitKPIs, getRecentSignals, getRecentDecisions, getGeoOpportunities } from '@/lib/intelligence';
-import { queryCorpus } from '@/lib/corpus';
 import Link from 'next/link';
 import { AnimatedKPI } from '@/components/motion/AnimatedKPI';
 import { FadeIn, StaggerList, StaggerItem } from '@/components/motion/FadeIn';
@@ -10,42 +9,26 @@ import { T } from '@/components/i18n/T';
 const S = {
   card: { background:'#fff', border:'1px solid #E2E8F0', borderRadius:8, padding:24, boxShadow:'0 1px 3px rgba(0,0,0,.04)' } as const,
   kicker: { fontSize:11, color:'#00A9E0', fontWeight:600, textTransform:'uppercase' as const, letterSpacing:'0.12em', marginBottom:6 },
-  cite: { fontSize:10, color:'#00A9E0', background:'#E6F6FC', padding:'1px 6px', borderRadius:3, fontFamily:"'JetBrains Mono',monospace", marginLeft:4, verticalAlign:'middle' } as const,
 };
 const PC: Record<string,string> = { p0:'#0033A0', p1:'#00A9E0', p2:'#B45309', p3:'#6B7785' };
 const PB: Record<string,string> = { p0:'#EEF2FF', p1:'#E6F6FC', p2:'#FEF3CD', p3:'#F5F7FA' };
 
 export default async function CockpitPage() {
-  const [kpis, signals, decisions, geo, regulatory] = await Promise.all([
+  const [kpis, signals, decisions, geo] = await Promise.all([
     getCockpitKPIs(), getRecentSignals(8), getRecentDecisions(5), getGeoOpportunities(),
-    queryCorpus('VUMI DGSFP registro España regulatorio estado inscripción Malta', 4),
   ]);
   return (
     <div style={{ maxWidth:1200 }}>
-      <FadeIn delay={0}>
-        <div style={{ background:'#FBE8E2', border:'1px solid #E55B4D', borderRadius:8, padding:'13px 18px', marginBottom:20, display:'flex', gap:12, alignItems:'flex-start' }}>
-          <span style={{ color:'#E55B4D', fontSize:16, flexShrink:0 }}>⚠</span>
-          <div style={{ flex:1 }}>
-            <div style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:13, color:'#E55B4D', marginBottom:3 }}><T k="cockpit.blocker_title" /></div>
-            <div style={{ fontSize:12, color:'#2C3539', lineHeight:1.55 }}><T k="cockpit.blocker_body" /><span style={S.cite}>08_Wave1_Regulatorio §A.1.2</span></div>
-          </div>
-          <Link href="/intelligence/gates" style={{ fontSize:12, color:'#E55B4D', fontWeight:600, textDecoration:'none', flexShrink:0 }}><T k="cockpit.view_gap" /></Link>
-        </div>
-      </FadeIn>
 
-      <FadeIn delay={0.05}>
+      {/* Launch verdict — full width */}
+      <FadeIn delay={0.02}>
         <div style={{ background:'#0033A0', borderRadius:8, padding:'18px 26px', marginBottom:22, display:'flex', justifyContent:'space-between', alignItems:'center', gap:20 }}>
           <div>
             <div style={{ fontSize:10, color:'#00A9E0', fontFamily:"'Montserrat',sans-serif", fontWeight:600, textTransform:'uppercase', letterSpacing:'0.15em', marginBottom:5 }}><T k="cockpit.verdict_kicker" /></div>
-            <div style={{ color:'#fff', fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:15, lineHeight:1.45, maxWidth:680 }}>
+            <div style={{ color:'#fff', fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:15, lineHeight:1.45, maxWidth:700 }}>
               VUMI® Insurance Europe Limited (MFSA Malta C&nbsp;112852) lanzó Euro Health el 17 mar&nbsp;2026 — planes Priority €3M · Pro €4M · Premier €5M.{" "}
-              <span style={{ color:'#FFD166' }}>Canal broker Madrid/Canarias como entrada; 1,09M+ latinos Spain como audiencia primaria.</span>
+              <span style={{ color:'#FFD166' }}>Canal broker Madrid/Canarias como entrada; 1,09M+ latinos en España como audiencia primaria. DGSFP activo.</span>
             </div>
-            {regulatory.chunks.length > 0 && (
-              <div style={{ marginTop:8, display:'flex', gap:5, flexWrap:'wrap' }}>
-                {regulatory.chunks.slice(0,3).map((c,i) => <span key={i} style={{ fontSize:10, background:'rgba(0,169,224,0.2)', color:'#9BD6F0', padding:'2px 6px', borderRadius:3, fontFamily:"'JetBrains Mono',monospace" }}>{c.doc_slug}#{c.chunk_index}</span>)}
-              </div>
-            )}
           </div>
           <div style={{ flexShrink:0, textAlign:'right' }}>
             <div style={{ color:'rgba(255,255,255,0.5)', fontSize:10 }}>17 Mar 2026</div>
@@ -54,9 +37,14 @@ export default async function CockpitPage() {
         </div>
       </FadeIn>
 
-      <FadeIn delay={0.08}>
+      {/* Product tiers */}
+      <FadeIn delay={0.05}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(3,1fr)', gap:12, marginBottom:18 }}>
-          {[{name:'Euro Health Priority',amt:'€3.000.000',i:0},{name:'Euro Health Pro',amt:'€4.000.000',i:1},{name:'Euro Health Premier',amt:'€5.000.000',i:2}].map(p => (
+          {[
+            {name:'Euro Health Priority',amt:'€3.000.000',i:0},
+            {name:'Euro Health Pro',amt:'€4.000.000',i:1},
+            {name:'Euro Health Premier',amt:'€5.000.000',i:2},
+          ].map(p => (
             <div key={p.name} style={{ ...S.card, borderTop:`3px solid ${p.i===2?'#0033A0':p.i===1?'#3366CC':'#6B7785'}` }}>
               <div style={{ fontSize:10, color:'#6B7785', fontWeight:600, textTransform:'uppercase', letterSpacing:'0.08em', marginBottom:4 }}>{p.name}</div>
               <div style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:24, color:'#0033A0', lineHeight:1 }}>{p.amt}</div>
@@ -66,25 +54,29 @@ export default async function CockpitPage() {
         </div>
       </FadeIn>
 
+      {/* KPI strip */}
       <div style={{ display:'grid', gridTemplateColumns:'repeat(6,1fr)', gap:10, marginBottom:22 }}>
         {[
-          { v:kpis.tier1_brokers, l:'Brokers T1', n:'Shortlisted', w:false },
-          { v:3, l:'Audiencias LatAm', n:'VE · CO · MX', w:false },
-          { v:kpis.priority_cities, l:'Ciudades P0+P1', n:'Madrid, BCN, Canarias', w:false },
-          { v:kpis.high_signals, l:'Señales ≥80', n:`${kpis.action_signals} acción`, w:false },
-          { v:kpis.open_gaps, l:'Gaps Abiertos', n:`${kpis.blockers} bloqueantes`, w:kpis.blockers>0 },
-          { v:kpis.active_decisions, l:'Decisiones', n:'Activas', w:false },
+          { v:kpis.tier1_brokers,    l:'Socios de Canal',      n:'Activación prioritaria',        w:false },
+          { v:3,                      l:'Audiencias LatAm',     n:'VE · CO · MX',                  w:false },
+          { v:kpis.priority_cities,  l:'Mercados P0+P1',       n:'Madrid, BCN, Canarias',         w:false },
+          { v:kpis.high_signals,     l:'Señales ≥80',          n:`${kpis.action_signals} acción`, w:false },
+          { v:kpis.open_gaps,        l:'Validaciones',          n:'Plan activo',                   w:false },
+          { v:kpis.active_decisions, l:'Decisiones',            n:'Estratégicas',                  w:false },
         ].map(({ v, l, n, w }) => (
           <AnimatedKPI key={l} value={v} label={l} sub={n} warning={w} />
         ))}
       </div>
 
+      {/* City priority + signals */}
       <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:20, marginBottom:20 }}>
         <div style={S.card}>
           <div style={S.kicker}><T k="cockpit.city_priority" /></div>
           <table style={{ width:'100%', borderCollapse:'collapse', fontSize:12, marginTop:10 }}>
             <thead><tr style={{ borderBottom:'1px solid #E2E8F0' }}>
-              {['col_p','col_city','col_ccaa','col_latam','col_hnw'].map(k => <th key={k} style={{ textAlign:'left', padding:'5px 8px', fontSize:10, color:'#6B7785', fontWeight:600, textTransform:'uppercase' }}><T k={`cockpit.${k}`} /></th>)}
+              {['col_p','col_city','col_ccaa','col_latam','col_hnw'].map(k => (
+                <th key={k} style={{ textAlign:'left', padding:'5px 8px', fontSize:10, color:'#6B7785', fontWeight:600, textTransform:'uppercase' }}><T k={`cockpit.${k}`} /></th>
+              ))}
             </tr></thead>
             <tbody>
               {geo.slice(0,8).map((r:any) => (
@@ -100,6 +92,7 @@ export default async function CockpitPage() {
           </table>
           <Link href="/intelligence/geography" style={{ display:'block', marginTop:10, textAlign:'right', fontSize:12, color:'#0033A0', fontWeight:600, textDecoration:'none' }}><T k="cockpit.full_map" /></Link>
         </div>
+
         <div style={S.card}>
           <div style={S.kicker}><T k="cockpit.recent_signals" /></div>
           <StaggerList>
@@ -120,6 +113,7 @@ export default async function CockpitPage() {
         </div>
       </div>
 
+      {/* Decisions log */}
       <FadeIn delay={0.15}>
         <div style={S.card}>
           <div style={S.kicker}><T k="cockpit.active_decisions" /></div>
@@ -142,14 +136,15 @@ export default async function CockpitPage() {
         </div>
       </FadeIn>
 
+      {/* Quick-nav cards */}
       <FadeIn delay={0.18}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(5,1fr)', gap:10, marginTop:20 }}>
           {[
-            { h:'/intelligence/audiences',  lk:'nav.audiences',    s:'VE 377K · CO 676K · MX 36K' },
-            { h:'/intelligence/brokers',    lk:'nav.brokers',      s:`${kpis.tier1_brokers} shortlisted` },
-            { h:'/intelligence/competitors',lk:'nav.competitors',  s:'9 mapeados — MFSA vs FCA' },
-            { h:'/intelligence/proposition',lk:'nav.proposition',  s:'Euro Health Priority→Premier' },
-            { h:'/intelligence/ask',        lk:'nav.ask',          s:'RAG · 109 chunks corpus' },
+            { h:'/intelligence/audiences',   lk:'nav.audiences',    s:'1,09M+ LatAm en España' },
+            { h:'/intelligence/brokers',     lk:'nav.brokers',      s:`${kpis.tier1_brokers} socios activos` },
+            { h:'/intelligence/competitors', lk:'nav.competitors',  s:'9 competidores mapeados' },
+            { h:'/intelligence/proposition', lk:'nav.proposition',  s:'Euro Health Priority→Premier' },
+            { h:'/intelligence/ask',         lk:'nav.ask',          s:'Inteligencia estratégica' },
           ].map(({ h, lk, s }) => (
             <Link key={h} href={h} style={{ ...S.card, textDecoration:'none', display:'block', padding:'13px 15px', textAlign:'center', borderTop:'2px solid #00A9E0' }}>
               <div style={{ fontSize:13, fontWeight:600, color:'#0033A0', fontFamily:"'Montserrat',sans-serif", marginBottom:3 }}><T k={lk} /></div>
