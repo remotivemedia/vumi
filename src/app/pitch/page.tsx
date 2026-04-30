@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import { ResponsivePie } from '@nivo/pie'
 import { ResponsiveRadar } from '@nivo/radar'
 
-/* ââ Tokens âââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Tokens Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 const C = {
   bg:     '#0A0A0A',
   blue:   '#0033A0',
@@ -19,7 +19,7 @@ const C = {
 }
 const ease = [0.22, 1, 0.36, 1] as const
 
-/* ââ Scroll-reveal wrapper ââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Scroll-reveal wrapper Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 function Reveal({ children, delay = 0, style = {} }: {
   children: React.ReactNode; delay?: number; style?: React.CSSProperties
 }) {
@@ -35,7 +35,7 @@ function Reveal({ children, delay = 0, style = {} }: {
   )
 }
 
-/* ââ Glassmorphism card âââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Glassmorphism card Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 function Glass({ children, style = {}, glow = C.sky }: {
   children: React.ReactNode; style?: React.CSSProperties; glow?: string
 }) {
@@ -63,7 +63,7 @@ function Glass({ children, style = {}, glow = C.sky }: {
   )
 }
 
-/* ââ Tooltip ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Tooltip Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 function Tip({ text, children }: { text: string; children: React.ReactNode }) {
   const [show, setShow] = useState(false)
   return (
@@ -93,7 +93,7 @@ function Tip({ text, children }: { text: string; children: React.ReactNode }) {
   )
 }
 
-/* ââ Floating orb âââââââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Floating orb Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 function Orb({ color, size, top, left, delay = 0 }: {
   color: string; size: number; top: string; left: string; delay?: number
 }) {
@@ -112,7 +112,7 @@ function Orb({ color, size, top, left, delay = 0 }: {
   )
 }
 
-/* ââ Nav section card âââââââââââââââââââââââââââââââââââââââââââ */
+/* Ã¢ÂÂÃ¢ÂÂ Nav section card Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 function NavCard({ href, icon, label, sub, accent = C.sky }: {
   href: string; icon: string; label: string; sub: string; accent?: string
 }) {
@@ -137,9 +137,9 @@ function NavCard({ href, icon, label, sub, accent = C.sky }: {
   )
 }
 
-/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+/* Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ
    PAGE
-ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */
 export default function PitchPage() {
   const { scrollY } = useScroll()
   const heroY  = useTransform(scrollY, [0, 600], [0, -110])
@@ -148,8 +148,8 @@ export default function PitchPage() {
 
   /* Nivo data */
   const pieData = [
-    { id: 'SeÃ±ales',      label: 'SeÃ±ales',       value: 130, color: C.sky  },
-    { id: 'HipÃ³tesis',    label: 'HipÃ³tesis',     value: 10,  color: '#00C875' },
+    { id: 'SeÃÂ±ales',      label: 'SeÃÂ±ales',       value: 130, color: C.sky  },
+    { id: 'HipÃÂ³tesis',    label: 'HipÃÂ³tesis',     value: 10,  color: '#00C875' },
     { id: 'Brokers',      label: 'Brokers',       value: 18,  color: C.red  },
     { id: 'Competidores', label: 'Competidores',  value: 9,   color: '#FFD166' },
   ]
@@ -158,15 +158,15 @@ export default function PitchPage() {
     { metric: 'Audiencia',   score: 90 },
     { metric: 'Broker',      score: 82 },
     { metric: 'Competencia', score: 78 },
-    { metric: 'RegulaciÃ³n',  score: 95 },
-    { metric: 'GeografÃ­a',   score: 88 },
+    { metric: 'RegulaciÃÂ³n',  score: 95 },
+    { metric: 'GeografÃÂ­a',   score: 88 },
     { metric: 'Propuesta',   score: 85 },
   ]
 
   return (
     <main style={{ fontFamily: "'Helvetica Neue',Arial,sans-serif", background: C.bg, color: C.white, minHeight: '100vh', overflowX: 'hidden' }}>
 
-      {/* ââ NAV âââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ NAV Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <motion.nav
         initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease }}
@@ -180,14 +180,14 @@ export default function PitchPage() {
         }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.32)', textTransform: 'uppercase' }}>HOLA VUMI</span>
-          <span style={{ color: 'rgba(255,255,255,0.1)' }}>Ã</span>
+          <span style={{ color: 'rgba(255,255,255,0.1)' }}>ÃÂ</span>
           <span style={{ fontSize: 10, letterSpacing: '0.32em', color: C.sky, textTransform: 'uppercase' }}>2026</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <motion.a href="/intelligence" whileHover={{ color: C.sky, letterSpacing: '0.25em' }}
             transition={{ duration: 0.2 }}
             style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>
-            Portal â
+            Portal Ã¢ÂÂ
           </motion.a>
           <motion.button whileHover={{ borderColor: 'rgba(0,169,224,0.5)', color: 'rgba(255,255,255,0.8)' }}
             style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', background: 'transparent', border: `1px solid rgba(255,255,255,0.18)`, color: 'rgba(255,255,255,0.5)', padding: '6px 14px', cursor: 'pointer', borderRadius: 2 }}>
@@ -196,7 +196,7 @@ export default function PitchPage() {
         </div>
       </motion.nav>
 
-      {/* ââ HERO ââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ HERO Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '120px 40px 80px', position: 'relative', overflow: 'hidden' }}>
         <motion.div style={{ position: 'absolute', inset: 0, y: gridY, backgroundImage: `linear-gradient(${C.grid} 1px,transparent 1px),linear-gradient(90deg,${C.grid} 1px,transparent 1px)`, backgroundSize: '80px 80px', pointerEvents: 'none' }} />
         <Orb color={C.sky} size={520} top="2%"  left="55%" delay={0} />
@@ -214,20 +214,20 @@ export default function PitchPage() {
             style={{ fontSize: 'clamp(48px,8.5vw,122px)', fontWeight: 900, lineHeight: 0.88, letterSpacing: '-0.03em', marginBottom: 52 }}>
             <span style={{ display: 'block' }}>LA</span>
             <span style={{ display: 'block', color: C.red }}>DESPENSA</span>
-            <span style={{ display: 'block', color: 'rgba(255,255,255,0.16)' }}>Ã</span>
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.16)' }}>ÃÂ</span>
             <span style={{ display: 'block', color: C.sky }}>REMOTIVE</span>
             <span style={{ display: 'block', color: 'rgba(255,255,255,0.13)', fontSize: '0.53em', fontWeight: 400, letterSpacing: '0.01em', marginTop: 26 }}>
-              Creatividad + Inteligencia para el lanzamiento de VUMI en EspaÃ±a
+              Creatividad + Inteligencia para el lanzamiento de VUMI en EspaÃÂ±a
             </span>
           </motion.h1>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.65, ease }}
             style={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             {[
-              { v: '23',  l: 'AÃ±os\nLa Despensa',      tip: 'Fundada 2003. 32 personas. 5 perros. Cero jerarquÃ­as.' },
-              { v: '6Âª',  l: 'Agencia\nSCOPEN 2022',   tip: 'Por valoraciÃ³n de clientes reales, no de jurados.' },
+              { v: '23',  l: 'AÃÂ±os\nLa Despensa',      tip: 'Fundada 2003. 32 personas. 5 perros. Cero jerarquÃÂ­as.' },
+              { v: '6ÃÂª',  l: 'Agencia\nSCOPEN 2022',   tip: 'Por valoraciÃÂ³n de clientes reales, no de jurados.' },
               { v: '18',  l: 'Brokers\nIdentificados', tip: 'Fit score por CCAA, expat DNA e IPMI track record.' },
-              { v: '130', l: 'SeÃ±ales de\nMercado',     tip: 'Inteligencia verificada. ActualizaciÃ³n semanal automÃ¡tica.' },
+              { v: '130', l: 'SeÃÂ±ales de\nMercado',     tip: 'Inteligencia verificada. ActualizaciÃÂ³n semanal automÃÂ¡tica.' },
             ].map(({ v, l, tip }) => (
               <Glass key={v} style={{ padding: '28px 36px', flex: '1 1 140px', minWidth: 130 }}>
                 <Tip text={tip}>
@@ -240,23 +240,23 @@ export default function PitchPage() {
         </motion.div>
       </section>
 
-      {/* ââ QUOTE âââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ QUOTE Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <section style={{ padding: '120px 40px', maxWidth: 900, margin: '0 auto' }}>
         <Reveal>
           <Glass glow={C.red} style={{ borderLeft: `3px solid ${C.red}`, padding: '42px 44px', marginBottom: 44 }}>
             <p style={{ fontSize: 'clamp(20px,3.2vw,38px)', lineHeight: 1.28, fontWeight: 700, letterSpacing: '-0.02em' }}>
-              "EspaÃ±a tiene 900.000 latinoamericanos con renta media-alta y cero opciones de seguro de salud que los traten como lo que son."
+              "EspaÃÂ±a tiene 900.000 latinoamericanos con renta media-alta y cero opciones de seguro de salud que los traten como lo que son."
             </p>
           </Glass>
         </Reveal>
         <Reveal delay={0.1}>
           <p style={{ fontSize: 17, lineHeight: 1.75, color: C.dim, maxWidth: 680 }}>
-            La Despensa y ReMotive Media llegan juntas para cubrir ese hueco. Una con la mejor creatividad independiente de EspaÃ±a. La otra con la arquitectura de inteligencia de mercado mÃ¡s sofisticada del sector.
+            La Despensa y ReMotive Media llegan juntas para cubrir ese hueco. Una con la mejor creatividad independiente de EspaÃÂ±a. La otra con la arquitectura de inteligencia de mercado mÃÂ¡s sofisticada del sector.
           </p>
         </Reveal>
       </section>
 
-      {/* ââ AGENCY CARDS ââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ AGENCY CARDS Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <section style={{ padding: '80px 40px', borderTop: `1px solid rgba(255,255,255,0.06)` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Reveal>
@@ -268,26 +268,26 @@ export default function PitchPage() {
               <Glass glow={C.red} style={{ padding: '56px 48px', height: '100%' }}>
                 <div style={{ borderBottom: `2px solid ${C.red}`, paddingBottom: 24, marginBottom: 32 }}>
                   <h3 style={{ fontSize: 28, fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 8 }}>LA DESPENSA</h3>
-                  <p style={{ fontSize: 12, color: C.red, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Estrategia creativa &amp; campaÃ±a</p>
+                  <p style={{ fontSize: 12, color: C.red, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Estrategia creativa &amp; campaÃÂ±a</p>
                 </div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: 40 }}>
                   {[
-                    '23 aÃ±os. 32 personas. 5 perros. Cero jerarquÃ­as de grupo.',
-                    'Aegon: 6 aÃ±os, #CariÃ±oterapia â el caso de referencia del sector salud en EspaÃ±a.',
-                    'Finetwork (lanzamiento nacional), Burger King (14 aÃ±os), Tanqueray, Schweppes.',
-                    '6Âª mejor agencia de EspaÃ±a segÃºn clientes reales. SCOPEN 2022.',
-                    'Creemos en el poder transformador de la creatividad. Nada mÃ¡s.',
+                    '23 aÃÂ±os. 32 personas. 5 perros. Cero jerarquÃÂ­as de grupo.',
+                    'Aegon: 6 aÃÂ±os, #CariÃÂ±oterapia Ã¢ÂÂ el caso de referencia del sector salud en EspaÃÂ±a.',
+                    'Finetwork (lanzamiento nacional), Burger King (14 aÃÂ±os), Tanqueray, Schweppes.',
+                    '6ÃÂª mejor agencia de EspaÃÂ±a segÃÂºn clientes reales. SCOPEN 2022.',
+                    'Creemos en el poder transformador de la creatividad. Nada mÃÂ¡s.',
                   ].map((t, i) => (
                     <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.38, ease }}
                       style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 16 }}>
-                      <span style={{ color: C.red, marginTop: 3, fontSize: 10, flexShrink: 0 }}>â¶</span>
+                      <span style={{ color: C.red, marginTop: 3, fontSize: 10, flexShrink: 0 }}>Ã¢ÂÂ¶</span>
                       <span style={{ fontSize: 15, lineHeight: 1.6, color: 'rgba(255,255,255,0.65)' }}>{t}</span>
                     </motion.li>
                   ))}
                 </ul>
                 <div style={{ borderTop: `1px solid rgba(255,255,255,0.07)`, paddingTop: 24 }}>
-                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.65 }}>Premio Eficacia, Gran Premio Genio. CampaÃ±as que funcionan en la calle, no solo en awards shows.</p>
+                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.65 }}>Premio Eficacia, Gran Premio Genio. CampaÃÂ±as que funcionan en la calle, no solo en awards shows.</p>
                 </div>
               </Glass>
             </Reveal>
@@ -300,23 +300,23 @@ export default function PitchPage() {
                   <p style={{ fontSize: 12, color: C.sky, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Inteligencia de mercado &amp; medios</p>
                 </div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: 40 }}>
-                  {[
-                    'Strategic Intelligence Portal activo: vumi.agency â inteligencia de mercado en tiempo real.',
-                    '18 brokers catalogados con fit score. 9 competidores analizados. 3 segmentos LATAM.',
-                    'Media mix diferencial: radio latina, creadores LATAM, DOOH en barrios venezolanos/colombianos.',
-                    '10 espacios sin contestar identificados â ningÃºn competidor los toca.',
-                    'Pipeline data â creative â media â measurement ya construido.',
+                                    {[
+                    'Estrategia de audiencia primaria: 1.09M residentes LATAM premium en España — tres segmentos, cuatro mercados de lanzamiento.',
+                    '18 corredurías de salud identificadas y puntuadas por CCAA. Canal broker-first: el más eficiente para IPMI premium en España.',
+                    'Media mix diferencial: audio latino, activación comunitaria WhatsApp, native programático. CPL 58–73% menor que display estándar.',
+                    '10 huecos de mercado confirmados sin activación — ningún competidor los está cubriendo.',
+                    'Hoja de ruta 12 meses estructurada en cuatro fases: Test → Aprender → Escalar → Optimizar.',
                   ].map((t, i) => (
                     <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.38, ease }}
                       style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 16 }}>
-                      <span style={{ color: C.sky, marginTop: 3, fontSize: 10, flexShrink: 0 }}>â¶</span>
+                      <span style={{ color: C.sky, marginTop: 3, fontSize: 10, flexShrink: 0 }}>Ã¢ÂÂ¶</span>
                       <span style={{ fontSize: 15, lineHeight: 1.6, color: 'rgba(255,255,255,0.65)' }}>{t}</span>
                     </motion.li>
                   ))}
                 </ul>
                 <div style={{ borderTop: `1px solid rgba(255,255,255,0.07)`, paddingTop: 24 }}>
-                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.65 }}>El portal ya existe. No es una promesa. Es una ventaja competitiva funcionando hoy.</p>
+                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.65 }}>La estrategia ya está construida. No es una promesa — es un plan accionable con datos reales sobre la mesa.</p>
                 </div>
               </Glass>
             </Reveal>
@@ -324,20 +324,20 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ââ PROPOSITION âââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ PROPOSITION Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <section style={{ padding: '120px 40px', background: `linear-gradient(135deg,${C.blue}15 0%,transparent 60%)` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Reveal>
             <p style={{ fontSize: 10, letterSpacing: '0.32em', color: C.sky, textTransform: 'uppercase', marginBottom: 44 }}>Lo que proponemos</p>
             <h2 style={{ fontSize: 'clamp(30px,5vw,70px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1, marginBottom: 64 }}>
-              Un lanzamiento que el mercado espaÃ±ol no ha visto en salud.
+              Un lanzamiento que el mercado espaÃÂ±ol no ha visto en salud.
             </h2>
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}>
             {[
-              { n: '01', t: 'Creatividad con dientes', c: C.red,  b: 'Una plataforma creativa construida para el expat LATAM de clase media-alta. No adaptaciones de campaÃ±a genÃ©rica â ideas nacidas de esa audiencia, para esa audiencia.' },
-              { n: '02', t: 'Inteligencia accionable', c: C.sky,  b: 'Decisiones de medios, canal y geografÃ­a basadas en datos reales de los tres segmentos LATAM prioritarios. No en intuiciÃ³n de agencia.' },
-              { n: '03', t: 'Canal broker activado',   c: C.white, b: '18 brokers identificados con scoring de compatibilidad por CCAA. El canal mÃ¡s eficiente para IPMI en EspaÃ±a, sin explotar por los competidores.' },
+              { n: '01', t: 'Creatividad con dientes', c: C.red,  b: 'Una plataforma creativa construida para el expat LATAM de clase media-alta. No adaptaciones de campaÃÂ±a genÃÂ©rica Ã¢ÂÂ ideas nacidas de esa audiencia, para esa audiencia.' },
+              { n: '02', t: 'Inteligencia accionable', c: C.sky,  b: 'Decisiones de medios, canal y geografÃÂ­a basadas en datos reales de los tres segmentos LATAM prioritarios. No en intuiciÃÂ³n de agencia.' },
+              { n: '03', t: 'Canal broker activado',   c: C.white, b: '18 brokers identificados con scoring de compatibilidad por CCAA. El canal mÃÂ¡s eficiente para IPMI en EspaÃÂ±a, sin explotar por los competidores.' },
             ].map(({ n, t, c, b }, i) => (
               <Reveal key={n} delay={i * 0.1}>
                 <Glass glow={c} style={{ padding: '48px 40px', height: '100%' }}>
@@ -351,128 +351,7 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ââ INTELLIGENCE + NIVO CHARTS ââââââââââââââââââââââââ */}
-      <section style={{ padding: '120px 40px', borderTop: `1px solid rgba(255,255,255,0.06)` }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <Reveal>
-            <p style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.28)', textTransform: 'uppercase', marginBottom: 20 }}>La ventaja de inteligencia</p>
-            <h2 style={{ fontSize: 'clamp(28px,4vw,54px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 16 }}>El portal es la propuesta.</h2>
-            <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', marginBottom: 52, maxWidth: 640 }}>
-              No construimos una presentaciÃ³n. Construimos un sistema de decisiÃ³n. El Strategic Intelligence Portal integra inteligencia de mercado en tiempo real, anÃ¡lisis competitivo, estrategia de canal broker por CCAA y seÃ±ales regulatorias â todo en una sola plataforma.
-            </p>
-          </Reveal>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, marginBottom: 2 }}>
-            {/* Pie chart â market intelligence */}
-            <Reveal>
-              <Glass style={{ padding: '40px', height: 380 }}>
-                <p style={{ fontSize: 10, color: C.sky, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8, fontWeight: 700 }}>Inteligencia de Mercado</p>
-                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginBottom: 0 }}>130 seÃ±ales Â· 4 dimensiones</p>
-                <div style={{ height: 280 }}>
-                  <ResponsivePie
-                    data={pieData}
-                    margin={{ top: 20, right: 80, bottom: 20, left: 80 }}
-                    innerRadius={0.62}
-                    padAngle={2}
-                    cornerRadius={3}
-                    activeOuterRadiusOffset={6}
-                    colors={({ data }) => data.color}
-                    borderWidth={0}
-                    enableArcLinkLabels={false}
-                    arcLabel={d => `${d.value}`}
-                    arcLabelsTextColor="rgba(255,255,255,0.9)"
-                    arcLabelsSkipAngle={12}
-                    legends={[{
-                      anchor: 'bottom',
-                      direction: 'row',
-                      translateY: 20,
-                      itemsSpacing: 6,
-                      itemWidth: 90,
-                      itemHeight: 18,
-                      itemTextColor: 'rgba(255,255,255,0.4)',
-                      symbolSize: 8,
-                      symbolShape: 'circle',
-                    }]}
-                    theme={{
-                      background: 'transparent',
-                      text: { fill: 'rgba(255,255,255,0.4)', fontSize: 10 },
-                      tooltip: { container: { background: '#111', color: '#fff', borderRadius: 4, border: `1px solid ${C.bd}`, fontSize: 11 } },
-                    }}
-                    motionConfig="gentle"
-                  />
-                </div>
-              </Glass>
-            </Reveal>
-
-            {/* Radar chart â GTM coverage */}
-            <Reveal delay={0.12}>
-              <Glass style={{ padding: '40px', height: 380 }}>
-                <p style={{ fontSize: 10, color: C.sky, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8, fontWeight: 700 }}>GTM Coverage Score</p>
-                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginBottom: 0 }}>6 dimensiones estratÃ©gicas</p>
-                <div style={{ height: 280 }}>
-                  <ResponsiveRadar
-                    data={radarData}
-                    keys={['score']}
-                    indexBy="metric"
-                    maxValue={100}
-                    margin={{ top: 30, right: 60, bottom: 30, left: 60 }}
-                    curve="linearClosed"
-                    borderWidth={2}
-                    borderColor={C.sky}
-                    gridLevels={4}
-                    gridShape="circular"
-                    gridLabelOffset={12}
-                    enableDots={true}
-                    dotSize={6}
-                    dotColor={C.sky}
-                    dotBorderWidth={2}
-                    dotBorderColor={C.bg}
-                    enableDotLabel={false}
-                    fillOpacity={0.18}
-                    colors={[C.sky]}
-                    blendMode="normal"
-                    motionConfig="gentle"
-                    theme={{
-                      background: 'transparent',
-                      text: { fill: 'rgba(255,255,255,0.45)', fontSize: 10 },
-                      grid: { line: { stroke: 'rgba(255,255,255,0.08)' } },
-                      tooltip: { container: { background: '#111', color: '#fff', borderRadius: 4, border: `1px solid ${C.bd}`, fontSize: 11 } },
-                    }}
-                  />
-                </div>
-              </Glass>
-            </Reveal>
-          </div>
-
-          {/* Stat pills */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
-            {[
-              { v: '130', l: 'SeÃ±ales de mercado verificadas',     c: C.sky,      tip: 'Actualizadas semanalmente. Fuentes primarias verificadas.' },
-              { v: '10',  l: 'HipÃ³tesis GTM en validaciÃ³n',          c: '#00C875', tip: 'Todas respaldadas con evidencia de mercado.' },
-              { v: '18',  l: 'Brokers catalogados con fit score',   c: C.red,      tip: '6 Tier-1 Â· 12 Tier-2 Â· 2 Watch. Por CCAA.' },
-              { v: '9',   l: 'Competidores analizados con gaps',    c: '#FFD166',  tip: 'Bupa, Cigna, Allianz, AXA, Aetna + domÃ©sticas.' },
-            ].map(({ v, l, c, tip }) => (
-              <Glass key={v} style={{ padding: '24px 22px' }}>
-                <Tip text={tip}>
-                  <p style={{ fontFamily: "'Montserrat',sans-serif", fontSize: 32, fontWeight: 900, color: c, lineHeight: 1, marginBottom: 8 }}>{v}</p>
-                </Tip>
-                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.42)', lineHeight: 1.5 }}>{l}</p>
-              </Glass>
-            ))}
-          </div>
-
-          <Reveal style={{ marginTop: 32 }}>
-            <motion.a href="/intelligence"
-              whileHover={{ letterSpacing: '0.28em', color: C.sky }}
-              transition={{ duration: 0.2 }}
-              style={{ display: 'inline-flex', alignItems: 'center', gap: 10, fontSize: 11, letterSpacing: '0.22em', textTransform: 'uppercase', color: C.sky, textDecoration: 'none', borderBottom: `1px solid ${C.sky}`, paddingBottom: 4 }}>
-              Ver el portal en vivo â
-            </motion.a>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* ââ CASES âââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ CASES Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <section style={{ padding: '80px 40px', background: 'rgba(255,255,255,0.016)', borderTop: `1px solid rgba(255,255,255,0.06)` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Reveal>
@@ -480,9 +359,9 @@ export default function PitchPage() {
           </Reveal>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 2 }}>
             {[
-              { agency: 'La Despensa', brand: 'Aegon EspaÃ±a',     color: C.red, tags: ['Salud','Seguros','Emocional','Multi-aÃ±o'], body: '6 aÃ±os de relaciÃ³n. CampaÃ±a #CariÃ±oterapia: el acompaÃ±amiento como propuesta emocional en salud. Multi-aÃ±o, multi-formato, TV a digital.' },
-              { agency: 'La Despensa', brand: 'Finetwork',         color: C.red, tags: ['Lanzamiento','Nacional','Full-funnel'],   body: 'Lanzamiento nacional desde cero. Todos los puntos de contacto en 2 aÃ±os. Entrada en mercado saturado con identidad diferencial.' },
-              { agency: 'ReMotive',   brand: 'VUMI Spain Portal', color: C.sky, tags: ['Inteligencia','Tiempo Real','Data','Live'],        body: 'Strategic Intelligence Portal activo. Inteligencia de mercado en vivo. Brokers, competidores, audiencias LATAM â todo consultable en tiempo real.' },
+              { agency: 'La Despensa', brand: 'Aegon EspaÃÂ±a',     color: C.red, tags: ['Salud','Seguros','Emocional','Multi-aÃÂ±o'], body: '6 aÃÂ±os de relaciÃÂ³n. CampaÃÂ±a #CariÃÂ±oterapia: el acompaÃÂ±amiento como propuesta emocional en salud. Multi-aÃÂ±o, multi-formato, TV a digital.' },
+              { agency: 'La Despensa', brand: 'Finetwork',         color: C.red, tags: ['Lanzamiento','Nacional','Full-funnel'],   body: 'Lanzamiento nacional desde cero. Todos los puntos de contacto en 2 aÃÂ±os. Entrada en mercado saturado con identidad diferencial.' },
+              { agency: 'ReMotive',   brand: 'VUMI Spain Portal', color: C.sky, tags: ['Inteligencia','Tiempo Real','Data','Live'],        body: 'Strategic Intelligence Portal activo. Inteligencia de mercado en vivo. Brokers, competidores, audiencias LATAM Ã¢ÂÂ todo consultable en tiempo real.' },
             ].map(({ agency, brand, color, tags, body }, i) => (
               <Reveal key={brand} delay={i * 0.1}>
                 <Glass glow={color} style={{ padding: '36px 32px', height: '100%' }}>
@@ -505,14 +384,14 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ââ CTA âââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ CTA Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <section style={{ padding: '120px 40px', background: `linear-gradient(to right,${C.blue},#001A5C)`, borderTop: `1px solid rgba(255,255,255,0.1)` }}>
         <div style={{ maxWidth: 900, margin: '0 auto', textAlign: 'center' }}>
           <Reveal>
-            <p style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.42)', textTransform: 'uppercase', marginBottom: 28 }}>PrÃ³ximos pasos</p>
+            <p style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.42)', textTransform: 'uppercase', marginBottom: 28 }}>PrÃÂ³ximos pasos</p>
             <h2 style={{ fontSize: 'clamp(32px,5vw,64px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 28 }}>Arranquemos.</h2>
             <p style={{ fontSize: 17, lineHeight: 1.72, color: 'rgba(255,255,255,0.66)', maxWidth: 580, margin: '0 auto 56px' }}>
-              Una sesiÃ³n de trabajo. Sin presentaciones de 80 slides. Con el portal abierto, la inteligencia consultable y las decisiones que hay que tomar sobre la mesa.
+              Una sesiÃÂ³n de trabajo. Sin presentaciones de 80 slides. Con el portal abierto, la inteligencia consultable y las decisiones que hay que tomar sobre la mesa.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
               <motion.a href="mailto:alex@rmtv.io"
@@ -533,7 +412,7 @@ export default function PitchPage() {
       </section>
 
       
-      {/* ── GTM STRATEGY DECK ──────────────────────────────── */}
+      {/* ââ GTM STRATEGY DECK ââââââââââââââââââââââââââââââââ */}
       <section style={{ padding: '80px 40px', borderTop: '1px solid rgba(255,255,255,0.07)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Reveal>
@@ -560,7 +439,7 @@ export default function PitchPage() {
                 {/* Accent bar */}
                 <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: 'linear-gradient(90deg, #E8311A, #0033A0)', borderRadius: '2px 2px 0 0' }} />
 
-                {/* Left — content */}
+                {/* Left â content */}
                 <div style={{ flex: 1, minWidth: 280 }}>
                   <p style={{ fontSize: 10, letterSpacing: '0.32em', color: '#E8311A', textTransform: 'uppercase', marginBottom: 12, fontWeight: 700 }}>
                     Estrategia GTM
@@ -569,11 +448,11 @@ export default function PitchPage() {
                     Plan de Crecimiento<br />12 Meses.
                   </h2>
                   <p style={{ fontSize: 15, lineHeight: 1.65, color: 'rgba(255,255,255,0.52)', maxWidth: 480, marginBottom: 0 }}>
-                    Audiencias, canales, creatividad y hoja de ruta de activación completa — presentado en 25 diapositivas. Construido desde la inteligencia de mercado.
+                    Audiencias, canales, creatividad y hoja de ruta de activaciÃ³n completa â presentado en 25 diapositivas. Construido desde la inteligencia de mercado.
                   </p>
                 </div>
 
-                {/* Centre — stats */}
+                {/* Centre â stats */}
                 <div style={{ display: 'flex', gap: 32, flexWrap: 'wrap' }}>
                   {[
                     { val: '25', label: 'Slides' },
@@ -588,7 +467,7 @@ export default function PitchPage() {
                   ))}
                 </div>
 
-                {/* Right — CTA */}
+                {/* Right â CTA */}
                 <div style={{ flexShrink: 0 }}>
                   <div style={{
                     display: 'inline-flex', alignItems: 'center', gap: 10,
@@ -597,7 +476,7 @@ export default function PitchPage() {
                     fontSize: 11, fontWeight: 800, letterSpacing: '0.18em', textTransform: 'uppercase',
                   }}>
                     Ver Estrategia
-                    <span style={{ fontSize: 16 }}>→</span>
+                    <span style={{ fontSize: 16 }}>â</span>
                   </div>
                 </div>
               </motion.div>
@@ -606,53 +485,11 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ââ SECTION NAV GRID ââââââââââââââââââââââââââââââââââ */}
-      <section style={{ padding: '100px 40px', borderTop: `1px solid rgba(255,255,255,0.07)` }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <Reveal>
-            <p style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.25)', textTransform: 'uppercase', marginBottom: 12 }}>Portal de inteligencia</p>
-            <h2 style={{ fontSize: 'clamp(22px,3.5vw,46px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.08, marginBottom: 12 }}>
-              Lo que ya construimos para ti.
-            </h2>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.38)', marginBottom: 52, maxWidth: 500 }}>
-              Acceso directo a cada capa de la inteligencia VUMI EspaÃ±a. En tiempo real. Todo consultable.
-            </p>
-          </Reveal>
-
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 2, marginBottom: 2 }}>
-            {[
-              { href: '/intelligence',             icon: 'â¡', label: 'Cockpit',      sub: 'Command center. Live data.', accent: C.sky },
-              { href: '/intelligence/audiences',   icon: 'ð¥', label: 'Audiencias',   sub: 'VE 377K Â· CO 676K Â· MX 36K',  accent: C.sky },
-              { href: '/intelligence/geography',   icon: 'ðºï¸', label: 'GeografÃ­a',    sub: '10 ciudades Â· P0: Madrid+BCN', accent: C.sky },
-              { href: '/intelligence/brokers',     icon: 'ð¤', label: 'Brokers',      sub: '18 catalogados Â· 6 Tier-1',   accent: '#00C875' },
-              { href: '/intelligence/competitors', icon: 'ð¯', label: 'Competidores', sub: '9 mapeados Â· MFSA vs FCA',    accent: C.red },
-            ].map((c, i) => (
-              <Reveal key={c.href} delay={i * 0.06}>
-                <NavCard {...c} />
-              </Reveal>
-            ))}
-          </div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 2 }}>
-            {[
-              { href: '/intelligence/proposition', icon: 'ð', label: 'Propuesta',    sub: 'Priority / Pro / Premier',    accent: '#FFD166' },
-              { href: '/intelligence/roadmap',     icon: 'ðï¸', label: 'Roadmap',      sub: '5 gates Â· 365 dÃ­as',          accent: C.sky },
-              { href: '/intelligence/gates',       icon: 'ð', label: 'Gates & Gaps', sub: '12 gaps Â· 4 bloqueantes',     accent: C.red },
-              { href: '/intelligence/signals',     icon: 'ð¡', label: 'SeÃ±ales',      sub: '48 seÃ±ales Â· refresh lunes',  accent: C.sky },
-              { href: '/intelligence/ask',         icon: 'ð¤', label: 'Ask VUMI',     sub: 'Inteligencia Â· voz activa',   accent: '#00C875' },
-            ].map((c, i) => (
-              <Reveal key={c.href} delay={0.3 + i * 0.06}>
-                <NavCard {...c} />
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ââ FOOTER ââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* Ã¢ÂÂÃ¢ÂÂ FOOTER Ã¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂÃ¢ÂÂ */}
       <footer style={{ padding: '28px 40px', borderTop: `1px solid rgba(255,255,255,0.06)`, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
         <div style={{ display: 'flex', gap: 28, alignItems: 'center' }}>
-          <span style={{ fontSize: 10, letterSpacing: '0.22em', color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase' }}>La Despensa Ã ReMotive Media</span>
-          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.1)' }}>Para VUMI Europe EspaÃ±a â 2026</span>
+          <span style={{ fontSize: 10, letterSpacing: '0.22em', color: 'rgba(255,255,255,0.2)', textTransform: 'uppercase' }}>La Despensa ÃÂ ReMotive Media</span>
+          <span style={{ fontSize: 10, color: 'rgba(255,255,255,0.1)' }}>Para VUMI Europe EspaÃÂ±a Ã¢ÂÂ 2026</span>
         </div>
         <div style={{ display: 'flex', gap: 22 }}>
           {[
@@ -662,7 +499,7 @@ export default function PitchPage() {
             <motion.a key={href} href={href} whileHover={{ color: C.sky }}
               transition={{ duration: 0.18 }}
               style={{ fontSize: 10, color: 'rgba(255,255,255,0.25)', textDecoration: 'none', letterSpacing: '0.16em', textTransform: 'uppercase' }}>
-              {label} â
+              {label} Ã¢ÂÂ
             </motion.a>
           ))}
         </div>
