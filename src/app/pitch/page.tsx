@@ -345,7 +345,7 @@ const es = {
   ldProof: 'Premio Eficacia, Gran Premio Genio. Campañas que funcionan en la calle, no solo en awards shows.',
   rmRole: 'Inteligencia de mercado & medios',
   rmBullets: [
-    'Strategic Intelligence Portal activo: vumi-opal.vercel.app — RAG sobre corpus VUMI.',
+    'Strategic Intelligence Portal activo: vumi.agency — RAG sobre corpus VUMI.',
     '18 brokers catalogados con fit score. 9 competidores analizados. 3 segmentos LATAM.',
     'Media mix diferencial: radio latina, creadores LATAM, DOOH en barrios venezolanos/colombianos.',
     '10 espacios sin contestar identificados en el mercado — ningún competidor los toca.',
@@ -427,7 +427,7 @@ const en = {
   ldProof: 'Eficacia Award, Grand Prix Genio. Campaigns that work in the street, not just at award shows.',
   rmRole: 'Market intelligence & media',
   rmBullets: [
-    'Active Strategic Intelligence Portal: vumi-opal.vercel.app — RAG on VUMI corpus.',
+    'Active Strategic Intelligence Portal: vumi.agency — RAG on VUMI corpus.',
     '18 brokers catalogued with fit score. 9 competitors analysed. 3 LatAm segments.',
     'Differential media mix: Latin radio, LatAm creators, DOOH in Venezuelan/Colombian neighbourhoods.',
     '10 uncontested market spaces identified — no competitor touches them.',

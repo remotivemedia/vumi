@@ -3,9 +3,10 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
-import { LayoutDashboard, Users, MapPin, Briefcase, BarChart2, Target, GitBranch, ShieldAlert, Radio, MessageSquare } from 'lucide-react';
+import { LayoutDashboard, Users, MapPin, Briefcase, BarChart2, Target, GitBranch, ShieldAlert, Radio, MessageSquare, Presentation } from 'lucide-react';
 
 const NAV = [
+  { href:'/pitch',                    key:'nav.pitch',        Icon:Presentation },
   { href:'/intelligence',             key:'nav.cockpit',      Icon:LayoutDashboard },
   { href:'/intelligence/audiences',   key:'nav.audiences',    Icon:Users },
   { href:'/intelligence/geography',   key:'nav.geography',    Icon:MapPin },
@@ -25,7 +26,7 @@ export function NavClient() {
   return (
     <nav style={{ flex:1, padding:'10px 8px', overflowY:'auto' }}>
       {NAV.map(({ href, key, Icon }) => {
-        const active = path === href || (href !== '/intelligence' && path?.startsWith(href));
+        const active = path === href || (href !== '/intelligence' && href !== '/pitch' && path?.startsWith(href));
         return (
           <Link key={href} href={href} style={{ textDecoration:'none', display:'block', marginBottom:1 }}>
             <motion.div
