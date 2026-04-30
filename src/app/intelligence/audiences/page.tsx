@@ -58,7 +58,7 @@ export default async function AudiencesPage() {
                     <span style={{ background:aud.color, color:'#fff', padding:'2px 10px', borderRadius:99, fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:11 }}><T k="audiences.priority_label" /> #{aud.priority}</span>
                     <span style={{ background:'#E3F4F0', color:'#2DA771', padding:'2px 8px', borderRadius:99, fontSize:10, fontWeight:600 }}><T k="audiences.propensity" /> {aud.propensity}</span>
                   </div>
-                  <h2 style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:20, color:'#2C3539', marginBottom:2 }}>Audiencia {aud.label}<span style={S.cite}>{aud.docSlug}#{aud.chunk}</span></h2>
+                  <h2 style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:20, color:'#2C3539', marginBottom:2 }}>Audiencia {aud.label}</h2>
                   <div style={{ fontSize:12, color:'#6B7785' }}>{aud.padronSource}</div>
                 </div>
                 <div style={{ textAlign:'right' }}>
@@ -117,9 +117,6 @@ export default async function AudiencesPage() {
           <div style={{ ...S.card, borderLeft:'4px solid #0033A0', background:'#FAFBFF', marginTop:8 }}>
             <div style={S.kicker}><T k="audiences.corpus_insight" /></div>
             <div style={{ fontSize:13, color:'#2C3539', lineHeight:1.6, marginBottom:10 }}>{insight.answer}</div>
-            <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
-              {insight.chunks.map((c,i) => <span key={i} style={S.cite}>{c.doc_slug}#{c.chunk_index}</span>)}
-            </div>
           </div>
         </FadeIn>
       )}
