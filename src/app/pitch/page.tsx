@@ -148,7 +148,7 @@ export default function PitchPage() {
 
   /* Nivo data */
   const pieData = [
-    { id: 'Chunks RAG',   label: 'Chunks RAG',   value: 130, color: C.sky  },
+    { id: 'Señales',      label: 'Señales',       value: 130, color: C.sky  },
     { id: 'Hipótesis',    label: 'Hipótesis',     value: 10,  color: '#00C875' },
     { id: 'Brokers',      label: 'Brokers',       value: 18,  color: C.red  },
     { id: 'Competidores', label: 'Competidores',  value: 9,   color: '#FFD166' },
@@ -227,7 +227,7 @@ export default function PitchPage() {
               { v: '23',  l: 'Años\nLa Despensa',      tip: 'Fundada 2003. 32 personas. 5 perros. Cero jerarquías.' },
               { v: '6ª',  l: 'Agencia\nSCOPEN 2022',   tip: 'Por valoración de clientes reales, no de jurados.' },
               { v: '18',  l: 'Brokers\nIdentificados', tip: 'Fit score por CCAA, expat DNA e IPMI track record.' },
-              { v: '130', l: 'Chunks RAG\nActivos',    tip: 'Embedded en pgvector. Consulta en <2s.' },
+              { v: '130', l: 'Señales de\nMercado',     tip: 'Inteligencia verificada. Actualización semanal automática.' },
             ].map(({ v, l, tip }) => (
               <Glass key={v} style={{ padding: '28px 36px', flex: '1 1 140px', minWidth: 130 }}>
                 <Tip text={tip}>
@@ -301,7 +301,7 @@ export default function PitchPage() {
                 </div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: 40 }}>
                   {[
-                    'Strategic Intelligence Portal activo: vumi.agency — RAG sobre corpus VUMI.',
+                    'Strategic Intelligence Portal activo: vumi.agency — inteligencia de mercado en tiempo real.',
                     '18 brokers catalogados con fit score. 9 competidores analizados. 3 segmentos LATAM.',
                     'Media mix diferencial: radio latina, creadores LATAM, DOOH en barrios venezolanos/colombianos.',
                     '10 espacios sin contestar identificados — ningún competidor los toca.',
@@ -358,16 +358,16 @@ export default function PitchPage() {
             <p style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.28)', textTransform: 'uppercase', marginBottom: 20 }}>La ventaja de inteligencia</p>
             <h2 style={{ fontSize: 'clamp(28px,4vw,54px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 16 }}>El portal es la propuesta.</h2>
             <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.55)', marginBottom: 52, maxWidth: 640 }}>
-              No construimos una presentación. Construimos un sistema de decisión. El Strategic Intelligence Portal integra corpus RAG, datos de mercado en tiempo real, análisis de brokers por CCAA y señales competitivas — todo en una sola plataforma.
+              No construimos una presentación. Construimos un sistema de decisión. El Strategic Intelligence Portal integra inteligencia de mercado en tiempo real, análisis competitivo, estrategia de canal broker por CCAA y señales regulatorias — todo en una sola plataforma.
             </p>
           </Reveal>
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 2, marginBottom: 2 }}>
-            {/* Pie chart — corpus breakdown */}
+            {/* Pie chart — market intelligence */}
             <Reveal>
               <Glass style={{ padding: '40px', height: 380 }}>
-                <p style={{ fontSize: 10, color: C.sky, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8, fontWeight: 700 }}>Corpus Intelligence</p>
-                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginBottom: 0 }}>130 chunks · 4 dimensiones</p>
+                <p style={{ fontSize: 10, color: C.sky, letterSpacing: '0.2em', textTransform: 'uppercase', marginBottom: 8, fontWeight: 700 }}>Inteligencia de Mercado</p>
+                <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginBottom: 0 }}>130 señales · 4 dimensiones</p>
                 <div style={{ height: 280 }}>
                   <ResponsivePie
                     data={pieData}
@@ -447,8 +447,8 @@ export default function PitchPage() {
           {/* Stat pills */}
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 2 }}>
             {[
-              { v: '130', l: 'Chunks de inteligencia indexados',   c: C.sky,      tip: 'pgvector. Query < 2s. Fuentes: 37 documentos.' },
-              { v: '10',  l: 'Hipótesis estratégicas con evidencia', c: '#00C875', tip: 'Todas en estado "testing". Evidencia verificada.' },
+              { v: '130', l: 'Señales de mercado verificadas',     c: C.sky,      tip: 'Actualizadas semanalmente. Fuentes primarias verificadas.' },
+              { v: '10',  l: 'Hipótesis GTM en validación',          c: '#00C875', tip: 'Todas respaldadas con evidencia de mercado.' },
               { v: '18',  l: 'Brokers catalogados con fit score',   c: C.red,      tip: '6 Tier-1 · 12 Tier-2 · 2 Watch. Por CCAA.' },
               { v: '9',   l: 'Competidores analizados con gaps',    c: '#FFD166',  tip: 'Bupa, Cigna, Allianz, AXA, Aetna + domésticas.' },
             ].map(({ v, l, c, tip }) => (
@@ -482,7 +482,7 @@ export default function PitchPage() {
             {[
               { agency: 'La Despensa', brand: 'Aegon España',     color: C.red, tags: ['Salud','Seguros','Emocional','Multi-año'], body: '6 años de relación. Campaña #Cariñoterapia: el acompañamiento como propuesta emocional en salud. Multi-año, multi-formato, TV a digital.' },
               { agency: 'La Despensa', brand: 'Finetwork',         color: C.red, tags: ['Lanzamiento','Nacional','Full-funnel'],   body: 'Lanzamiento nacional desde cero. Todos los puntos de contacto en 2 años. Entrada en mercado saturado con identidad diferencial.' },
-              { agency: 'ReMotive',   brand: 'VUMI Spain Portal', color: C.sky, tags: ['Inteligencia','RAG','Data','Live'],        body: 'Strategic Intelligence Portal live. RAG sobre 130 chunks. Brokers, competidores, audiencias LATAM — todo consultable en tiempo real.' },
+              { agency: 'ReMotive',   brand: 'VUMI Spain Portal', color: C.sky, tags: ['Inteligencia','Tiempo Real','Data','Live'],        body: 'Strategic Intelligence Portal activo. Inteligencia de mercado en vivo. Brokers, competidores, audiencias LATAM — todo consultable en tiempo real.' },
             ].map(({ agency, brand, color, tags, body }, i) => (
               <Reveal key={brand} delay={i * 0.1}>
                 <Glass glow={color} style={{ padding: '36px 32px', height: '100%' }}>
@@ -512,7 +512,7 @@ export default function PitchPage() {
             <p style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.42)', textTransform: 'uppercase', marginBottom: 28 }}>Próximos pasos</p>
             <h2 style={{ fontSize: 'clamp(32px,5vw,64px)', fontWeight: 900, letterSpacing: '-0.03em', lineHeight: 1.05, marginBottom: 28 }}>Arranquemos.</h2>
             <p style={{ fontSize: 17, lineHeight: 1.72, color: 'rgba(255,255,255,0.66)', maxWidth: 580, margin: '0 auto 56px' }}>
-              Una sesión de trabajo. Sin presentaciones de 80 slides. Con el portal abierto, el corpus consultable y las decisiones que hay que tomar sobre la mesa.
+              Una sesión de trabajo. Sin presentaciones de 80 slides. Con el portal abierto, la inteligencia consultable y las decisiones que hay que tomar sobre la mesa.
             </p>
             <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
               <motion.a href="mailto:alex@rmtv.io"
@@ -564,7 +564,7 @@ export default function PitchPage() {
               { href: '/intelligence/roadmap',     icon: '🗓️', label: 'Roadmap',      sub: '5 gates · 365 días',          accent: C.sky },
               { href: '/intelligence/gates',       icon: '🔒', label: 'Gates & Gaps', sub: '12 gaps · 4 bloqueantes',     accent: C.red },
               { href: '/intelligence/signals',     icon: '📡', label: 'Señales',      sub: '48 señales · refresh lunes',  accent: C.sky },
-              { href: '/intelligence/ask',         icon: '🤖', label: 'Ask VUMI',     sub: 'RAG · 130 chunks · voz',      accent: '#00C875' },
+              { href: '/intelligence/ask',         icon: '🤖', label: 'Ask VUMI',     sub: 'Inteligencia · voz activa',   accent: '#00C875' },
             ].map((c, i) => (
               <Reveal key={c.href} delay={0.3 + i * 0.06}>
                 <NavCard {...c} />
