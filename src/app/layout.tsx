@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ElevenLabsWidget } from '@/components/voice/ElevenLabsWidget';
 
 export const metadata: Metadata = {
   title: "VUMI — Tu salud no espera fronteras",
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body style={{ margin: 0, padding: 0, background: "#F8F5F0" }}>
         {children}
+        <ElevenLabsWidget />
       </body>
     </html>
   );
