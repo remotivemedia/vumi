@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VUMI España — GTM Strategy Briefing</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --coral:#E55B4D;--sky:#00A9E0;
+  --white:#F5F3EE;--muted:rgba(245,243,238,0.52);--faint:rgba(245,243,238,0.09);
+  --dark:#080807;--surface:#111110;--surface2:#1C1C1A;--border:rgba(245,243,238,0.1);
+}
+body{background:#080807;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;color:var(--white);overflow-x:hidden;}
+.deck{max-width:900px;margin:0 auto;background:var(--dark);border-radius:16px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6);}
+.slide{display:none;min-height:540px;padding:52px 60px;flex-direction:column;justify-content:center;position:relative;overflow:hidden;animation:enter .32s cubic-bezier(.25,.1,.25,1);}
+.slide.active{display:flex;}
+@keyframes enter{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:translateY(0);}}
+
+.tag{font-size:9px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--coral);margin-bottom:18px;}
+h1{font-size:48px;font-weight:500;color:var(--white);line-height:1.03;margin-bottom:12px;max-width:560px;}
+h1 em{font-style:normal;color:var(--coral);}
+h2{font-size:30px;font-weight:500;color:var(--white);line-height:1.1;margin-bottom:10px;}
+h2 em{font-style:normal;color:var(--coral);}
+h3{font-size:15px;font-weight:500;color:var(--white);margin-bottom:7px;}
+.sub{font-size:14px;color:var(--muted);line-height:1.65;max-width:500px;margin-top:4px;}
+
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:13px;margin-top:18px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:11px;margin-top:18px;}
+.two-col{display:grid;grid-template-columns:1.1fr 0.9fr;gap:32px;align-items:start;}
+
+.card{background:var(--surface);border:.5px solid var(--border);border-radius:10px;padding:18px 20px;}
+.card.al{border-left:2.5px solid var(--coral);}
+.card.at{border-top:2px solid var(--coral);}
+.cl{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;}
+.cv{font-size:25px;font-weight:500;color:var(--white);}
+.cs{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
+
+.ilist{list-style:none;margin-top:14px;display:flex;flex-direction:column;gap:9px;}
+.ilist li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--white);line-height:1.55;}
+.ilist li::before{content:'';width:5px;height:5px;border-radius:50%;background:var(--coral);flex-shrink:0;margin-top:6px;}
+.ilist.sm li{font-size:12.5px;}
+.ilist.sm li::before{width:4px;height:4px;margin-top:6px;}
+
+.phase{background:var(--surface);border-left:3px solid var(--coral);border-radius:0 8px 8px 0;padding:13px 18px;margin-bottom:10px;}
+.pt{font-size:10px;font-weight:500;color:var(--coral);text-transform:uppercase;letter-spacing:.1em;margin-bottom:3px;}
+.pb{font-size:12.5px;color:var(--muted);line-height:1.5;}
+
+.badge{display:inline-flex;padding:3px 10px;border-radius:20px;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;margin-bottom:14px;}
+.bp0{background:rgba(229,91,77,.12);color:var(--coral);border:.5px solid rgba(229,91,77,.3);}
+.bp1{background:rgba(0,169,224,.12);color:var(--sky);border:.5px solid rgba(0,169,224,.3);}
+.bgreen{background:rgba(50,200,100,.1);color:#32c864;border:.5px solid rgba(50,200,100,.25);}
+
+.highlight{background:rgba(229,91,77,.07);border:.5px solid rgba(229,91,77,.22);border-radius:8px;padding:14px 18px;}
+.hl-label{font-size:10px;color:var(--coral);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;}
+.hl-body{font-size:13px;color:var(--white);line-height:1.5;}
+.hl-sky{background:rgba(0,169,224,.06);border-color:rgba(0,169,224,.2);}
+.hl-sky .hl-label{color:var(--sky);}
+
+.sowhat{background:var(--surface);border:.5px solid var(--border);border-radius:8px;padding:12px 16px;margin-top:14px;}
+.sw-label{font-size:9px;color:var(--coral);text-transform:uppercase;letter-spacing:.12em;margin-bottom:4px;}
+.sw-text{font-size:13px;color:var(--white);line-height:1.5;}
+
+.fbar{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.flabel{width:120px;font-size:11px;color:var(--muted);text-align:right;flex-shrink:0;}
+.ftrack{flex:1;height:28px;background:var(--surface2);border-radius:4px;overflow:hidden;}
+.ffill{height:100%;background:var(--coral);border-radius:4px;min-width:8px;}
+.fnum{width:72px;font-size:12px;color:var(--white);font-weight:500;flex-shrink:0;}
+
+.ch-row{display:flex;align-items:flex-start;gap:14px;margin-bottom:13px;}
+.ch-icon{width:36px;height:36px;background:var(--surface2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;margin-top:2px;}
+.ch-name{font-size:13px;font-weight:500;color:var(--white);}
+.ch-role{font-size:11.5px;color:var(--muted);line-height:1.45;margin-top:2px;}
+.ch-pct{font-size:12px;color:var(--coral);font-weight:500;flex-shrink:0;margin-top:3px;}
+
+.conf-row{display:flex;align-items:center;gap:10px;margin-bottom:11px;}
+.conf-label{font-size:12.5px;color:var(--white);width:270px;line-height:1.35;}
+.conf-track{flex:1;height:4px;background:var(--surface2);border-radius:2px;overflow:hidden;}
+.conf-fill{height:100%;background:var(--coral);border-radius:2px;}
+.conf-pct{font-size:11px;color:var(--muted);width:32px;text-align:right;}
+
+.kpi-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px;}
+.kpi{background:var(--surface);border:.5px solid var(--border);border-radius:8px;padding:11px 13px;}
+.kpi-name{font-size:11px;color:var(--muted);margin-bottom:4px;}
+.kpi-val{font-size:19px;font-weight:500;color:var(--white);}
+.kpi-unit{font-size:10px;color:var(--muted);margin-left:3px;}
+
+.chart-wrap{position:relative;width:100%;}
+.ch240{height:240px;} .ch260{height:260px;} .ch280{height:280px;}
+
+.bg-deco{position:absolute;bottom:-30px;right:-20px;font-size:160px;font-weight:700;color:rgba(229,91,77,.03);letter-spacing:-.04em;pointer-events:none;line-height:1;z-index:0;}
+.content{position:relative;z-index:1;}
+.title-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 80% 50%,rgba(229,91,77,.11) 0%,transparent 70%);pointer-events:none;}
+
+.brand-bar{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.brand-dot{width:22px;height:22px;background:var(--coral);border-radius:50%;}
+.brand-name{font-size:11px;font-weight:500;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;}
+
+.div-line{height:.5px;background:var(--border);margin:18px 0;}
+
+.rm-bar{display:flex;height:7px;border-radius:4px;overflow:hidden;gap:2px;max-width:280px;margin-bottom:16px;}
+.s1{background:rgba(229,91,77,.35);flex:1;} .s2{background:rgba(229,91,77,.55);flex:1;} .s3{background:rgba(229,91,77,.8);flex:2;} .s4{background:var(--coral);flex:1;} .soff{background:var(--surface2);}
+
+.cal-row{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;margin-top:18px;}
+.cal-m{height:50px;border-radius:4px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;}
+.mn{font-size:9px;color:var(--muted);}
+.mc{font-size:9px;color:var(--white);text-align:center;line-height:1.2;}
+.ct{background:rgba(229,91,77,.18);border:.5px solid rgba(229,91,77,.3);}
+.cl2{background:rgba(229,91,77,.3);border:.5px solid rgba(229,91,77,.45);}
+.csc{background:rgba(229,91,77,.5);border:.5px solid rgba(229,91,77,.6);}
+.co{background:rgba(229,91,77,.7);border:.5px solid var(--coral);}
+
+.vpill{display:inline-block;background:var(--surface2);border:.5px solid var(--border);border-radius:6px;padding:7px 13px;font-size:12px;color:var(--muted);margin:4px;}
+.vpill span{color:var(--white);font-weight:500;}
+
+.nav{display:flex;align-items:center;justify-content:space-between;padding:12px 20px 12px 60px;border-top:.5px solid var(--border);}
+.dots{display:flex;gap:5px;flex-wrap:wrap;max-width:440px;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--faint);cursor:pointer;transition:all .2s;border:none;padding:0;}
+.dot.active{width:22px;border-radius:3px;background:var(--coral);}
+.nav-r{display:flex;align-items:center;gap:12px;}
+.counter{font-size:11px;color:var(--muted);}
+.nbtn{width:34px;height:34px;border-radius:50%;border:.5px solid var(--border);background:transparent;color:var(--white);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:14px;transition:all .15s;}
+.nbtn:hover{background:var(--surface2);}
+.nbtn:disabled{opacity:.25;cursor:default;}
+</style>
+</head>
+<body>
+<div class="deck">
+<div id="sw">
+
+<!-- S1 TITLE -->
+<div class="slide active" id="s1">
+  <div class="title-bg"></div><div class="bg-deco">V</div>
+  <div class="content">
+    <div style="margin-bottom:32px;">
+      <div class="brand-bar"><div class="brand-dot"></div><span class="brand-name">Re:MOTIVE Media × La Despensa</span></div>
+      <div style="font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;">VUMI España</div>
+      <h1>GTM Strategy<br><em>Briefing.</em></h1>
+    </div>
+    <p class="sub" style="max-width:420px;">Audience strategy, media architecture, creative system, and 12-month activation roadmap. April 2026.</p>
+    <div class="div-line" style="max-width:320px;"></div>
+    <div style="display:flex;gap:36px;margin-top:14px;">
+      <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Market</div><div style="font-size:18px;font-weight:500;">€12.1B</div></div>
+      <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">LATAM premium residents</div><div style="font-size:18px;font-weight:500;">1.09M</div></div>
+      <div><div style="font-size:10px;color:var(--muted);margin-bottom:3px;">Competitors targeting them</div><div style="font-size:18px;font-weight:500;color:var(--coral);">0</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S2 THE CASE -->
+<div class="slide" id="s2">
+  <div class="bg-deco">€</div>
+  <div class="content">
+    <div class="tag">01 / The Case</div>
+    <h2>A Growing Market.<br><em>An Untouched Segment.</em></h2>
+    <p class="sub">Spain's private health insurance market is €12.1B, growing at 7.4% a year. Five incumbents dominate. Not one has built a product, message, or campaign for the fastest-growing, highest-educated migrant segment in the country.</p>
+    <div class="g3" style="margin-top:22px;">
+      <div class="card at"><div class="cl">Market size (2024)</div><div class="cv">€12.1B</div><div class="cs">+7.4% year-on-year. Five players control 73%.</div></div>
+      <div class="card at"><div class="cl">LATAM premium residents</div><div class="cv">1.09M</div><div class="cs">Venezuelan, Colombian, Mexican. Growing +16–17% a year.</div></div>
+      <div class="card at"><div class="cl">LATAM-specialist IPMI</div><div class="cv" style="color:var(--coral);">Zero</div><div class="cs">No incumbent communicates to this audience. No product is built for them.</div></div>
+    </div>
+    <div class="highlight" style="margin-top:18px;">
+      <div class="hl-label">VUMI's entry point</div>
+      <div class="hl-body">VUMI does not need to take share from Adeslas or Sanitas. It needs to own a segment they have never spoken to — and do it before they notice it exists.</div>
+    </div>
+  </div>
+</div>
+
+<!-- S3 WHY NOW -->
+<div class="slide" id="s3">
+  <div class="bg-deco">N</div>
+  <div class="content">
+    <div class="tag">01 / The Case</div>
+    <h2><em>Three Signals</em><br>Converging Right Now.</h2>
+    <p class="sub">The case for a May–June 2026 soft launch is not an assumption. It is three live market signals, all closing within 6 months.</p>
+    <div class="g3" style="margin-top:22px;">
+      <div class="card al">
+        <div class="cl">Signal 1 — Regulatory window</div>
+        <div style="font-size:16px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.3;">July 2026 deadline</div>
+        <div class="cs" style="font-size:12.5px;color:var(--muted);">New residency rules convert Venezuelan humanitarian flow into IPMI-eligible demand. A 60-day window exists (May–June) before the broader market responds. First-mover advantage is real and time-limited.</div>
+        <div class="badge bp0" style="margin-top:12px;margin-bottom:0;">88% confidence</div>
+      </div>
+      <div class="card al">
+        <div class="cl">Signal 2 — Broker displacement</div>
+        <div style="font-size:16px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.3;">DKV MUFACE exit</div>
+        <div class="cs" style="font-size:12.5px;color:var(--muted);">DKV's exit from MUFACE leaves mid-market brokers with a health book and no home for it. A 3–6 month displacement window. VUMI's message to these brokers: international solvency, bilateral coverage, and a segment that is growing.</div>
+        <div class="badge bp0" style="margin-top:12px;margin-bottom:0;">60% confidence</div>
+      </div>
+      <div class="card al">
+        <div class="cl">Signal 3 — Regulatory advantage</div>
+        <div style="font-size:16px;font-weight:500;color:var(--white);margin-bottom:8px;line-height:1.3;">Malta EEA clearance</div>
+        <div class="cs" style="font-size:12.5px;color:var(--muted);">VUMI is cleared to trade in Spain via Malta's EEA passport, confirmed April 2026. Cigna Global trades via Guernsey (non-EEA) and cannot compete in the visa segment. This is a permanent, structural advantage in the nómada digital and student segments.</div>
+        <div class="badge bgreen" style="margin-top:12px;margin-bottom:0;">Confirmed — active now</div>
+      </div>
+    </div>
+    <div class="sowhat"><div class="sw-label">The implication</div><div class="sw-text">A Q3 launch misses two of these signals entirely. The soft launch window opens in May and closes in July.</div></div>
+  </div>
+</div>
+
+<!-- S4 MARKET + GAP -->
+<div class="slide" id="s4">
+  <div class="bg-deco">M</div>
+  <div class="content">
+    <div class="tag">01 / The Case</div>
+    <h2>Five Incumbents.<br><em>One Untouched Flank.</em></h2>
+    <p class="sub">Five players control 73% of the market, spending €60–80M a year on advertising. Their playbook: TV-led, Spanish national audience, zero LATAM targeting, zero international coverage story.</p>
+    <div class="chart-wrap ch240" style="margin-top:18px;">
+      <canvas id="c4" role="img" aria-label="Market share bar chart of Spanish health insurers">Adeslas 29%, Sanitas 22%, Asisa 12%, DKV 8%, Mapfre 6%, Others 23%.</canvas>
+    </div>
+    <div class="sowhat"><div class="sw-label">The opening</div><div class="sw-text">Incumbents are competing for the same Spanish-national audience. The LATAM premium segment is uncontested. Entry cost there is a fraction of a frontal attack on the mainstream market.</div></div>
+  </div>
+</div>
+
+<!-- S5 GAPS -->
+<div class="slide" id="s5">
+  <div class="bg-deco">!</div>
+  <div class="content">
+    <div class="tag">01 / The Case</div>
+    <h2>10 Gaps.<br><em>All Uncontested.</em></h2>
+    <p class="sub">Every channel, message, and audience the five incumbents have left open. Each is a viable activation for VUMI.</p>
+    <div class="two-col" style="margin-top:18px;gap:22px;">
+      <ul class="ilist sm">
+        <li>LATAM premium residents — no insurer addresses them specifically in Spain</li>
+        <li>International reversible cover (España ↔ LATAM) — structural gap, all five players</li>
+        <li>Spanish-neutral podcast and LATAM digital audio — entirely empty channel</li>
+        <li>WhatsApp Business plus migrant community channels — untouched across the board</li>
+        <li>Venezuelan and Colombian associations, evangelical churches — zero activation</li>
+      </ul>
+      <ul class="ilist sm">
+        <li>Latin supermarkets and remittance points as physical touchpoints — no health presence</li>
+        <li>Broker co-branded content for LATAM segments — not used by any competitor</li>
+        <li>Nómada digital creative with EEA compliance angle — Cigna cannot run this</li>
+        <li>DKV MUFACE broker displacement — mid-market books actively seeking a replacement</li>
+        <li>Referral programmes inside trust-based LATAM community networks — structurally overlooked</li>
+      </ul>
+    </div>
+    <div class="sowhat"><div class="sw-label">The principle</div><div class="sw-text">VUMI does not need a bigger budget than the incumbents. It needs to be present where they are absent — and own those spaces before they arrive.</div></div>
+  </div>
+</div>
+
+<!-- S6 RESEARCH FINDINGS -->
+<div class="slide" id="s6">
+  <div class="bg-deco">R</div>
+  <div class="content">
+    <div class="tag">01 / The Case</div>
+    <h2>What the Research<br><em>Actually Tells Us.</em></h2>
+    <p class="sub">Five direction-setting findings from primary market research. These shape every channel, creative, and audience decision in this plan.</p>
+    <div style="margin-top:22px;">
+      <div class="conf-row"><div class="conf-label">Premium LATAM expats don't trust new-brand insurance without a broker recommendation</div><div class="conf-track"><div class="conf-fill" style="width:80%;"></div></div><div class="conf-pct">80%</div></div>
+      <div class="conf-row"><div class="conf-label">Venezuelans are the highest-fit first-wave audience — education, concentration, cultural fit with VUMI's heritage</div><div class="conf-track"><div class="conf-fill" style="width:88%;"></div></div><div class="conf-pct">88%</div></div>
+      <div class="conf-row"><div class="conf-label">Native content advertising cuts cost-per-lead by 58–73% versus standard digital display in the health category (DKV benchmark)</div><div class="conf-track"><div class="conf-fill" style="width:85%;"></div></div><div class="conf-pct">85%</div></div>
+      <div class="conf-row"><div class="conf-label">Malta EEA compliance differentiates VUMI from Cigna Global in every visa-aligned segment</div><div class="conf-track"><div class="conf-fill" style="width:90%;"></div></div><div class="conf-pct">90%</div></div>
+      <div class="conf-row"><div class="conf-label">Madrid + Barcelona + Marbella + Canarias cover the highest audience concentration and strongest broker base — 4 markets only for 90 days</div><div class="conf-track"><div class="conf-fill" style="width:80%;"></div></div><div class="conf-pct">80%</div></div>
+    </div>
+    <div class="sowhat"><div class="sw-label">So what</div><div class="sw-text">These five findings de-risk the plan before a euro is committed. They are the brief for every channel, creative, and audience decision that follows.</div></div>
+  </div>
+</div>
+
+<!-- S7 POSITIONING -->
+<div class="slide" id="s7">
+  <div class="bg-deco">P</div>
+  <div class="content">
+    <div class="tag">02 / Positioning</div>
+    <h2>What VUMI Can Say<br><em>That None of Them Can.</em></h2>
+    <div class="two-col" style="margin-top:18px;gap:28px;">
+      <div>
+        <div class="phase"><div class="pt">Proposition 1 — International reversibility</div><div class="pb">7,000 hospitals worldwide. Spain and LATAM covered in one policy. No competitor offers this. Every LATAM resident with family in origin has an unmet need only VUMI can answer.</div></div>
+        <div class="phase"><div class="pt">Proposition 2 — EEA compliance for visa holders</div><div class="pb">Malta EEA passport means VUMI is legally valid for nómada digital, non-lucrative, and student visas. Cigna Global is excluded from this segment. This is the first thing the visa channel creative should say.</div></div>
+        <div class="phase"><div class="pt">Proposition 3 — Premium tiers that match the audience</div><div class="pb">Euro Health Pro (€4M) and Premier (€5M) are the right tiers for LATAM premium and visa-driven customers. The Priority tier (€3M) should not be led with for these segments.</div></div>
+      </div>
+      <div>
+        <div class="highlight">
+          <div class="hl-label">The headline</div>
+          <div class="hl-body" style="font-size:17px;line-height:1.5;">"Cobertura que viaja contigo."<br><span style="font-size:13px;color:var(--muted);">Health cover that works in Spain — and wherever your life takes you.</span></div>
+        </div>
+        <div class="card" style="margin-top:12px;">
+          <div class="cl">What competitors say</div>
+          <div style="font-size:13px;color:var(--muted);line-height:1.5;">"Lo importante es vivir de verdad" (Sanitas). "Activistas" (DKV). None address LATAM mobility, family coverage in origin countries, or bilateral health access.</div>
+        </div>
+        <div class="sowhat" style="margin-top:12px;"><div class="sw-label">The gap</div><div class="sw-text">Every incumbent talks to Spain. VUMI talks to people who live between two worlds. Different claim. No competition.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S8 AUDIENCE UNIVERSE -->
+<div class="slide" id="s8">
+  <div class="bg-deco">A</div>
+  <div class="content">
+    <div class="tag">03 / Audiences</div>
+    <h2><em>1.09 Million</em><br>Premium LATAM Residents.</h2>
+    <div class="two-col" style="margin-top:16px;align-items:center;">
+      <div>
+        <p class="sub" style="max-width:380px;">Three nationalities. Three different audience strategies. One shared need: international health cover that works in Spain and at home.</p>
+        <div style="margin-top:18px;">
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:.5px solid var(--border);">
+            <span style="font-size:13px;">Venezuelans</span><span style="font-size:13px;color:var(--coral);font-weight:500;">377,800</span><div class="badge bp0" style="margin:0;">Priority 0</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:.5px solid var(--border);">
+            <span style="font-size:13px;">Colombians</span><span style="font-size:13px;color:var(--sky);font-weight:500;">676,534</span><div class="badge bp1" style="margin:0;">Priority 1 — Volume</div>
+          </div>
+          <div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-top:.5px solid var(--border);">
+            <span style="font-size:13px;">Mexicans</span><span style="font-size:13px;color:var(--sky);font-weight:500;">36,067</span><div class="badge bp1" style="margin:0;">Priority 1 — Value</div>
+          </div>
+        </div>
+        <div class="highlight" style="margin-top:14px;"><div class="hl-label">Addressable premium households</div><div class="hl-body">~87,000 with income and education profile to qualify for VUMI's offer.</div></div>
+      </div>
+      <div class="chart-wrap ch280"><canvas id="c8" role="img" aria-label="Audience composition donut">Colombia 61%, Venezuela 34%, Mexico 5%.</canvas></div>
+    </div>
+  </div>
+</div>
+
+<!-- S9 VENEZUELANS -->
+<div class="slide" id="s9">
+  <div class="bg-deco">V</div>
+  <div class="content">
+    <div class="tag">03 / Audiences</div>
+    <div class="badge bp0">Audience Priority 0</div>
+    <h2>Venezuelans.<br><em>The Highest-Fit</em><br>First Audience.</h2>
+    <div class="two-col" style="margin-top:14px;">
+      <div>
+        <p class="sub" style="max-width:380px;">48.7% tertiary education — highest of all LATAM groups in Spain. Strong concentration in Madrid's premium neighbourhoods (Salamanca, Chamberí — "pequeña Miami"). VUMI's Latin American heritage creates immediate credibility. Community makes purchase decisions through referral, not advertising — the broker channel is structurally advantaged here.</p>
+        <div class="highlight" style="margin-top:14px;"><div class="hl-label">Timing signal</div><div class="hl-body">July 2026 regulations convert humanitarian flow into IPMI-eligible demand. Activate the Venezuelan audience in May–June to capture first-mover position.</div></div>
+        <div class="sowhat" style="margin-top:10px;"><div class="sw-label">Creative angle</div><div class="sw-text">"Cobertura que viaja contigo." VUMI's 7,000-hospital network covers Spain and Venezuela in one policy. No competitor can say this.</div></div>
+      </div>
+      <div>
+        <div class="g2" style="margin-top:0;">
+          <div class="card"><div class="cl">Registered residents</div><div class="cv">377,800</div><div class="cs">INE Jan 2025. +16.2% year-on-year.</div></div>
+          <div class="card"><div class="cl">Tertiary education</div><div class="cv">48.7%</div><div class="cs">Highest of all LATAM groups in Spain.</div></div>
+          <div class="card"><div class="cl">New SS registrations</div><div class="cv">No. 1</div><div class="cs">+40,614 new registrations in 2025 alone.</div></div>
+          <div class="card"><div class="cl">Est. insurance penetration</div><div class="cv">30–40%</div><div class="cs">Above Spanish average of 26%.</div></div>
+        </div>
+        <div class="card" style="margin-top:11px;border-color:rgba(229,91,77,.3);"><div class="cl">Key concentrations</div><div style="font-size:13px;">Madrid Salamanca · Las Palmas · Tenerife · Barcelona</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S10 MEXICANS -->
+<div class="slide" id="s10">
+  <div class="bg-deco">M</div>
+  <div class="content">
+    <div class="tag">03 / Audiences</div>
+    <div class="badge bp1">Audience Priority 1</div>
+    <h2>Mexicans.<br><em>Smallest Segment,</em><br>Highest Order Value.</h2>
+    <div class="two-col" style="margin-top:14px;">
+      <div>
+        <p class="sub" style="max-width:380px;">36,067 registered residents but the highest average premium potential. 58% tertiary education. Heavy concentration in Salamanca. Strong linkage to the Beckham Law (non-lucrative visa) and multilatina executive mobility. They arrive with an existing relationship with private health insurance — VUMI needs to be the natural transfer.</p>
+        <div class="highlight" style="margin-top:14px;"><div class="hl-label">Go-to-market lever</div><div class="hl-body">Cámara de Comercio España–México and multilatina HR departments are direct routes to this audience — no media budget required in Phase 1.</div></div>
+        <div class="sowhat" style="margin-top:10px;"><div class="sw-label">Product fit</div><div class="sw-text">Euro Health Pro (€4M) and Premier (€5M) only. Skip the Priority tier (€3M) for this segment — visa requirements and outpatient coverage don't align.</div></div>
+      </div>
+      <div>
+        <div class="g2" style="margin-top:0;">
+          <div class="card"><div class="cl">Registered residents</div><div class="cv">36,067</div><div class="cs">Smallest group, highest premium per customer.</div></div>
+          <div class="card"><div class="cl">Tertiary education</div><div class="cv">58%</div><div class="cs">Highest of the three audiences.</div></div>
+          <div class="card"><div class="cl">Average order value</div><div class="cv">Highest</div><div class="cs">Executive mobility profile drives Premier tier selection.</div></div>
+          <div class="card"><div class="cl">Visa linkage</div><div class="cv">Strong</div><div class="cs">Non-lucrative and nómada digital visas require insurance. EEA compliance wins.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S11 COLOMBIANS -->
+<div class="slide" id="s11">
+  <div class="bg-deco">C</div>
+  <div class="content">
+    <div class="tag">03 / Audiences</div>
+    <div class="badge bp1">Audience Priority 1 — Volume</div>
+    <h2>Colombians.<br><em>Volume Play.</em><br>Handle With Care.</h2>
+    <div class="two-col" style="margin-top:14px;">
+      <div>
+        <p class="sub" style="max-width:380px;">The largest LATAM group in Spain at 676,534 residents, but with a narrower premium sub-segment — 23% tertiary education. Strong entrepreneurial community across retail, food, and digital commerce. They must be present in VUMI's positioning to avoid a cultural exclusion signal, but should not lead the soft-launch creative.</p>
+        <ul class="ilist" style="margin-top:14px;">
+          <li>Always-on LATAM brand positioning includes Colombian imagery and voice</li>
+          <li>Soft-launch creative leads with Venezuelan identity and welcomes the full LATAM community</li>
+          <li>Regularisation wave in 2026 adds 50,000–100,000 newly eligible individuals</li>
+          <li>Volume makes this segment critical at Phase 3 scale — not before</li>
+        </ul>
+      </div>
+      <div>
+        <div class="g2" style="margin-top:0;">
+          <div class="card"><div class="cl">Registered residents</div><div class="cv">676,534</div><div class="cs">Largest LATAM group. +17% in 2024.</div></div>
+          <div class="card"><div class="cl">Tertiary education</div><div class="cv">23%</div><div class="cs">Narrower premium sub-segment than the other two groups.</div></div>
+        </div>
+        <div class="highlight" style="margin-top:12px;"><div class="hl-label">The correct framing</div><div class="hl-body">Colombians are a Phase 3 scale audience. In Phases 1–2 they are background presence, not the lead voice.</div></div>
+        <div class="sowhat" style="margin-top:10px;"><div class="sw-label">Creative direction</div><div class="sw-text">Inclusion without lead placement. Forcing them into the launch creative dilutes the Venezuelan targeting signal. Their volume converts at scale — not at launch.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S12 GEOGRAPHY -->
+<div class="slide" id="s12">
+  <div class="bg-deco">4</div>
+  <div class="content">
+    <div class="tag">03 / Audiences</div>
+    <h2>4 Markets.<br><em>No Dilution.</em></h2>
+    <p class="sub">Any geo-spread beyond four markets in the first 90 days dilutes the learning. These four cover the highest concentration of premium LATAM residents alongside the strongest broker presence.</p>
+    <div class="g4" style="margin-top:22px;">
+      <div class="card at"><div class="cl">Market 1 — Lead</div><div class="cv" style="font-size:20px;">Madrid</div><div class="cs">Salamanca Venezuelan cluster. Largest broker base — WTW, Mercer, Aon. All three audience groups present. Lead market for all phases.</div></div>
+      <div class="card at"><div class="cl">Market 2</div><div class="cv" style="font-size:20px;">Barcelona</div><div class="cs">Venezuelan, Argentine, Colombian presence. 22@ tech hub. Ferrer & Ojeda, Ribé Salat broker base.</div></div>
+      <div class="card at"><div class="cl">Market 3</div><div class="cv" style="font-size:20px;">Marbella</div><div class="cs">HNW expat concentration. LATAM and European wealth crossover. Concierge insurance natural home.</div></div>
+      <div class="card at"><div class="cl">Market 4</div><div class="cv" style="font-size:20px;">Canarias</div><div class="cs">C1 Broker in Las Palmas — highest single broker fit score. Venezuelan and Colombian volume. Tenerife nómada digital community.</div></div>
+    </div>
+    <div class="sowhat" style="margin-top:14px;"><div class="sw-label">Gate rule</div><div class="sw-text">Valencia added only at Day 60 if Colombian premium signal appears in conversion data. No exceptions, regardless of commercial pressure.</div></div>
+  </div>
+</div>
+
+<!-- S13 CHANNEL ARCHITECTURE -->
+<div class="slide" id="s13">
+  <div class="bg-deco">B</div>
+  <div class="content">
+    <div class="tag">04 / Media Strategy</div>
+    <h2>Broker First.<br><em>Always.</em></h2>
+    <p class="sub">Premium LATAM residents do not buy new-brand insurance from a cold ad. They buy it because a broker they trust recommends it. This is the single most important structural decision in the entire plan.</p>
+    <div class="two-col" style="margin-top:18px;gap:28px;">
+      <div>
+        <div class="ch-row"><div class="ch-icon">🤝</div><div style="flex:1;"><div class="ch-name">Broker channel</div><div class="ch-role">Primary and only distribution for the first 60 days. VUMI co-produces content under the broker's name and brand. The broker's recommendation converts — VUMI's media scales what the broker proves.</div></div><div class="ch-pct">Days 1–60</div></div>
+        <div class="ch-row"><div class="ch-icon">📰</div><div style="flex:1;"><div class="ch-name">Native content advertising</div><div class="ch-role">Activated from Day 61 with messages confirmed in the broker phase. Health-advice articles with soft product integration. 58–73% lower cost-per-lead than standard display — the DKV/Outbrain benchmark.</div></div><div class="ch-pct">Day 61+</div></div>
+        <div class="ch-row"><div class="ch-icon">💬</div><div style="flex:1;"><div class="ch-name">WhatsApp and community</div><div class="ch-role">Venezuelan and Colombian associations, evangelical churches, migrant networks. Zero media cost. Community leader format — not brand account. High-trust referral distribution.</div></div><div class="ch-pct">Earned</div></div>
+        <div class="ch-row"><div class="ch-icon">🎙️</div><div style="flex:1;"><div class="ch-name">Latino podcast sponsorship</div><div class="ch-role">Spanish-neutral audio. No competitor is present in this channel. 60-second mid-roll format. Phase 2 activation only.</div></div><div class="ch-pct">Phase 2</div></div>
+      </div>
+      <div>
+        <div class="highlight"><div class="hl-label">The 60-day rule</div><div class="hl-body">No paid cold-digital spend in the first 60 days. Budget goes to broker co-production. This is not caution — it is the correct sequence. Cold ads before broker credibility waste budget and damage the brand with the very audience you are trying to reach.</div></div>
+        <div class="card" style="margin-top:11px;"><div class="cl">Health insurance CPL benchmark (Spain)</div><div class="cv">€12–40</div><div class="cs">Per qualified lead. Native content approach targets the lower end. Standard display sits at the top.</div></div>
+        <div class="sowhat" style="margin-top:11px;"><div class="sw-label">The logic</div><div class="sw-text">Broker converts the trust-resistant premium buyer. Digital then scales what the broker proved works. Reverse the order and you spend against resistance.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S14 BROKER PLAYBOOK -->
+<div class="slide" id="s14">
+  <div class="bg-deco">18</div>
+  <div class="content">
+    <div class="tag">04 / Media Strategy</div>
+    <h2>18 Brokers Shortlisted.<br><em>Start With One.</em></h2>
+    <div class="two-col" style="margin-top:18px;gap:28px;">
+      <div>
+        <div class="highlight"><div class="hl-label">First call — Week 1</div><div class="hl-body" style="font-size:15px;font-weight:500;color:var(--white);margin-bottom:4px;">C1 Broker — Las Palmas de GC</div><div class="hl-body">26+ years. Expat-specialist DNA. CEO is an opinion leader in the Canarian broker community. Multi-office operation. Highest VUMI fit score in the shortlist. Develop a framework deal term sheet in parallel with first contact.</div></div>
+        <ul class="ilist" style="margin-top:14px;">
+          <li>WTW / Mercer / Aon / Howden — for corporate LATAM expat programmes in Madrid</li>
+          <li>Medicorasse / Grup Med — medical professionals collective, Barcelona</li>
+          <li>Ferrer & Ojeda / Ribé Salat — corporate and expat segment, Barcelona</li>
+          <li>Mid-market DKV brokers — MUFACE displacement window is open now</li>
+          <li>PIB Group Iberia — international portfolio with multi-market reach</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:11px;border-color:rgba(229,91,77,.4);"><div class="cl">Pre-meeting blocker — fix this first</div><div style="font-size:13px;color:var(--coral);line-height:1.5;">vumigroup.com currently states VUMI cannot serve Spain. Any broker who searches before a meeting will find this. Fix it before the first conversation. It is the cheapest action in this entire plan and currently the most damaging omission.</div></div>
+        <div class="card"><div class="cl">What activates a broker (industry research)</div>
+          <div style="margin-top:8px;">
+            <div style="font-size:12.5px;color:var(--white);margin-bottom:5px;">1. Commission and retribution structure — the first filter</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:5px;">2. Product differentiation from their existing book</div>
+            <div style="font-size:12px;color:var(--muted);margin-bottom:5px;">3. Claims speed and financial solvency signals</div>
+            <div style="font-size:12px;color:var(--muted);">4. Co-marketing support and sales tools</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S15 FUNNEL -->
+<div class="slide" id="s15">
+  <div class="bg-deco">F</div>
+  <div class="content">
+    <div class="tag">04 / Media Strategy</div>
+    <h2>The <em>Full Funnel.</em><br>From Community to Policy.</h2>
+    <p class="sub">Each stage has one job. No stage tries to do the whole funnel's work.</p>
+    <div style="margin-top:24px;">
+      <div class="fbar"><div class="flabel">Total LATAM residents</div><div class="ftrack"><div class="ffill" style="width:100%;"></div></div><div class="fnum">1,090,000</div></div>
+      <div class="fbar"><div class="flabel">Premium addressable</div><div class="ftrack"><div class="ffill" style="width:57%;background:rgba(229,91,77,.78);"></div></div><div class="fnum">~218,000</div></div>
+      <div class="fbar"><div class="flabel">Broker-reachable</div><div class="ftrack"><div class="ffill" style="width:38%;background:rgba(229,91,77,.62);"></div></div><div class="fnum">~87,000</div></div>
+      <div class="fbar"><div class="flabel">Engaged prospects</div><div class="ftrack"><div class="ffill" style="width:20%;background:rgba(229,91,77,.48);"></div></div><div class="fnum">~34,000</div></div>
+      <div class="fbar"><div class="flabel">Year 1 target</div><div class="ftrack"><div class="ffill" style="width:5%;background:rgba(229,91,77,.38);min-width:24px;"></div></div><div class="fnum" style="color:var(--coral);font-weight:600;font-size:13px;">500 policies</div></div>
+    </div>
+    <div class="g3" style="margin-top:16px;">
+      <div class="card"><div class="cl">Awareness</div><div style="font-size:12.5px;">Broker co-branded content · Community channels · WhatsApp referral networks</div></div>
+      <div class="card"><div class="cl">Consideration</div><div style="font-size:12.5px;">Native content advertising · Podcast sponsorship · Broker consultation support materials</div></div>
+      <div class="card"><div class="cl">Conversion</div><div style="font-size:12.5px;">Broker consultation · Concierge onboarding · Visa-compliance close for nómada digital</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- S16 CHANNEL ROLES -->
+<div class="slide" id="s16">
+  <div class="bg-deco">C</div>
+  <div class="content">
+    <div class="tag">04 / Media Strategy</div>
+    <h2>Each Channel<br><em>Has One Job.</em></h2>
+    <p class="sub">Channel confusion is the most common source of media waste. Every channel in this plan has a single defined role. When it drifts from that role, it gets cut — not defended.</p>
+    <div class="chart-wrap ch260" style="margin-top:18px;">
+      <canvas id="c16" role="img" aria-label="Channel budget allocation by phase">Broker Co-Brand, Native Content, Community/WhatsApp, Podcast/Audio, CTV/Brand Video — shown across Phase 1-2 vs Phase 3-4.</canvas>
+    </div>
+    <div class="sowhat"><div class="sw-label">The test</div><div class="sw-text">If you cannot write a single sentence describing what a channel is responsible for — awareness, trust, or conversion — it is not ready to receive budget.</div></div>
+  </div>
+</div>
+
+<!-- S17 CREATIVE SYSTEM -->
+<div class="slide" id="s17">
+  <div class="bg-deco">C</div>
+  <div class="content">
+    <div class="tag">05 / Creative Strategy</div>
+    <h2>Three Messages.<br><em>Built to Iterate.</em></h2>
+    <div class="two-col" style="margin-top:18px;gap:28px;">
+      <div>
+        <h3 style="color:var(--coral);margin-bottom:11px;">Message Architecture</h3>
+        <div class="phase"><div class="pt">Layer 1 — Trust</div><div class="pb">"Your health. Covered everywhere." VUMI's 7,000-hospital network, Latin American heritage, Malta EEA clearance. This layer builds the permission to sell. It must land before anything else.</div></div>
+        <div class="phase"><div class="pt">Layer 2 — Belonging</div><div class="pb">"Para quien vive entre dos mundos." Cultural resonance for the premium LATAM audience. Spain covered. Family in origin covered. One policy, two worlds. No competitor can claim this ground.</div></div>
+        <div class="phase"><div class="pt">Layer 3 — Action</div><div class="pb">Visa segment: "Malta EEA compliant." Precise, regulatory, and a genuine decision-maker for the nómada digital and student segments. Cigna Global cannot compete on this specific claim.</div></div>
+      </div>
+      <div>
+        <h3 style="color:var(--coral);margin-bottom:11px;">Format by Channel</h3>
+        <ul class="ilist sm">
+          <li><strong style="color:var(--white);">Broker co-brand:</strong> Long-form trust content. PDF one-pager plus 90-second video. Broker's face and name front and centre. VUMI's product in the supporting role.</li>
+          <li><strong style="color:var(--white);">Native content:</strong> 600–900 word health-advice article. Soft product integration from paragraph 4 onwards. Outbrain/Taboola placement.</li>
+          <li><strong style="color:var(--white);">Community:</strong> WhatsApp voice note from a community leader. Card graphics designed for sharing. Informal register — community voice, not brand voice.</li>
+          <li><strong style="color:var(--white);">Podcast:</strong> 60-second mid-roll. One product truth. Neutral Spanish — not Madrid, not LATAM. Both audiences hear themselves.</li>
+          <li><strong style="color:var(--white);">Onboarding:</strong> 90-second personal video. Tailored to visa type or residency status. One clear next step. No jargon.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S18 ITERATION LOGIC -->
+<div class="slide" id="s18">
+  <div class="bg-deco">→</div>
+  <div class="content">
+    <div class="tag">05 / Creative Strategy</div>
+    <h2>Media and Creative<br><em>Work Together.</em><br>Or Neither Works.</h2>
+    <p class="sub">The feedback loop is what separates a one-time campaign from a compounding growth engine. Every 14 days, results change the brief. The brief changes the creative. The creative changes the result.</p>
+    <div style="margin-top:22px;display:flex;align-items:stretch;gap:0;flex-wrap:wrap;">
+      <div class="card" style="flex:1;min-width:130px;text-align:center;border-right:none;border-radius:10px 0 0 10px;">
+        <div style="font-size:20px;margin-bottom:7px;">📊</div>
+        <div class="cl" style="text-align:center;">Weekly</div>
+        <div style="font-size:13px;font-weight:500;">Market signals</div>
+        <div class="cs" style="text-align:center;margin-top:4px;">Broker conversion rates, CPL by channel, audience response by message</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 3px;font-size:18px;color:var(--coral);">→</div>
+      <div class="card" style="flex:1;min-width:130px;text-align:center;border-radius:0;border-left:none;border-right:none;">
+        <div style="font-size:20px;margin-bottom:7px;">🔍</div>
+        <div class="cl" style="text-align:center;">Fortnightly</div>
+        <div style="font-size:13px;font-weight:500;">Strategic review</div>
+        <div class="cs" style="text-align:center;margin-top:4px;">What's working, what isn't, one clear decision per cycle</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 3px;font-size:18px;color:var(--coral);">→</div>
+      <div class="card" style="flex:1;min-width:130px;text-align:center;border-radius:0;border-left:none;border-right:none;">
+        <div style="font-size:20px;margin-bottom:7px;">✏️</div>
+        <div class="cl" style="text-align:center;">Fast</div>
+        <div style="font-size:13px;font-weight:500;">Brief updated</div>
+        <div class="cs" style="text-align:center;margin-top:4px;">Message layer, format, or audience — one variable at a time</div>
+      </div>
+      <div style="display:flex;align-items:center;padding:0 3px;font-size:18px;color:var(--coral);">→</div>
+      <div class="card" style="flex:1;min-width:130px;text-align:center;border-radius:0 10px 10px 0;border-left:none;">
+        <div style="font-size:20px;margin-bottom:7px;">🚀</div>
+        <div class="cl" style="text-align:center;">14 days</div>
+        <div style="font-size:13px;font-weight:500;">New creative live</div>
+        <div class="cs" style="text-align:center;margin-top:4px;">Winner runs. Loser stops. Budget follows performance.</div>
+      </div>
+    </div>
+    <div class="sowhat"><div class="sw-label">The discipline</div><div class="sw-text">A campaign that does not change in response to results is not a campaign — it is a spend. This loop converts budget into learning, and learning into growth.</div></div>
+  </div>
+</div>
+
+<!-- S19 PHASE 1 -->
+<div class="slide" id="s19">
+  <div class="bg-deco">1</div>
+  <div class="content">
+    <div class="tag">06 / Roadmap</div>
+    <div class="rm-bar"><div class="s1"></div><div class="soff" style="flex:3;"></div></div>
+    <h2><em>Phase 1 — Test.</em><br>May – June 2026</h2>
+    <div class="two-col" style="margin-top:16px;gap:28px;">
+      <div>
+        <h3 style="color:var(--coral);margin-bottom:9px;">Actions</h3>
+        <ul class="ilist sm">
+          <li>Fix vumigroup.com Spain copy — before anything else</li>
+          <li>Call C1 Broker, Las Palmas — Week 1. Framework deal term sheet in parallel.</li>
+          <li>Activate Venezuelan soft launch through broker referral only</li>
+          <li>Co-produce content with C1 and two Madrid brokers under their name</li>
+          <li>Deploy Malta EEA compliance messaging for the visa and nómada digital segment</li>
+          <li>Record all commercial activity from Day 1 — calls, meetings, proposals, pipeline</li>
+        </ul>
+        <div class="highlight" style="margin-top:14px;"><div class="hl-label">Phase 1 rule</div><div class="hl-body">No cold paid digital. Budget is for broker co-production and content only. Test the channel before scaling the proposition.</div></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:11px;"><div class="cl">What we need to learn</div><ul class="ilist sm" style="margin-top:8px;"><li>Do broker referrals convert at the expected rate?</li><li>Which message layer lands — trust, belonging, or EEA compliance?</li><li>What does the Venezuelan purchase journey look like in practice?</li></ul></div>
+        <div class="card"><div class="cl">Phase 1 targets</div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-name">Broker meetings</div><div class="kpi-val">5</div></div>
+            <div class="kpi"><div class="kpi-name">Framework deals</div><div class="kpi-val">2</div></div>
+            <div class="kpi"><div class="kpi-name">Qualified leads</div><div class="kpi-val">50</div></div>
+            <div class="kpi"><div class="kpi-name">Quotes issued</div><div class="kpi-val">20</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S20 PHASE 2 -->
+<div class="slide" id="s20">
+  <div class="bg-deco">2</div>
+  <div class="content">
+    <div class="tag">06 / Roadmap</div>
+    <div class="rm-bar"><div class="s1"></div><div class="s2"></div><div class="soff" style="flex:2;"></div></div>
+    <h2><em>Phase 2 — Learn.</em><br>July – August 2026</h2>
+    <div class="two-col" style="margin-top:16px;gap:28px;">
+      <div>
+        <h3 style="color:var(--coral);margin-bottom:9px;">Actions</h3>
+        <ul class="ilist sm">
+          <li>Review Phase 1 — which brokers convert, which messages land, what the real CPL is</li>
+          <li>Activate native content advertising with Phase 1's confirmed winning messages</li>
+          <li>Launch Latino podcast sponsorship — mid-roll, 60-second format</li>
+          <li>Expand broker model to Barcelona and Marbella using the Canarias playbook</li>
+          <li>Begin WhatsApp community activation — Venezuelan associations first</li>
+          <li>Outreach to mid-market DKV brokers with MUFACE displacement messaging</li>
+          <li>First B2B push to Cámara España–México for the Mexican executive segment</li>
+        </ul>
+        <div class="highlight" style="margin-top:14px;"><div class="hl-label">Phase 2 rule</div><div class="hl-body">Only scale what Phase 1 confirmed. No new channels until existing ones have a verified cost-per-lead.</div></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:11px;"><div class="cl">What we need to learn</div><ul class="ilist sm" style="margin-top:8px;"><li>Does digital convert at the same rate as broker referral?</li><li>Which message layer drives the highest conversion?</li><li>What is the real purchase journey for the Mexican executive?</li></ul></div>
+        <div class="card"><div class="cl">Phase 2 targets</div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-name">Policies bound</div><div class="kpi-val">100</div></div>
+            <div class="kpi"><div class="kpi-name">Active brokers</div><div class="kpi-val">8</div></div>
+            <div class="kpi"><div class="kpi-name">Native CPL target</div><div class="kpi-val">€15</div></div>
+            <div class="kpi"><div class="kpi-name">Communities active</div><div class="kpi-val">3</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S21 PHASE 3 -->
+<div class="slide" id="s21">
+  <div class="bg-deco">3</div>
+  <div class="content">
+    <div class="tag">06 / Roadmap</div>
+    <div class="rm-bar"><div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="soff" style="flex:1;"></div></div>
+    <h2><em>Phase 3 — Scale.</em><br>September – December 2026</h2>
+    <div class="two-col" style="margin-top:16px;gap:28px;">
+      <div>
+        <h3 style="color:var(--coral);margin-bottom:9px;">Actions</h3>
+        <ul class="ilist sm">
+          <li>Scale the proven broker model to the full 18-broker shortlist</li>
+          <li>Increase native content budget behind confirmed winning creative</li>
+          <li>Activate Colombian audience in always-on LATAM brand positioning</li>
+          <li>Add Valencia market only if Colombian premium signal appears at Day 60 gate</li>
+          <li>Scale B2B route — multilatina HR departments and Cámara España–México</li>
+          <li>Test CTV (Movistar+, Prime Video) for brand awareness in the 4 core markets</li>
+          <li>Publish first VUMI Spain insight piece — earn coverage in LATAM press</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:11px;"><div class="cl">Expected outcomes</div><ul class="ilist sm" style="margin-top:8px;"><li>250–400 policies bound (cumulative)</li><li>Brand recognition measurable in Venezuelan community research</li><li>Repeatable acquisition cost confirmed per channel</li><li>First referral and renewal signals</li></ul></div>
+        <div class="card"><div class="cl">Phase 3 targets</div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-name">Policies (cumulative)</div><div class="kpi-val">400</div></div>
+            <div class="kpi"><div class="kpi-name">Active brokers</div><div class="kpi-val">15+</div></div>
+            <div class="kpi"><div class="kpi-name">Markets live</div><div class="kpi-val">4–5</div></div>
+            <div class="kpi"><div class="kpi-name">Community NPS</div><div class="kpi-val">70+</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S22 PHASE 4 -->
+<div class="slide" id="s22">
+  <div class="bg-deco">4</div>
+  <div class="content">
+    <div class="tag">06 / Roadmap</div>
+    <div class="rm-bar"><div class="s1"></div><div class="s2"></div><div class="s3"></div><div class="s4"></div></div>
+    <h2><em>Phase 4 — Optimise.</em><br>January – April 2027</h2>
+    <div class="two-col" style="margin-top:16px;gap:28px;">
+      <div>
+        <h3 style="color:var(--coral);margin-bottom:9px;">Actions</h3>
+        <ul class="ilist sm">
+          <li>Quarterly channel review — cut underperformers regardless of attachment to the format</li>
+          <li>Shift budget to the highest-return combination of broker and digital</li>
+          <li>Launch member referral programme — Venezuelan community drives organic growth</li>
+          <li>Share Year 1 performance with broker partners — build the loyalty and referral flywheel</li>
+          <li>Year 2 planning: new geography, product tier decisions, retention and renewal strategy</li>
+          <li>Rebrief creative based on 12 months of real audience and conversion data</li>
+        </ul>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:11px;"><div class="cl">Expected outcomes</div><ul class="ilist sm" style="margin-top:8px;"><li>500+ policies — Year 1 target met</li><li>Customer acquisition cost below broker-only benchmark</li><li>Referral traffic measurable as a share of new pipeline</li><li>Year 2 plan confirmed and briefed</li></ul></div>
+        <div class="card"><div class="cl">Year-end targets</div>
+          <div class="kpi-row">
+            <div class="kpi"><div class="kpi-name">Year 1 policies</div><div class="kpi-val">500+</div></div>
+            <div class="kpi"><div class="kpi-name">Active brokers</div><div class="kpi-val">18</div></div>
+            <div class="kpi"><div class="kpi-name">Markets</div><div class="kpi-val">4–5</div></div>
+            <div class="kpi"><div class="kpi-name">Referral rate</div><div class="kpi-val">15%<span class="kpi-unit">target</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S23 ACTIVATION CALENDAR -->
+<div class="slide" id="s23">
+  <div class="bg-deco">12</div>
+  <div class="content">
+    <div class="tag">06 / Roadmap</div>
+    <h2>12 Months.<br><em>In Sequence.</em></h2>
+    <p class="sub">The order matters as much as the actions. Getting the sequence wrong is the most common and most expensive growth mistake.</p>
+    <div class="cal-row">
+      <div class="cal-m ct"><span class="mn">May</span><span class="mc">Brokers + EEA message</span></div>
+      <div class="cal-m ct"><span class="mn">Jun</span><span class="mc">Co-branded content</span></div>
+      <div class="cal-m cl2"><span class="mn">Jul</span><span class="mc">Native ads live</span></div>
+      <div class="cal-m cl2"><span class="mn">Aug</span><span class="mc">Podcast + WhatsApp</span></div>
+      <div class="cal-m csc"><span class="mn">Sep</span><span class="mc">Full broker rollout</span></div>
+      <div class="cal-m csc"><span class="mn">Oct</span><span class="mc">Colombian activation</span></div>
+      <div class="cal-m csc"><span class="mn">Nov</span><span class="mc">CTV brand test</span></div>
+      <div class="cal-m csc"><span class="mn">Dec</span><span class="mc">B2B Mexico scale</span></div>
+      <div class="cal-m co"><span class="mn">Jan</span><span class="mc">Channel review + cut</span></div>
+      <div class="cal-m co"><span class="mn">Feb</span><span class="mc">Referral programme</span></div>
+      <div class="cal-m co"><span class="mn">Mar</span><span class="mc">Retention + renewal</span></div>
+      <div class="cal-m co"><span class="mn">Apr</span><span class="mc">Year 2 briefing</span></div>
+    </div>
+    <div style="display:flex;gap:20px;margin-top:13px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);"><div style="width:10px;height:10px;border-radius:2px;background:rgba(229,91,77,.3);"></div>Phase 1 — Test</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);"><div style="width:10px;height:10px;border-radius:2px;background:rgba(229,91,77,.45);"></div>Phase 2 — Learn</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);"><div style="width:10px;height:10px;border-radius:2px;background:rgba(229,91,77,.65);"></div>Phase 3 — Scale</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);"><div style="width:10px;height:10px;border-radius:2px;background:var(--coral);"></div>Phase 4 — Optimise</div>
+    </div>
+    <div class="sowhat"><div class="sw-label">The principle</div><div class="sw-text">Test → Learn → Scale → Optimise. In that order, every time. Skipping a phase does not save time — it costs money and removes the learning that makes the next phase cheaper.</div></div>
+  </div>
+</div>
+
+<!-- S24 WHAT SUCCESS LOOKS LIKE -->
+<div class="slide" id="s24">
+  <div class="bg-deco">12</div>
+  <div class="content">
+    <div class="tag">07 / Vision</div>
+    <h2>April 2027.<br><em>What Success<br>Looks Like.</em></h2>
+    <p class="sub">Twelve months from today, VUMI España is not entering the market. It owns a segment that did not exist as a recognised category before it arrived.</p>
+    <div class="g2" style="margin-top:20px;align-items:start;">
+      <div>
+        <div class="vpill"><span>500+</span> policies bound in Year 1</div>
+        <div class="vpill"><span>18</span> active broker partnerships</div>
+        <div class="vpill"><span>4–5</span> CCAA markets live</div>
+        <div class="vpill"><span>15%+</span> of new pipeline from referrals</div>
+        <div class="vpill">Top 3 IPMI brand awareness, <span>Venezuelan Madrid community</span></div>
+        <div class="vpill">Proven creative system <span>ready to scale into Year 2</span></div>
+        <div class="vpill">12 months of audience and conversion data <span>no competitor has</span></div>
+      </div>
+      <div>
+        <div class="highlight"><div class="hl-label">The real measure</div><div class="hl-body" style="font-size:15px;line-height:1.6;">When a Venezuelan professional in Salamanca needs health insurance, the first name they hear from their broker — and from their community — is VUMI.</div></div>
+        <div class="highlight hl-sky" style="margin-top:12px;"><div class="hl-label">The competitive advantage</div><div class="hl-body">By Month 12, VUMI has 12 months of real broker relationships, community trust, and audience conversion data that no competitor can replicate quickly. That gap compounds with every passing month.</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S25 CLOSING -->
+<div class="slide" id="s25">
+  <div class="title-bg"></div><div class="bg-deco">→</div>
+  <div class="content">
+    <div class="tag">07 / Vision</div>
+    <h1 style="font-size:46px;">The Position<br>After <em>12 Months.</em></h1>
+    <p class="sub" style="margin-top:10px;max-width:500px;">VUMI España has not joined the Spanish health insurance market. It has built a category within it — LATAM premium IPMI — that the five incumbents cannot attack without cannibalising their own positioning.</p>
+    <div class="div-line" style="margin:22px 0;"></div>
+    <div class="g3">
+      <div>
+        <div style="font-size:10px;color:var(--coral);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;">The moat</div>
+        <div style="font-size:13px;color:var(--white);line-height:1.55;">12 months of broker relationships, community trust, and conversion data. Not replicable in 6 months by a competitor starting from zero.</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--coral);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;">The signal</div>
+        <div style="font-size:13px;color:var(--white);line-height:1.55;">When Sanitas or Adeslas launches a LATAM product, it validates VUMI's thesis. By then, VUMI is the category — and they are the followers.</div>
+      </div>
+      <div>
+        <div style="font-size:10px;color:var(--coral);text-transform:uppercase;letter-spacing:.1em;margin-bottom:7px;">The philosophy</div>
+        <div style="font-size:13px;color:var(--white);line-height:1.55;font-style:italic;">Test → Learn → Implement → Iterate. No breaks. Only elevation.</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;margin-top:26px;">
+      <div class="brand-dot"></div>
+      <span style="font-size:11px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;">Re:MOTIVE Media × La Despensa — April 2026</span>
+    </div>
+  </div>
+</div>
+
+</div><!-- /sw -->
+
+<div class="nav">
+  <div class="dots" id="dots"></div>
+  <div class="nav-r">
+    <span class="counter" id="counter">1 / 25</span>
+    <button class="nbtn" id="prev" onclick="move(-1)" disabled>←</button>
+    <button class="nbtn" id="next" onclick="move(1)">→</button>
+  </div>
+</div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const T=25;let cur=1;const ci={};
+const de=document.getElementById('dots');
+for(let i=1;i<=T;i++){const d=document.createElement('button');d.className='dot'+(i===1?' active':'');d.setAttribute('aria-label','Slide '+i);d.onclick=()=>go(i);de.appendChild(d);}
+function go(n){
+  document.getElementById('s'+cur).classList.remove('active');
+  document.querySelectorAll('.dot')[cur-1].classList.remove('active');
+  cur=n;
+  document.getElementById('s'+cur).classList.add('active');
+  document.querySelectorAll('.dot')[cur-1].classList.add('active');
+  document.getElementById('counter').textContent=cur+' / '+T;
+  document.getElementById('prev').disabled=(cur===1);
+  document.getElementById('next').disabled=(cur===T);
+  if(!ci[cur]){setTimeout(()=>{ic(cur);ci[cur]=true;},50);}
+}
+function move(d){if(cur+d>=1&&cur+d<=T)go(cur+d);}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowDown')move(1);if(e.key==='ArrowLeft'||e.key==='ArrowUp')move(-1);});
+function ic(n){if(n===4)c4();if(n===8)c8();if(n===16)c16();}
+function c4(){
+  const e=document.getElementById('c4');if(!e||e._d)return;e._d=1;
+  new Chart(e,{type:'bar',data:{labels:['Adeslas','Sanitas','Asisa','DKV','Mapfre','Others'],datasets:[{label:'Market share %',data:[29.4,22,12,8,6,22.6],backgroundColor:['#E55B4D','rgba(229,91,77,.7)','rgba(229,91,77,.52)','rgba(229,91,77,.38)','rgba(229,91,77,.27)','#252523'],borderRadius:5,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>c.parsed.y+'% of market'}}},scales:{x:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'rgba(245,243,238,.5)',font:{size:11}}},y:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'rgba(245,243,238,.5)',font:{size:11},callback:v=>v+'%'},max:35}}}});
+}
+function c8(){
+  const e=document.getElementById('c8');if(!e||e._d)return;e._d=1;
+  new Chart(e,{type:'doughnut',data:{labels:['Colombians','Venezuelans','Mexicans'],datasets:[{data:[676534,377800,36067],backgroundColor:['#00A9E0','#E55B4D','rgba(229,91,77,.3)'],borderWidth:0,hoverOffset:8}]},options:{responsive:true,maintainAspectRatio:false,cutout:'70%',plugins:{legend:{display:true,position:'bottom',labels:{color:'rgba(245,243,238,.6)',font:{size:11},padding:16,boxWidth:10,boxHeight:10}},tooltip:{callbacks:{label:c=>{const t=1090401;return c.label+': '+c.parsed.toLocaleString()+' ('+Math.round(c.parsed/t*100)+'%)';}}}}}});
+}
+function c16(){
+  const e=document.getElementById('c16');if(!e||e._d)return;e._d=1;
+  new Chart(e,{type:'bar',data:{labels:['Broker Co-Brand','Native Content','Community / WhatsApp','Podcast / Audio','CTV / Brand Video'],datasets:[{label:'Phases 1–2 (Test + Learn)',data:[40,0,12,0,0],backgroundColor:'rgba(229,91,77,.9)',borderRadius:4,borderSkipped:false},{label:'Phases 3–4 (Scale + Optimise)',data:[30,25,12,10,10],backgroundColor:'rgba(0,169,224,.55)',borderRadius:4,borderSkipped:false}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:true,labels:{color:'rgba(245,243,238,.6)',font:{size:11},boxWidth:10,boxHeight:10,padding:16}}},scales:{x:{grid:{color:'rgba(255,255,255,.05)'},ticks:{color:'rgba(245,243,238,.5)',font:{size:11},callback:v=>v+'%'},max:50},y:{grid:{display:false},ticks:{color:'rgba(245,243,238,.7)',font:{size:11}}}}}});
+}
+setTimeout(()=>{ic(1);ci[1]=true;},100);
+</script>
+</body>
+</html>
