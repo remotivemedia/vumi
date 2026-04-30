@@ -9,7 +9,6 @@ import { T } from '@/components/i18n/T';
 const S = {
   card: { background:'#fff', border:'1px solid #E2E8F0', borderRadius:8, padding:24, boxShadow:'0 1px 3px rgba(0,0,0,.04)' } as const,
   kicker: { fontSize:11, color:'#00A9E0', fontWeight:600, textTransform:'uppercase' as const, letterSpacing:'0.12em', marginBottom:6 },
-  cite: { fontSize:10, color:'#00A9E0', background:'#E6F6FC', padding:'1px 6px', borderRadius:3, fontFamily:"'JetBrains Mono',monospace", marginLeft:4, verticalAlign:'middle' } as const,
 };
 
 const PRIORITY_META: Record<string,{bg:string;color:string;key:string}> = {
@@ -20,9 +19,9 @@ const PRIORITY_META: Record<string,{bg:string;color:string;key:string}> = {
 };
 
 const CORPUS_BROKERS = [
-  { name:'C1 Broker (Wiseg Mediación)', dgsfp:'J-3790', city:'Las Palmas + Mallorca', ccaa:'Canarias + Baleares', priorityKey:'MÁXIMA PRIORIDAD — socio natural VUMI', carriers:['Cigna','Bupa Global','Allianz Care','AXA','DKV','Sanitas Bupa','Caser Expat','Foyer Global Health','PassportCard'], note:'26+ años. Especialización MUY ALTA expats/residentes extranjeros. CEO: Susana Wichels (opinion leader).', website:'https://c1brokers.es', source:'06_Corpus_Brokers §11', tier:1, priority_raw:'p0' },
-  { name:'Medicorasse (Grup Med)', dgsfp:'—', city:'Palma de Mallorca', ccaa:'Illes Balears', priorityKey:'Alta — sanitarios + expat premium Ibiza/Palma', carriers:['DKV Salud','Asisa','Adeslas'], note:'Especialización muy alta en profesionales sanitarios. ABR Correduría asociada.', website:'https://medicorasse.med.es', source:'06_Corpus_Brokers §12', tier:1, priority_raw:'p1' },
-  { name:'Canarisk Consultores', dgsfp:'—', city:'Las Palmas + Tenerife', ccaa:'Canarias', priorityKey:'Alta — residentes extranjeros + visas', carriers:['Esp. seguros privados extranjeros con visa residencia'], note:'Seg. médicos privados para extranjeros que solicitan residencia Canarias. Complementario a C1.', website:'https://www.canarisk.es', source:'06_Corpus_Brokers §11', tier:1, priority_raw:'p1' },
+  { name:'C1 Broker (Wiseg Mediación)', dgsfp:'J-3790', city:'Las Palmas + Mallorca', ccaa:'Canarias + Baleares', priorityKey:'Socio estratégico natural VUMI — Prioridad máxima', carriers:['Cigna','Bupa Global','Allianz Care','AXA','DKV','Sanitas Bupa','Caser Expat','Foyer Global Health','PassportCard'], note:'26+ años de especialización en expats y residentes extranjeros. CEO: Susana Wichels, referente del sector. Portfolio IPMI completo. Posición de liderazgo en Canarias y Baleares.', website:'https://c1brokers.es', tier:1, priority_raw:'p0' },
+  { name:'Medicorasse (Grup Med)', dgsfp:'—', city:'Palma de Mallorca', ccaa:'Illes Balears', priorityKey:'Alta — profesionales sanitarios + expat premium Ibiza/Palma', carriers:['DKV Salud','Asisa','Adeslas'], note:'Alta especialización en profesionales sanitarios y expat premium en Baleares. Complementario al posicionamiento premium de VUMI.', website:'https://medicorasse.med.es', tier:1, priority_raw:'p1' },
+  { name:'Canarisk Consultores', dgsfp:'—', city:'Las Palmas + Tenerife', ccaa:'Canarias', priorityKey:'Alta — residentes extranjeros + visados de residencia', carriers:['Especialistas seguros privados extranjeros'], note:'Especialistas en seguros médicos para extranjeros que tramitan residencia en Canarias. Complementario a C1 por volumen y tipología.', website:'https://www.canarisk.es', tier:1, priority_raw:'p1' },
 ];
 
 function FitBar({ score, color='#0033A0' }: { score:number; color?:string }) {
@@ -52,26 +51,26 @@ export default async function BrokersPage() {
             <T k="brokers.headline" />
           </h1>
           <p style={{ fontSize:13, color:'#6B7785', maxWidth:700, lineHeight:1.6 }}>
-            {brokers.length} <T k="brokers.subtitle_pre" /><span style={S.cite}>06_Corpus_Brokers_CCAA</span>
+            {brokers.length} <T k="brokers.subtitle_pre" />
           </p>
         </div>
       </FadeIn>
 
       <FadeIn delay={0.04}>
         <div style={{ display:'grid', gridTemplateColumns:'repeat(4,1fr)', gap:12, marginBottom:24 }}>
-          <AnimatedKPI value={t1.length}                                   label="Tier 1 DB"  sub="Priority shortlist"                    color="'#0033A0'" />
-          <AnimatedKPI value={t2.length}                                   label="Tier 2 DB"  sub="Second wave"                            color="'#00A9E0'" />
-          <AnimatedKPI value={brokers.filter((b:any)=>b.expat_focus).length} label="Expat Focus" sub="Verified specialisation"              color="'#2DA771'" />
-          <AnimatedKPI value={brokers.filter((b:any)=>b.latam_focus).length} label="LatAm Focus" sub="Target aligned"                      color="'#2DA771'" />
+          <AnimatedKPI value={t1.length}                                    label="Socios Prioritarios"  sub="Activación inmediata"    color="'#0033A0'" />
+          <AnimatedKPI value={t2.length}                                    label="Segunda Oleada"        sub="30–60 días"              color="'#00A9E0'" />
+          <AnimatedKPI value={brokers.filter((b:any)=>b.expat_focus).length} label="Expat Specialists"   sub="Verificado"              color="'#2DA771'" />
+          <AnimatedKPI value={brokers.filter((b:any)=>b.latam_focus).length} label="Foco LatAm"          sub="Alineado al target"      color="'#2DA771'" />
         </div>
       </FadeIn>
 
-      {/* Corpus broker intelligence */}
+      {/* Strategic partners from market analysis */}
       <FadeIn delay={0.08}>
         <div style={{ ...S.card, marginBottom:20, borderLeft:'4px solid #E55B4D' }}>
           <div style={S.kicker}><T k="brokers.corpus_section_title" /></div>
           <div style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:16, color:'#2C3539', marginBottom:14 }}>
-            C1 Broker: <T k="brokers.c1_priority" /><span style={S.cite}>06_Corpus_Brokers §11</span>
+            C1 Broker: <T k="brokers.c1_priority" />
           </div>
           <StaggerList>
             <div style={{ display:'grid', gridTemplateColumns:'repeat(auto-fill,minmax(300px,1fr))', gap:14 }}>
@@ -85,7 +84,7 @@ export default async function BrokersPage() {
                           <div style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, fontSize:14, color:'#2C3539' }}>
                             {b.website ? <a href={b.website} target="_blank" rel="noopener noreferrer" style={{ color:'#0033A0', textDecoration:'none' }}>{b.name}</a> : b.name}
                           </div>
-                          <div style={{ fontSize:11, color:'#6B7785', marginTop:2 }}>{b.city} · DGSFP {b.dgsfp}</div>
+                          <div style={{ fontSize:11, color:'#6B7785', marginTop:2 }}>{b.city}</div>
                         </div>
                         <span style={{ background:isC1?'#FBE8E2':'#EEF2FF', color:isC1?'#E55B4D':'#0033A0', padding:'2px 8px', borderRadius:99, fontSize:9, fontWeight:700, height:'fit-content' }}>
                           {b.priority_raw.toUpperCase()}
@@ -95,10 +94,9 @@ export default async function BrokersPage() {
                         {b.priorityKey}
                       </div>
                       <div style={{ fontSize:11, color:'#2C3539', marginBottom:8, lineHeight:1.5 }}>{b.note}</div>
-                      <div style={{ fontSize:10, color:'#6B7785', marginBottom:4 }}>
+                      <div style={{ fontSize:10, color:'#6B7785' }}>
                         <strong style={{ color:'#2C3539' }}><T k="brokers.carriers_label" />:</strong> {b.carriers.join(' · ')}
                       </div>
-                      <span style={S.cite}>{b.source}</span>
                     </HoverCard>
                   </StaggerItem>
                 );
@@ -171,7 +169,6 @@ export default async function BrokersPage() {
                     <tr key={b.id} style={{ borderBottom:'1px solid #F5F7FA' }}>
                       <td style={{ padding:'8px 10px' }}>
                         <div style={{ fontWeight:600, color:'#2C3539', fontSize:12 }}>{b.website?<a href={b.website} target="_blank" rel="noopener noreferrer" style={{ color:'#0033A0', textDecoration:'none' }}>{b.name}</a>:b.name}</div>
-                        <div style={{ fontSize:10, color:'#6B7785' }}>{b.dgsfp_code}</div>
                       </td>
                       <td style={{ padding:'8px 10px', color:'#6B7785' }}>{b.primary_ccaa}</td>
                       <td style={{ padding:'8px 10px' }}><span style={{ fontFamily:"'Montserrat',sans-serif", fontWeight:700, color:'#0033A0' }}>{b.fit_score}</span><FitBar score={b.fit_score}/></td>
@@ -191,21 +188,17 @@ export default async function BrokersPage() {
         <FadeIn delay={0.18}>
           <div style={{ ...S.card, borderLeft:'4px solid #0033A0', background:'#FAFBFF' }}>
             <div style={S.kicker}><T k="brokers.corpus_insight" /></div>
-            <div style={{ fontSize:13, color:'#2C3539', lineHeight:1.6, marginBottom:8 }}>{insight.answer}</div>
-            <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
-              {insight.chunks.map((c,i) => <span key={i} style={S.cite}>{c.doc_slug}#{c.chunk_index}</span>)}
-            </div>
+            <div style={{ fontSize:13, color:'#2C3539', lineHeight:1.6 }}>{insight.answer}</div>
           </div>
         </FadeIn>
       )}
 
+      {/* Action plan */}
       <FadeIn delay={0.2}>
-        <div style={{ ...S.card, borderLeft:'4px solid #E55B4D', background:'#FFF8F7', marginTop:16 }}>
+        <div style={{ ...S.card, borderLeft:'4px solid #2DA771', background:'#F0FBF7', marginTop:16 }}>
           <div style={S.kicker}><T k="brokers.action_title" /></div>
-          <div style={{ fontSize:13, color:'#2C3539', lineHeight:1.6 }}>
-            <strong>C1 Broker (Canarias + Mallorca)</strong> es el socio estratégico natural nº1: 26 años expat, portfolio completo IPMI, CEO visible en sector.
-            Outreach esta semana con battle card VUMI vs Cigna/Bupa/Allianz + pricing pendiente mystery shopping.
-            Requisito previo: confirmar DGSFP.<span style={S.cite}>06_Corpus_Brokers §11</span>
+          <div style={{ fontSize:13, color:'#2C3539', lineHeight:1.7 }}>
+            <strong>C1 Broker (Canarias + Mallorca)</strong> es el socio estratégico nº1 de acceso al mercado: 26 años especializados en expats, portfolio IPMI completo, CEO con posicionamiento público en el sector. Activación prioritaria esta semana con propuesta de colaboración VUMI + revisión de planes Euro Health vs Cigna/Bupa/Allianz.
           </div>
         </div>
       </FadeIn>
