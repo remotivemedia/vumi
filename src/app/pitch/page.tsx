@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'fra
 import { ResponsivePie } from '@nivo/pie'
 import { ResponsiveRadar } from '@nivo/radar'
 
-/* ââ Tokens âââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Tokens ───────────────────────────────────────────────────── */
 const C = {
   bg:     '#0A0A0A',
   blue:   '#0033A0',
@@ -19,7 +19,7 @@ const C = {
 }
 const ease = [0.22, 1, 0.36, 1] as const
 
-/* ââ Scroll-reveal wrapper ââââââââââââââââââââââââââââââââââââââ */
+/* ── Scroll-reveal wrapper ────────────────────────────────────── */
 function Reveal({ children, delay = 0, style = {} }: {
   children: React.ReactNode; delay?: number; style?: React.CSSProperties
 }) {
@@ -35,7 +35,7 @@ function Reveal({ children, delay = 0, style = {} }: {
   )
 }
 
-/* ââ Glassmorphism card âââââââââââââââââââââââââââââââââââââââââ */
+/* ── Glassmorphism card ───────────────────────────────────────── */
 function Glass({ children, style = {}, glow = C.sky }: {
   children: React.ReactNode; style?: React.CSSProperties; glow?: string
 }) {
@@ -63,7 +63,7 @@ function Glass({ children, style = {}, glow = C.sky }: {
   )
 }
 
-/* ââ Tooltip ââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Tooltip ──────────────────────────────────────────────────── */
 function Tip({ text, children }: { text: string; children: React.ReactNode }) {
   const [show, setShow] = useState(false)
   return (
@@ -93,7 +93,7 @@ function Tip({ text, children }: { text: string; children: React.ReactNode }) {
   )
 }
 
-/* ââ Floating orb âââââââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Floating orb ─────────────────────────────────────────────── */
 function Orb({ color, size, top, left, delay = 0 }: {
   color: string; size: number; top: string; left: string; delay?: number
 }) {
@@ -112,7 +112,7 @@ function Orb({ color, size, top, left, delay = 0 }: {
   )
 }
 
-/* ââ Nav section card âââââââââââââââââââââââââââââââââââââââââââ */
+/* ── Nav section card ─────────────────────────────────────────── */
 function NavCard({ href, icon, label, sub, accent = C.sky }: {
   href: string; icon: string; label: string; sub: string; accent?: string
 }) {
@@ -137,9 +137,9 @@ function NavCard({ href, icon, label, sub, accent = C.sky }: {
   )
 }
 
-/* ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ
+/* ════════════════════════════════════════════════════════════════
    PAGE
-ââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââââ */
+════════════════════════════════════════════════════════════════ */
 export default function PitchPage() {
   const { scrollY } = useScroll()
   const heroY  = useTransform(scrollY, [0, 600], [0, -110])
@@ -148,8 +148,8 @@ export default function PitchPage() {
 
   /* Nivo data */
   const pieData = [
-    { id: 'SeÃ±ales',      label: 'SeÃ±ales',       value: 130, color: C.sky  },
-    { id: 'HipÃ³tesis',    label: 'HipÃ³tesis',     value: 10,  color: '#00C875' },
+    { id: 'Señales',      label: 'Señales',       value: 130, color: C.sky  },
+    { id: 'Hipótesis',    label: 'Hipótesis',     value: 10,  color: '#00C875' },
     { id: 'Brokers',      label: 'Brokers',       value: 18,  color: C.red  },
     { id: 'Competidores', label: 'Competidores',  value: 9,   color: '#FFD166' },
   ]
@@ -158,15 +158,15 @@ export default function PitchPage() {
     { metric: 'Audiencia',   score: 90 },
     { metric: 'Broker',      score: 82 },
     { metric: 'Competencia', score: 78 },
-    { metric: 'RegulaciÃ³n',  score: 95 },
-    { metric: 'GeografÃ­a',   score: 88 },
+    { metric: 'Regulación',  score: 95 },
+    { metric: 'Geografía',   score: 88 },
     { metric: 'Propuesta',   score: 85 },
   ]
 
   return (
     <main style={{ fontFamily: "'Helvetica Neue',Arial,sans-serif", background: C.bg, color: C.white, minHeight: '100vh', overflowX: 'hidden' }}>
 
-      {/* ââ NAV âââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── NAV ─────────────────────────────────────────────── */}
       <motion.nav
         initial={{ opacity: 0, y: -14 }} animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, ease }}
@@ -180,14 +180,14 @@ export default function PitchPage() {
         }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <span style={{ fontSize: 10, letterSpacing: '0.32em', color: 'rgba(255,255,255,0.32)', textTransform: 'uppercase' }}>HOLA VUMI</span>
-          <span style={{ color: 'rgba(255,255,255,0.1)' }}>Ã</span>
+          <span style={{ color: 'rgba(255,255,255,0.1)' }}>×</span>
           <span style={{ fontSize: 10, letterSpacing: '0.32em', color: C.sky, textTransform: 'uppercase' }}>2026</span>
         </div>
         <div style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <motion.a href="/intelligence" whileHover={{ color: C.sky, letterSpacing: '0.25em' }}
             transition={{ duration: 0.2 }}
             style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)', textDecoration: 'none' }}>
-            Portal â
+            Portal →
           </motion.a>
           <motion.button whileHover={{ borderColor: 'rgba(0,169,224,0.5)', color: 'rgba(255,255,255,0.8)' }}
             style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', background: 'transparent', border: `1px solid rgba(255,255,255,0.18)`, color: 'rgba(255,255,255,0.5)', padding: '6px 14px', cursor: 'pointer', borderRadius: 2 }}>
@@ -196,7 +196,7 @@ export default function PitchPage() {
         </div>
       </motion.nav>
 
-      {/* ââ HERO ââââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── HERO ────────────────────────────────────────────── */}
       <section style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '120px 40px 80px', position: 'relative', overflow: 'hidden' }}>
         <motion.div style={{ position: 'absolute', inset: 0, y: gridY, backgroundImage: `linear-gradient(${C.grid} 1px,transparent 1px),linear-gradient(90deg,${C.grid} 1px,transparent 1px)`, backgroundSize: '80px 80px', pointerEvents: 'none' }} />
         <Orb color={C.sky} size={520} top="2%"  left="55%" delay={0} />
@@ -214,20 +214,20 @@ export default function PitchPage() {
             style={{ fontSize: 'clamp(48px,8.5vw,122px)', fontWeight: 900, lineHeight: 0.88, letterSpacing: '-0.03em', marginBottom: 52 }}>
             <span style={{ display: 'block' }}>LA</span>
             <span style={{ display: 'block', color: C.red }}>DESPENSA</span>
-            <span style={{ display: 'block', color: 'rgba(255,255,255,0.16)' }}>Ã</span>
+            <span style={{ display: 'block', color: 'rgba(255,255,255,0.16)' }}>×</span>
             <span style={{ display: 'block', color: C.sky }}>REMOTIVE</span>
             <span style={{ display: 'block', color: 'rgba(255,255,255,0.13)', fontSize: '0.53em', fontWeight: 400, letterSpacing: '0.01em', marginTop: 26 }}>
-              Creatividad + Inteligencia para el lanzamiento de VUMI en EspaÃ±a
+              Creatividad + Inteligencia para el lanzamiento de VUMI en España
             </span>
           </motion.h1>
 
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.65, ease }}
             style={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
             {[
-              { v: '23',  l: 'AÃ±os\nLa Despensa',      tip: 'Fundada 2003. 32 personas. 5 perros. Cero jerarquÃ­as.' },
-              { v: '6Âª',  l: 'Agencia\nSCOPEN 2022',   tip: 'Por valoraciÃ³n de clientes reales, no de jurados.' },
+              { v: '23',  l: 'Años\nLa Despensa',      tip: 'Fundada 2003. 32 personas. 5 perros. Cero jerarquías.' },
+              { v: '6ª',  l: 'Agencia\nSCOPEN 2022',   tip: 'Por valoración de clientes reales, no de jurados.' },
               { v: '18',  l: 'Brokers\nIdentificados', tip: 'Fit score por CCAA, expat DNA e IPMI track record.' },
-              { v: '130', l: 'SeÃ±ales de\nMercado',     tip: 'Inteligencia verificada. ActualizaciÃ³n semanal automÃ¡tica.' },
+              { v: '130', l: 'Señales de\nMercado',     tip: 'Inteligencia verificada. Actualización semanal automática.' },
             ].map(({ v, l, tip }) => (
               <Glass key={v} style={{ padding: '28px 36px', flex: '1 1 140px', minWidth: 130 }}>
                 <Tip text={tip}>
@@ -240,23 +240,23 @@ export default function PitchPage() {
         </motion.div>
       </section>
 
-      {/* ââ QUOTE âââââââââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── QUOTE ───────────────────────────────────────────── */}
       <section style={{ padding: '120px 40px', maxWidth: 900, margin: '0 auto' }}>
         <Reveal>
           <Glass glow={C.red} style={{ borderLeft: `3px solid ${C.red}`, padding: '42px 44px', marginBottom: 44 }}>
             <p style={{ fontSize: 'clamp(20px,3.2vw,38px)', lineHeight: 1.28, fontWeight: 700, letterSpacing: '-0.02em' }}>
-              "EspaÃ±a tiene 900.000 latinoamericanos con renta media-alta y cero opciones de seguro de salud que los traten como lo que son."
+              "España tiene 900.000 latinoamericanos con renta media-alta y cero opciones de seguro de salud que los traten como lo que son."
             </p>
           </Glass>
         </Reveal>
         <Reveal delay={0.1}>
           <p style={{ fontSize: 17, lineHeight: 1.75, color: C.dim, maxWidth: 680 }}>
-            La Despensa y ReMotive Media llegan juntas para cubrir ese hueco. Una con la mejor creatividad independiente de EspaÃ±a. La otra con la arquitectura de inteligencia de mercado mÃ¡s sofisticada del sector.
+            La Despensa y ReMotive Media llegan juntas para cubrir ese hueco. Una con la mejor creatividad independiente de España. La otra con la arquitectura de inteligencia de mercado más sofisticada del sector.
           </p>
         </Reveal>
       </section>
 
-      {/* ââ AGENCY CARDS ââââââââââââââââââââââââââââââââââââââ */}
+      {/* ── AGENCY CARDS ────────────────────────────────────── */}
       <section style={{ padding: '80px 40px', borderTop: `1px solid rgba(255,255,255,0.06)` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
           <Reveal>
@@ -268,26 +268,26 @@ export default function PitchPage() {
               <Glass glow={C.red} style={{ padding: '56px 48px', height: '100%' }}>
                 <div style={{ borderBottom: `2px solid ${C.red}`, paddingBottom: 24, marginBottom: 32 }}>
                   <h3 style={{ fontSize: 28, fontWeight: 900, letterSpacing: '-0.02em', marginBottom: 8 }}>LA DESPENSA</h3>
-                  <p style={{ fontSize: 12, color: C.red, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Estrategia creativa &amp; campaÃ±a</p>
+                  <p style={{ fontSize: 12, color: C.red, letterSpacing: '0.12em', textTransform: 'uppercase' }}>Estrategia creativa &amp; campaña</p>
                 </div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: 40 }}>
                   {[
-                    '23 aÃ±os. 32 personas. 5 perros. Cero jerarquÃ­as de grupo.',
-                    'Aegon: 6 aÃ±os, #CariÃ±oterapia â el caso de referencia del sector salud en EspaÃ±a.',
-                    'Finetwork (lanzamiento nacional), Burger King (14 aÃ±os), Tanqueray, Schweppes.',
-                    '6Âª mejor agencia de EspaÃ±a segÃºn clientes reales. SCOPEN 2022.',
-                    'Creemos en el poder transformador de la creatividad. Nada mÃ¡s.',
+                    '23 años. 32 personas. 5 perros. Cero jerarquías de grupo.',
+                    'Aegon: 6 años, #Cariñoterapia — el caso de referencia del sector salud en España.',
+                    'Finetwork (lanzamiento nacional), Burger King (14 años), Tanqueray, Schweppes.',
+                    '6ª mejor agencia de España según clientes reales. SCOPEN 2022.',
+                    'Creemos en el poder transformador de la creatividad. Nada más.',
                   ].map((t, i) => (
                     <motion.li key={i} initial={{ opacity: 0, x: -10 }} whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }} transition={{ delay: i * 0.08, duration: 0.38, ease }}
                       style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 16 }}>
-                      <span style={{ color: C.red, marginTop: 3, fontSize: 10, flexShrink: 0 }}>â¶</span>
+                      <span style={{ color: C.red, marginTop: 3, fontSize: 10, flexShrink: 0 }}>▶</span>
                       <span style={{ fontSize: 15, lineHeight: 1.6, color: 'rgba(255,255,255,0.65)' }}>{t}</span>
                     </motion.li>
                   ))}
                 </ul>
                 <div style={{ borderTop: `1px solid rgba(255,255,255,0.07)`, paddingTop: 24 }}>
-                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.65 }}>Premio Eficacia, Gran Premio Genio. CampaÃ±as que funcionan en la calle, no solo en awards shows.</p>
+                  <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.65 }}>Premio Eficacia, Gran Premio Genio. Campañas que funcionan en la calle, no solo en awards shows.</p>
                 </div>
               </Glass>
             </Reveal>
@@ -301,7 +301,7 @@ export default function PitchPage() {
                 </div>
                 <ul style={{ listStyle: 'none', margin: 0, padding: 0, marginBottom: 40 }}>
                                     {[
-                    'Estrategia de audiencia primaria: 1.09M residentes LATAM premium en España — tres segmentos, cuatro mercados de lanzamiento.',
+                    'Estrategia de audiencia primaria: 1.09M residentes LATAM premium en Espa�a — tres segmentos, cuatro mercados de lanzamiento.',
                     '18 corredurías de salud identificadas y puntuadas por CCAA. Canal broker-first: el más eficiente para IPMI premium en España.',
                     'Media mix diferencial: audio latino, activación comunitaria WhatsApp, native programático. CPL 58–73% menor que display estándar.',
                     '10 huecos de mercado confirmados sin activación — ningún competidor los está cubriendo.',
