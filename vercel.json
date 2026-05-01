@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/pitch",
+      "destination": "/pitch-v2",
       "permanent": false
     }
   ]
