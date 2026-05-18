@@ -1,0 +1,51 @@
+/* Magazine-Specific Layout Utilities */
+
+/* Economist-Style Drop Cap */
+.drop-cap::first-letter {
+  font-family: 'Montserrat', sans-serif;
+  float: left;
+  font-size: 3.5rem;
+  line-height: 0.8;
+  margin-top: 0.15em;
+  margin-right: 0.1em;
+  font-weight: 700;
+  color: #0033A0; /* Trust Blue */
+}
+
+/* Premium Gradients */
+.bg-vumi-gradient {
+  background: linear-gradient(135deg, #0033A0 0%, #002277 50%, #2C3539 100%);
+}
+
+.bg-magazine-accent {
+  background: linear-gradient(90deg, #0033A0 0%, #00A9E0 100%);
+}
+
+/* Magazine Grid & Spacing */
+.magazine-container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+/* Fine-printed Attributions */
+.chart-attribution {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 11px;
+  color: #94A3B8;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+/* Premium Card Shadow Styles */
+.premium-shadow {
+  box-shadow: 0 4px 6px -1px rgba(0, 51, 160, 0.03), 0 2px 4px -1px rgba(0, 51, 160, 0.02);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.premium-shadow:hover {
+  box-shadow: 0 12px 20px -3px rgba(0, 51, 160, 0.06), 0 4px 6px -2px rgba(0, 51, 160, 0.04);
+  transform: translateY(-2px);
+}
