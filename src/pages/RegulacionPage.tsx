@@ -3,8 +3,6 @@ import { Hero } from "../components/magazine/Hero";
 import { Section } from "../components/magazine/Section";
 import { Sidebar, WhatThisMeans } from "../components/magazine/Sidebar";
 import { DataCallout } from "../components/magazine/DataCallout";
-import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
-import { SectionHeader } from "../components/intelligence/SectionHeader";
 import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 import { ProgressBar } from "../components/intelligence/ProgressBar";
 

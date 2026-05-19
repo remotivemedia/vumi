@@ -5,7 +5,7 @@ import { Section } from "../components/magazine/Section";
 import { Sidebar, WhatThisMeans } from "../components/magazine/Sidebar";
 import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
 import { SectionHeader } from "../components/intelligence/SectionHeader";
-import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
+import { StatItem } from "../components/intelligence/StatGrid";
 
 const phases = [
   {
@@ -142,60 +142,6 @@ export const PlanPage: React.FC = () => {
                       </p>
                     </div>
                   </motion.div>
-                ))}
-              </div>
-            </div>
-          </div>
-            <div className="flex justify-between py-1.5 border-b border-white/5 text-gray-200">
-              <span>Top 5 Broker Shortlist Setup</span>
-              <span className="font-bold text-emerald-400">✓ Completed</span>
-            </div>
-            <div className="flex justify-between py-1.5 text-gray-200">
-              <span>Partner Onboarding Portal Launch</span>
-              <span className="font-bold text-vumi-sky">In Progress</span>
-            </div>
-          </div>
-        </div>
-      </Hero>
-
-      {/* 2. Main content */}
-      <div className="magazine-container py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
-          
-          {/* Main Content (8 Columns) */}
-          <div className="lg:col-span-8 space-y-12">
-            <Section
-              headline="Phased Strategy: Capturing Value Early, Replicating Success"
-              paragraphs={[
-                "A national mass-media campaign in Spain would be prohibitively expensive and highly inefficient. Instead, VUMI's Go-To-Market strategy is architected to scale organically, capturing high-margin premium expat communities in distinct phases.",
-                "This iterative model minimizes upfront burn rates. By achieving operational validation in Madrid first, we can refine our support networks, optimize local reimbursement speed, and build a powerful track record of client satisfaction that acts as social proof for subsequent expansion phases."
-              ]}
-              implication="We target early profitability within 90 days of Phase 1 launch, leveraging Madrid's extreme concentration of private wealth to generate active cash flows."
-            />
-
-            {/* Timeline Phases */}
-            <div className="space-y-6">
-              <h3 className="font-heading text-xl font-bold text-vumi-blue tracking-tight">
-                Execution Phases
-              </h3>
-              <div className="space-y-4">
-                {phases.map((p, i) => (
-                  <div key={i} className="bg-white p-6 border border-gray-100 rounded-lg premium-shadow flex gap-6 items-start">
-                    <div className="shrink-0 flex items-center justify-center w-12 h-12 bg-vumi-sky/10 rounded-lg text-vumi-blue font-heading font-bold">
-                      0{i + 1}
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-1">
-                        <h4 className="font-heading font-bold text-vumi-blue">{p.phase}</h4>
-                        <span className="text-xs font-semibold px-2 py-0.5 bg-gray-50 border border-gray-100 text-gray-500 rounded uppercase tracking-wider shrink-0 self-start sm:self-auto">
-                          {p.timing} • {p.focus}
-                        </span>
-                      </div>
-                      <p className="font-sans text-sm text-gray-600 leading-relaxed font-light">
-                        {p.desc}
-                      </p>
-                    </div>
-                  </div>
                 ))}
               </div>
             </div>
