@@ -57,76 +57,115 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
     },
   ];
 
+  const statusRows = [
+    { label: "Compliance Status", value: "Solvency II Compliant", positive: true },
+    { label: "Security Level", value: "Encrypted · Client-Only", positive: true },
+    { label: "Data Classification", value: "Confidential", positive: false },
+  ];
+
   return (
     <div className="space-y-0 bg-vumi-pearl">
       {/* 1. Hero Section */}
       <Hero
         badge="Executive Overview"
         headline="The Spain Blueprint: Premium Expat Market Entry Strategy"
-        dek="Welcome to the VUMI Spain Strategic Intelligence Portal. This executive dashboard centralizes all demographic insights, competitor scatter matrices, regulatory solvency frameworks, and broker activation toolkits compiled for senior leadership."
+        dek="Welcome to the VUMI Spain Strategic Intelligence Portal. This executive dashboard centralises demographic insights, competitor matrices, regulatory frameworks, and broker activation toolkits compiled for senior leadership."
       >
-        <div className="space-y-4 text-left font-sans text-xs">
-          <span className="font-heading font-bold text-xs uppercase tracking-wider text-vumi-sky">Portal Registry Status</span>
-          <div className="p-4 bg-white/5 border border-white/10 rounded space-y-2">
-            <div className="flex justify-between items-center text-white">
-              <span className="font-semibold">Compliance Status</span>
-              <span className="text-emerald-400 uppercase font-bold text-[10px]">Solvency II Compliant</span>
-            </div>
-            <div className="flex justify-between items-center text-white">
-              <span className="font-semibold">Security Level</span>
-              <span className="text-vumi-sky uppercase font-bold text-[10px]">Encrypted Client-Only</span>
-            </div>
+        {/* Portal Registry Status Panel */}
+        <div className="space-y-4 text-left font-sans">
+          <span className="font-heading font-bold text-[10px] uppercase tracking-[0.18em] text-vumi-sky">
+            Portal Registry Status
+          </span>
+          <div className="border border-white/10 divide-y divide-white/[0.07] rounded-sm overflow-hidden">
+            {statusRows.map((row) => (
+              <div
+                key={row.label}
+                className="flex justify-between items-center px-4 py-3 bg-white/[0.04]"
+              >
+                <span className="font-sans text-xs text-gray-400 font-light">{row.label}</span>
+                <span
+                  className={`font-heading font-bold text-[10px] uppercase tracking-wider ${
+                    row.positive ? "text-emerald-400" : "text-vumi-sky"
+                  }`}
+                >
+                  {row.value}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </Hero>
 
       {/* 2. Main Narrative & Portal Map Grid */}
-      <div className="magazine-container py-12">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
-          
-          {/* Main narrative column (8 Columns) */}
-          <div className="lg:col-span-8 space-y-12">
+      <div className="magazine-container py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 text-left">
+
+          {/* Main narrative column — 8 columns */}
+          <div className="lg:col-span-8 space-y-14">
             <Section
               headline="Executive Intelligence & Market Architecture"
               paragraphs={[
                 "International Private Medical Insurance (IPMI) positioning in Spain requires exceptional alignment between local regulatory mandates and premium channel networks. This portal consolidates ReMotive Media's strategic findings to support executive decision-making.",
-                "Select any strategic intelligence section below to explore interactive Recharts visualizations, geographic registries, Solvency II metrics, and channel toolkits."
+                "Select any strategic intelligence section below to explore interactive visualisations, geographic registries, Solvency II metrics, and channel toolkits.",
               ]}
             />
 
             {/* Portal Map Grid */}
-            <div className="space-y-6">
-              <h3 className="font-heading text-xl font-bold text-vumi-blue tracking-tight">
-                Strategic Intelligence Map
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="space-y-5">
+              {/* Section heading with accent rule */}
+              <div>
+                <span className="section-rule" />
+                <h3 className="font-heading text-xs font-bold uppercase tracking-[0.18em] text-gray-400">
+                  Strategic Intelligence Map
+                </h3>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {portalMap.map((item, idx) => (
-                  <div
-                    key={idx}
+                  <button
+                    key={item.id}
                     onClick={() => onNavigate(item.id)}
-                    className="p-5 bg-white border border-gray-100 rounded-lg premium-shadow hover:border-vumi-sky transition cursor-pointer flex flex-col justify-between"
+                    className="portal-card group text-left p-5 bg-white border border-gray-100 rounded-sm premium-shadow hover:border-vumi-sky/60 hover:bg-vumi-sky/[0.02] transition-all duration-200 flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vumi-sky"
                   >
-                    <div className="space-y-2">
-                      <h4 className="font-heading text-sm font-bold text-vumi-blue uppercase tracking-wider">
-                        {item.title}
-                      </h4>
-                      <p className="font-sans text-xs text-gray-500 font-light leading-relaxed">
+                    <div className="space-y-2.5">
+                      {/* Index + title row */}
+                      <div className="flex items-start gap-3">
+                        <span className="font-mono text-[10px] font-bold text-gray-300 leading-none pt-[3px] shrink-0 tabular-nums">
+                          {String(idx + 1).padStart(2, "0")}
+                        </span>
+                        <h4 className="font-heading text-sm font-bold text-vumi-blue uppercase tracking-wider leading-tight">
+                          {item.title}
+                        </h4>
+                      </div>
+                      <p className="font-sans text-xs text-gray-500 font-light leading-relaxed pl-6">
                         {item.description}
                       </p>
                     </div>
-                    <div className="pt-4 flex items-center text-[10px] font-heading font-bold uppercase text-vumi-sky tracking-wider">
-                      Explore Section →
+
+                    {/* Enter caret */}
+                    <div className="pt-4 pl-6 flex items-center gap-1.5 text-[10px] font-heading font-bold uppercase tracking-wider text-vumi-sky/60 group-hover:text-vumi-sky transition-colors duration-200">
+                      <span>Explore</span>
+                      <svg
+                        width="10"
+                        height="10"
+                        viewBox="0 0 10 10"
+                        fill="none"
+                        aria-hidden="true"
+                        className="translate-x-0 group-hover:translate-x-0.5 transition-transform duration-150"
+                      >
+                        <path d="M2 5h6M5.5 2.5L8 5l-2.5 2.5" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>
           </div>
 
-          {/* Sidebar */}
+          {/* Sidebar — 4 columns */}
           <div className="lg:col-span-4 space-y-8">
             <Sidebar title="Executive Summary">
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-5">
                 <DataCallout
                   number="800,000+"
                   label="Target Expat Segment"
@@ -136,17 +175,23 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                   number="218%"
                   label="Solvency II Statutory Buffer"
                 />
+                <DataCallout
+                  number="9"
+                  label="Intelligence Modules Active"
+                  trend={{ value: "All portals live", isPositive: true }}
+                />
               </div>
 
               <WhatThisMeans
                 title="GTM Triggers"
                 points={[
                   "Focus on Salamanca, Pozuelo, and La Moraleja broker relationships.",
-                  "Utilize accelerated commission tiers (up to 20% elite volume bracket).",
+                  "Utilise accelerated commission tiers (up to 20% elite volume bracket).",
                 ]}
               />
             </Sidebar>
           </div>
+
         </div>
       </div>
     </div>
