@@ -26,8 +26,23 @@
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  /* Tighter on mobile, comfortable on larger screens */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .magazine-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .magazine-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 /* Fine-printed Attributions */
@@ -41,12 +56,14 @@
 
 /* Premium Card Shadow Styles */
 .premium-shadow {
-  box-shadow: 0 4px 6px -1px rgba(0, 51, 160, 0.03), 0 2px 4px -1px rgba(0, 51, 160, 0.02);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px -1px rgba(0, 51, 160, 0.04), 0 1px 2px -1px rgba(0, 51, 160, 0.03);
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .premium-shadow:hover {
-  box-shadow: 0 12px 20px -3px rgba(0, 51, 160, 0.06), 0 4px 6px -2px rgba(0, 51, 160, 0.04);
+  box-shadow: 0 10px 24px -4px rgba(0, 51, 160, 0.1), 0 4px 8px -2px rgba(0, 51, 160, 0.06);
   transform: translateY(-2px);
 }
 
@@ -61,8 +78,22 @@
 
 /* Portal card active press state */
 .portal-card:active {
-  transform: translateY(0);
+  transform: translateY(0px) scale(0.99);
   box-shadow: 0 2px 6px -1px rgba(0, 51, 160, 0.08);
+  transition-duration: 0.1s;
+}
+
+/* Portal card focus ring — consistent with focus-visible in tailwind */
+.portal-card:focus-visible {
+  outline: 2px solid #00A9E0;
+  outline-offset: 2px;
+}
+
+/* Nav tab button minimum touch target on mobile */
+.nav-tab-btn {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 /* Nav scrollbar hide cross-browser */
@@ -72,4 +103,9 @@
 }
 .nav-scroll::-webkit-scrollbar {
   display: none;
+}
+
+/* Utility: full viewport height using small viewport unit for mobile browsers */
+.min-height-svh {
+  min-height: 100svh;
 }

@@ -80,23 +80,24 @@ function App() {
     <div className="min-height-svh bg-vumi-pearl flex flex-col justify-between font-sans">
       {/* Premium Header Frame */}
       <header className="bg-vumi-slate text-white border-b border-white/5 sticky top-0 z-50" style={{ boxShadow: "0 1px 0 rgba(0,169,224,0.12), 0 4px 20px rgba(0,0,0,0.25)" }}>
-        <div className="magazine-container flex flex-col md:flex-row justify-between items-start md:items-center gap-3 pt-4 pb-3">
-          <div className="text-left space-y-0.5">
+        <div className="magazine-container flex flex-row justify-between items-center gap-3 pt-3.5 pb-2.5">
+          <div className="text-left space-y-0.5 min-w-0">
             <div className="flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="font-heading font-semibold text-[10px] uppercase tracking-[0.18em] text-vumi-sky/80">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+              <span className="font-heading font-semibold text-[10px] uppercase tracking-[0.18em] text-vumi-sky/80 truncate">
                 ReMotive Media &times; La Despensa
               </span>
             </div>
-            <h1 className="font-heading text-lg sm:text-xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="font-heading text-base sm:text-lg md:text-xl font-bold tracking-tight text-white leading-tight">
               <span className="text-vumi-sky">VUMI</span>
               <span className="text-white/30 font-light mx-1.5">/</span>
-              <span className="font-light text-gray-300">Spain Strategic Intelligence</span>
+              <span className="font-light text-gray-300 hidden sm:inline">Spain Strategic Intelligence</span>
+              <span className="font-light text-gray-300 sm:hidden">Spain Intel</span>
             </h1>
           </div>
 
-          {/* Live clock */}
-          <div className="flex items-center gap-2 font-mono text-[11px] text-gray-500 border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 rounded-sm">
+          {/* Live clock — hidden on very small screens */}
+          <div className="hidden xs:flex items-center gap-2 font-mono text-[11px] text-gray-500 border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 rounded-sm shrink-0">
             <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
             <span>{currentTime}</span>
           </div>
@@ -111,7 +112,8 @@ function App() {
                 <button
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
-                  className={`relative py-3 px-4 font-heading text-[11px] font-semibold uppercase tracking-widest transition duration-200 shrink-0 whitespace-nowrap ${
+                  aria-current={isActive ? "page" : undefined}
+                  className={`nav-tab-btn relative py-3 px-3.5 sm:px-4 font-heading text-[11px] font-semibold uppercase tracking-widest transition duration-200 shrink-0 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vumi-sky focus-visible:ring-inset rounded-sm ${
                     isActive ? "text-vumi-sky" : "text-gray-500 hover:text-gray-200"
                   }`}
                 >

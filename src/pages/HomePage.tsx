@@ -97,11 +97,11 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
       </Hero>
 
       {/* 2. Main Narrative & Portal Map Grid */}
-      <div className="magazine-container py-14">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 text-left">
+      <div className="magazine-container py-10 sm:py-14">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 text-left">
 
           {/* Main narrative column — 8 columns */}
-          <div className="lg:col-span-8 space-y-14">
+          <div className="lg:col-span-8 space-y-10 sm:space-y-14">
             <Section
               headline="Executive Intelligence & Market Architecture"
               paragraphs={[
@@ -120,12 +120,12 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
                 </h3>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {portalMap.map((item, idx) => (
                   <button
                     key={item.id}
                     onClick={() => onNavigate(item.id)}
-                    className="portal-card group text-left p-5 bg-white border border-gray-100 rounded-sm premium-shadow hover:border-vumi-sky/60 hover:bg-vumi-sky/[0.02] transition-all duration-200 flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vumi-sky"
+                    className="portal-card group text-left p-4 sm:p-5 bg-white border border-gray-100 rounded-sm premium-shadow hover:border-vumi-sky/60 hover:bg-vumi-sky/[0.02] flex flex-col justify-between focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vumi-sky"
                   >
                     <div className="space-y-2.5">
                       {/* Index + title row */}
@@ -162,8 +162,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate }) => {
             </div>
           </div>
 
-          {/* Sidebar — 4 columns */}
-          <div className="lg:col-span-4 space-y-8">
+          {/* Sidebar — 4 columns, rendered below main column on mobile */}
+          <div className="lg:col-span-4 space-y-6 sm:space-y-8">
             <Sidebar title="Executive Summary">
               <div className="grid grid-cols-1 gap-5">
                 <DataCallout
