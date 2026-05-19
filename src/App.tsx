@@ -96,7 +96,7 @@ function App() {
           </div>
 
           {/* Live clock */}
-          <div className="flex items-center gap-2 font-mono text-[11px] text-gray-500 border border-white/8 bg-white/[0.03] px-3 py-1.5 rounded-sm">
+          <div className="flex items-center gap-2 font-mono text-[11px] text-gray-500 border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 rounded-sm">
             <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
             <span>{currentTime}</span>
           </div>
@@ -104,7 +104,7 @@ function App() {
 
         {/* Tabbed Navigation Bar */}
         <div className="magazine-container">
-          <nav className="flex border-t border-white/5 overflow-x-auto" style={{ scrollbarWidth: "none" }}>
+          <nav className="flex border-t border-white/5 overflow-x-auto nav-scroll">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (

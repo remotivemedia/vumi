@@ -72,9 +72,15 @@ export const Hero: React.FC<HeroProps> = ({ badge, headline, dek, children }) =>
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="lg:col-span-5 bg-white/[0.04] backdrop-blur-sm border border-white/10 p-7 rounded-sm w-full overflow-hidden"
+              className="lg:col-span-5 bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-sm w-full overflow-hidden flex flex-col"
             >
-              {children}
+              <div className="p-6 flex-1">
+                {children}
+              </div>
+              <div className="border-t border-white/[0.07] px-6 py-3 flex items-center gap-2">
+                <span className="w-1 h-1 rounded-full bg-emerald-400/70" />
+                <span className="font-mono text-[10px] text-gray-500 uppercase tracking-widest">Live · Confidential</span>
+              </div>
             </motion.div>
           )}
         </div>
