@@ -7,6 +7,9 @@ import { PullQuote } from "../components/magazine/PullQuote";
 import { LineChartMagazine } from "../components/charts/LineChartMagazine";
 import { BarChartMagazine } from "../components/charts/BarChartMagazine";
 import { Footer } from "../components/magazine/Footer";
+import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
+import { SectionHeader } from "../components/intelligence/SectionHeader";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 
 // Real-world and strategy-based mockup data for Venezuelan diaspora in Spain (2020-2025)
 const populationGrowthData = [
@@ -26,30 +29,48 @@ const ccaaDistributionData = [
   { ccaa: "Valencia", share: 4 },
 ];
 
+const heroStats: StatItem[] = [
+  { label: "Active Venezuelan Expats", value: "800k+", sub: "14.2% YoY growth", positive: true },
+  { label: "Madrid Metro Concentration", value: "68%", sub: "P0 geographic hub", positive: true },
+  { label: "LATAM IPMI Demand Share", value: "42%", sub: "P0 Segment", positive: true },
+  { label: "Propensity Score", value: "88%", sub: "Validated confidence", positive: true },
+];
+
 export const AudienciasPage: React.FC = () => {
   return (
     <div className="space-y-0 bg-vumi-pearl">
       {/* 1. Hero Section */}
       <Hero
-        badge="VUMI Spain Strategic Intelligence"
+        badge="Audience Intelligence"
         headline="Venezuelan Expats Drive 42% of LATAM IPMI Demand in Spain"
         dek="An in-depth analysis of VUMI's priority audience segment reveals the Venezuelan diaspora as the single most critical growth driver for the Spain launch. With strong geographic concentration and high propensities for premium private healthcare, this cohort represents an immediate addressable opportunity."
       >
-        <LineChartMagazine
-          title="Venezuelan Expat Growth Trend (2020-2025)"
-          subtitle="Cumulative growth in thousands of active residents"
-          data={populationGrowthData}
-          xKey="year"
-          series={[{ key: "population", name: "Venezuelan Expats (k)", color: "#00A9E0" }]}
-          source="Instituto Nacional de Estadística (INE)"
-        />
+        <StatGrid stats={heroStats} cols={2} dark />
       </Hero>
 
       {/* 2. Main Article Section */}
-      <div className="magazine-container py-12">
+      <div className="magazine-container py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main Article Content (8 Columns) */}
           <div className="lg:col-span-8 space-y-12">
+
+            {/* Chart module — population trend */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <SectionHeader eyebrow="Data" headline="Venezuelan Expat Growth Trend (2020–2025)" border={false} />
+                <ConfidenceBadge level="validated" compact />
+              </div>
+              <div className="bg-white border border-gray-100 rounded-sm premium-shadow p-5">
+                <LineChartMagazine
+                  title=""
+                  subtitle="Cumulative growth in thousands of active residents"
+                  data={populationGrowthData}
+                  xKey="year"
+                  series={[{ key: "population", name: "Venezuelan Expats (k)", color: "#00A9E0" }]}
+                  source="Instituto Nacional de Estadística (INE)"
+                />
+              </div>
+            </div>
             
             {/* Section 1: Market Opportunity */}
             <Section

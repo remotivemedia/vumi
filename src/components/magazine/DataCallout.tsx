@@ -23,16 +23,16 @@ export const DataCallout: React.FC<DataCalloutProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
-      className="bg-white p-6 border border-gray-100 rounded-lg premium-shadow flex flex-col justify-between"
+      className="bg-white p-4 sm:p-5 border border-gray-100 rounded-sm premium-shadow flex flex-col justify-between kpi-tile"
     >
       <div>
-        <div className="flex justify-between items-start">
+        <div className="flex justify-between items-start gap-2">
           <span className="font-heading text-4xl sm:text-5xl font-bold text-vumi-blue tracking-tight">
             {number}
           </span>
           {trend && (
             <span
-              className={`text-xs font-semibold px-2 py-1 rounded-full ${
+              className={`text-[9px] font-semibold px-2 py-1 rounded-sm shrink-0 ${
                 trend.isPositive
                   ? "bg-emerald-50 text-emerald-700"
                   : "bg-rose-50 text-rose-700"
@@ -42,7 +42,7 @@ export const DataCallout: React.FC<DataCalloutProps> = ({
             </span>
           )}
         </div>
-        <p className="font-sans text-sm text-vumi-slate font-medium leading-relaxed mt-2 uppercase tracking-wider text-gray-500">
+        <p className="font-sans text-[10px] text-vumi-slate font-semibold leading-relaxed mt-2 uppercase tracking-wider text-gray-500">
           {label}
         </p>
       </div>

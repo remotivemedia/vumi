@@ -26,8 +26,23 @@
   max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  /* Tighter on mobile, comfortable on larger screens */
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .magazine-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .magazine-container {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+  }
 }
 
 /* Fine-printed Attributions */
@@ -41,12 +56,14 @@
 
 /* Premium Card Shadow Styles */
 .premium-shadow {
-  box-shadow: 0 4px 6px -1px rgba(0, 51, 160, 0.03), 0 2px 4px -1px rgba(0, 51, 160, 0.02);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 4px -1px rgba(0, 51, 160, 0.04), 0 1px 2px -1px rgba(0, 51, 160, 0.03);
+  transition: box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .premium-shadow:hover {
-  box-shadow: 0 12px 20px -3px rgba(0, 51, 160, 0.06), 0 4px 6px -2px rgba(0, 51, 160, 0.04);
+  box-shadow: 0 10px 24px -4px rgba(0, 51, 160, 0.1), 0 4px 8px -2px rgba(0, 51, 160, 0.06);
   transform: translateY(-2px);
 }
 
@@ -61,8 +78,22 @@
 
 /* Portal card active press state */
 .portal-card:active {
-  transform: translateY(0);
+  transform: translateY(0px) scale(0.99);
   box-shadow: 0 2px 6px -1px rgba(0, 51, 160, 0.08);
+  transition-duration: 0.1s;
+}
+
+/* Portal card focus ring — consistent with focus-visible in tailwind */
+.portal-card:focus-visible {
+  outline: 2px solid #00A9E0;
+  outline-offset: 2px;
+}
+
+/* Nav tab button minimum touch target on mobile */
+.nav-tab-btn {
+  min-height: 44px;
+  display: flex;
+  align-items: center;
 }
 
 /* Nav scrollbar hide cross-browser */
@@ -72,4 +103,77 @@
 }
 .nav-scroll::-webkit-scrollbar {
   display: none;
+}
+
+/* Utility: full viewport height using small viewport unit for mobile browsers */
+.min-height-svh {
+  min-height: 100svh;
+}
+
+/* Intelligence module card — glass-style panel */
+.intel-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,51,160,0.04), 0 1px 2px rgba(0,51,160,0.03);
+}
+
+/* KPI tile accent border-top — premium indicator */
+.kpi-tile {
+  border-top: 2px solid #00A9E0;
+  padding-top: 1rem;
+}
+
+/* Status dot pulse */
+.status-pulse {
+  animation: pulse-opacity 2s ease-in-out infinite;
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Hairline separator utility */
+.hairline {
+  height: 1px;
+  background: rgba(226, 232, 240, 1);
+}
+
+/* Dark hairline for dark panels */
+.hairline-dark {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Intelligence row — hover highlight */
+.intel-row {
+  transition: background-color 0.15s ease;
+}
+.intel-row:hover {
+  background-color: rgba(0, 169, 224, 0.025);
+}
+
+/* Monospace data cell */
+.data-cell {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #0033A0;
+}
+
+/* Premium badge-style label */
+.label-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  opacity: 0.8;
 }

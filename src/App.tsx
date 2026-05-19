@@ -76,36 +76,77 @@ function App() {
     }
   };
 
+  const signalMarquee = [
+    "Active Signal: MUFACE strain driving +18% premium expat enquiry MoM",
+    "Validated: Venezuelan propensity for private insurance — 88% confidence",
+    "Intelligence Updated: 19 May 2026 · 09:14 CET",
+    "Broker Audit: 18 shortlisted · P0 activation in progress",
+    "Solvency II Buffer: 218% · DGSFP Compliant",
+  ];
+
   return (
     <div className="min-height-svh bg-vumi-pearl flex flex-col justify-between font-sans">
       {/* Premium Header Frame */}
-      <header className="bg-vumi-slate text-white border-b border-white/5 sticky top-0 z-50" style={{ boxShadow: "0 1px 0 rgba(0,169,224,0.12), 0 4px 20px rgba(0,0,0,0.25)" }}>
-        <div className="magazine-container flex flex-row justify-between items-center gap-3 pt-3.5 pb-2.5">
+      <header className="bg-vumi-slate text-white sticky top-0 z-50" style={{ boxShadow: "0 1px 0 rgba(0,169,224,0.14), 0 6px 24px rgba(0,0,0,0.3)" }}>
+
+        {/* Cinematic top accent line */}
+        <div className="h-px w-full bg-gradient-to-r from-transparent via-vumi-sky/60 to-transparent" />
+
+        {/* Signal marquee strip */}
+        <div className="border-b border-white/[0.06] bg-black/20 overflow-hidden">
+          <div className="magazine-container flex items-center gap-3 py-1.5">
+            <span className="font-heading text-[9px] font-bold uppercase tracking-[0.18em] text-vumi-sky/70 shrink-0 hidden sm:inline">
+              LIVE INTEL
+            </span>
+            <span className="w-px h-3 bg-white/10 shrink-0 hidden sm:inline-block" />
+            <div className="overflow-hidden flex-1 relative">
+              <motion.div
+                className="flex gap-8 whitespace-nowrap"
+                animate={{ x: ["0%", "-50%"] }}
+                transition={{ duration: 40, ease: "linear", repeat: Infinity }}
+              >
+                {[...signalMarquee, ...signalMarquee].map((s, i) => (
+                  <span key={i} className="font-sans text-[10px] text-gray-400 shrink-0">
+                    <span className="text-vumi-sky/50 mr-1.5">&#9670;</span>
+                    {s}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+            <div className="hidden md:flex items-center gap-1.5 shrink-0 font-mono text-[10px] text-gray-500 ml-3">
+              <span className="w-1 h-1 rounded-full bg-emerald-400/70 status-pulse" />
+              <span>{currentTime}</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Wordmark & identity row */}
+        <div className="magazine-container flex flex-row justify-between items-center gap-3 pt-3 pb-2.5">
           <div className="text-left space-y-0.5 min-w-0">
             <div className="flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse shrink-0" />
-              <span className="font-heading font-semibold text-[10px] uppercase tracking-[0.18em] text-vumi-sky/80 truncate">
+              <span className="font-heading font-semibold text-[9px] uppercase tracking-[0.2em] text-white/30 truncate">
                 ReMotive Media &times; La Despensa
               </span>
             </div>
-            <h1 className="font-heading text-base sm:text-lg md:text-xl font-bold tracking-tight text-white leading-tight">
+            <h1 className="font-heading text-base sm:text-lg md:text-xl font-bold tracking-tight text-white leading-none">
               <span className="text-vumi-sky">VUMI</span>
-              <span className="text-white/30 font-light mx-1.5">/</span>
-              <span className="font-light text-gray-300 hidden sm:inline">Spain Strategic Intelligence</span>
-              <span className="font-light text-gray-300 sm:hidden">Spain Intel</span>
+              <span className="text-white/20 font-light mx-2">/</span>
+              <span className="font-light text-white/70 hidden sm:inline text-sm sm:text-base md:text-lg">Spain Strategic Intelligence</span>
+              <span className="font-light text-white/70 sm:hidden text-sm">Spain Intel</span>
             </h1>
           </div>
 
-          {/* Live clock — hidden on very small screens */}
-          <div className="hidden xs:flex items-center gap-2 font-mono text-[11px] text-gray-500 border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 rounded-sm shrink-0">
-            <span className="w-1 h-1 rounded-full bg-emerald-400/60" />
-            <span>{currentTime}</span>
+          {/* Confidentiality badge */}
+          <div className="hidden sm:flex items-center gap-1.5 font-heading text-[9px] font-bold uppercase tracking-widest text-vumi-sky/50 border border-vumi-sky/15 bg-vumi-sky/[0.04] px-3 py-1.5 rounded-sm shrink-0">
+            <span className="w-1 h-1 rounded-full bg-vumi-sky/50 shrink-0" />
+            Confidential &middot; Client Only
           </div>
         </div>
 
         {/* Tabbed Navigation Bar */}
         <div className="magazine-container">
-          <nav className="flex border-t border-white/5 overflow-x-auto nav-scroll">
+          <nav className="flex border-t border-white/[0.06] overflow-x-auto nav-scroll" aria-label="Portal navigation">
             {navItems.map((item) => {
               const isActive = activeTab === item.id;
               return (
@@ -113,15 +154,15 @@ function App() {
                   key={item.id}
                   onClick={() => setActiveTab(item.id)}
                   aria-current={isActive ? "page" : undefined}
-                  className={`nav-tab-btn relative py-3 px-3.5 sm:px-4 font-heading text-[11px] font-semibold uppercase tracking-widest transition duration-200 shrink-0 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vumi-sky focus-visible:ring-inset rounded-sm ${
-                    isActive ? "text-vumi-sky" : "text-gray-500 hover:text-gray-200"
+                  className={`nav-tab-btn relative py-2.5 px-3 sm:px-4 font-heading text-[10px] font-bold uppercase tracking-widest transition duration-200 shrink-0 whitespace-nowrap focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-vumi-sky focus-visible:ring-inset rounded-sm ${
+                    isActive ? "text-vumi-sky" : "text-white/30 hover:text-white/70"
                   }`}
                 >
                   {item.label}
                   {isActive && (
                     <motion.div
                       layoutId="activeTabUnderline"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-vumi-sky"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-vumi-sky"
                       transition={{ type: "spring", stiffness: 400, damping: 32 }}
                     />
                   )}

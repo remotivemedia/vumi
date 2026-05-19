@@ -3,12 +3,21 @@ import { Hero } from "../components/magazine/Hero";
 import { Section } from "../components/magazine/Section";
 import { Sidebar, WhatThisMeans } from "../components/magazine/Sidebar";
 import { DataCallout } from "../components/magazine/DataCallout";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
+import { ProgressBar } from "../components/intelligence/ProgressBar";
 
 const complianceTimeline = [
   { item: "Solvency II Passporting Filing", status: "Approved", date: "April 2026" },
   { item: "Spain Local Entity Registration", status: "Completed", date: "May 2026" },
   { item: "ISO/IEC 27001 & SOC 2 Security Audits", status: "Completed", date: "May 2026" },
   { item: "GDPR Localized Data Architecture", status: "Completed", date: "May 2026" },
+];
+
+const heroStats: StatItem[] = [
+  { label: "Solvency II Capital Ratio", value: "218%", sub: "Required minimum: 100%", positive: true },
+  { label: "Data Encryption", value: "AES-256", sub: "End-to-end mandate", positive: true },
+  { label: "Compliance Milestones", value: "4 / 4", sub: "All completed", positive: true },
+  { label: "GDPR Status", value: "Compliant", sub: "EU multi-zone hosting", positive: true },
 ];
 
 export const RegulacionPage: React.FC = () => {
@@ -20,28 +29,27 @@ export const RegulacionPage: React.FC = () => {
         headline="Solvency and Stability: Navigating Spain's DGSFP Framework"
         dek="VUMI Europe operates in strict compliance with the Dirección General de Seguros y Fondos de Pensiones (DGSFP) and European Solvency II directives. Our passported cross-border operations guarantee absolute safety and regulatory coverage for high-net-worth expat clients."
       >
-        <div className="space-y-6 text-left font-sans text-xs">
-          <span className="font-heading font-bold text-xs uppercase tracking-wider text-vumi-sky">VUMI Solvency Index</span>
-          <div className="p-5 bg-white/5 border border-white/10 rounded-lg space-y-3">
-            <div className="flex justify-between items-center text-sm font-semibold text-white">
-              <span>Solvency Ratio (Solvency II)</span>
-              <span className="text-vumi-sky text-lg">218%</span>
+        <div className="space-y-4 text-left">
+          <StatGrid stats={heroStats.slice(0, 2)} cols={2} dark />
+          <div className="space-y-2">
+            <div className="flex justify-between items-center">
+              <span className="font-sans text-[11px] text-gray-300 font-light">Solvency II Capital Ratio</span>
+              <span className="font-heading text-xs font-bold text-vumi-sky">218%</span>
             </div>
-            {/* Custom high-fidelity progress bar */}
-            <div className="w-full bg-white/10 rounded-full h-3 overflow-hidden">
-              <div className="bg-vumi-sky h-full rounded-full" style={{ width: "90%" }} />
-            </div>
-            <div className="flex justify-between text-[10px] text-gray-400 font-medium">
-              <span>Required Margin (100%)</span>
-              <span>VUMI Europe Buffer (218%)</span>
+            <ProgressBar value={90} height="medium" color="#00A9E0" />
+            <div className="flex justify-between font-sans text-[9px] text-gray-500">
+              <span>Required (100%)</span>
+              <span>VUMI Buffer (218%)</span>
             </div>
           </div>
         </div>
       </Hero>
 
       {/* 2. Main content */}
-      <div className="magazine-container py-12">
+      <div className="magazine-container py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
+
+          {/* Certification grid at top of main col — merged with section below */}
           
           {/* Main narrative column (8 Columns) */}
           <div className="lg:col-span-8 space-y-12">

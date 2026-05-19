@@ -24,12 +24,12 @@ export const Section: React.FC<SectionProps> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      className="py-12 border-b border-gray-100 last:border-0"
+      className="py-10 sm:py-14 border-b border-gray-100 last:border-0"
     >
-      <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-start`}>
+      <div className={`grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-start`}>
         {/* Narrative & Implication */}
         <div className={`lg:col-span-7 space-y-6 text-left ${reverse ? "lg:order-last" : ""}`}>
-          <h2 className="text-2xl md:text-3xl font-bold text-vumi-blue tracking-tight font-heading leading-tight">
+          <h2 className="text-2xl md:text-3xl font-bold text-vumi-blue tracking-tight font-heading leading-tight text-balance">
             {headline}
           </h2>
           
@@ -47,9 +47,9 @@ export const Section: React.FC<SectionProps> = ({
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: 0.2 }}
-              className="bg-vumi-sky/5 border-l-4 border-vumi-sky p-5 rounded-r-md premium-shadow mt-6"
+              className="bg-vumi-sky/5 border-l-4 border-vumi-sky p-4 sm:p-5 rounded-r-sm premium-shadow mt-6"
             >
-              <h4 className="text-xs font-heading font-bold uppercase tracking-wider text-vumi-blue mb-1">
+              <h4 className="text-xs font-heading font-bold uppercase tracking-wider text-vumi-blue mb-1.5">
                 Strategic Implication
               </h4>
               <p className="font-sans text-sm md:text-base font-semibold text-vumi-slate leading-relaxed">
@@ -62,7 +62,7 @@ export const Section: React.FC<SectionProps> = ({
         {/* Visual Proof */}
         {visual && (
           <div className="lg:col-span-5 w-full flex flex-col justify-center items-center">
-            <div className="w-full bg-white p-6 border border-gray-100 rounded-lg premium-shadow">
+            <div className="w-full bg-white p-4 sm:p-5 border border-gray-100 rounded-sm premium-shadow">
               {visual}
             </div>
           </div>

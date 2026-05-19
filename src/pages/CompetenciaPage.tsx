@@ -4,6 +4,9 @@ import { Section } from "../components/magazine/Section";
 import { Sidebar, WhatThisMeans } from "../components/magazine/Sidebar";
 import { PieChartMagazine } from "../components/charts/PieChartMagazine";
 import { ScatterChartMagazine } from "../components/charts/ScatterChartMagazine";
+import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
+import { SectionHeader } from "../components/intelligence/SectionHeader";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 
 const marketShareData = [
   { name: "Bupa Global DAC", value: 38 },
@@ -66,6 +69,13 @@ const featuresMatrix = [
   },
 ];
 
+const heroStats: StatItem[] = [
+  { label: "Bupa Global Market Share", value: "38%", sub: "Dominant incumbent", positive: false },
+  { label: "VUMI Open Corridor", value: "24%", sub: "Addressable entry space", positive: true },
+  { label: "Avg. Premium Inflation", value: "+6.4%", sub: "Sanitas / Adeslas YoY", positive: false },
+  { label: "Feature Gap vs VUMI", value: "4 / 4", sub: "LATAM features missing", positive: true },
+];
+
 export const CompetenciaPage: React.FC = () => {
   return (
     <div className="space-y-0 bg-vumi-pearl">
@@ -73,22 +83,35 @@ export const CompetenciaPage: React.FC = () => {
       <Hero
         badge="Competitive Intelligence"
         headline="Four Incumbents Dominate Spain's Premium IPMI Landscape"
-        dek="Spain's high-net-worth expat sector is heavily concentrated under four primary incumbents led by Bupa Global. However, systemic strain on traditional hospital networks and lack of LATAM-specific benefit optimization leaves an open corridor for VUMI's premium entry."
+        dek="Spain's high-net-worth expat sector is heavily concentrated under four primary incumbents led by Bupa Global. However, systemic strain on traditional hospital networks and lack of LATAM-specific benefit optimisation leaves an open corridor for VUMI's premium entry."
       >
-        <PieChartMagazine
-          title="Premium Expat Sector Market Share"
-          subtitle="Estimated allocation of high-net-worth expat portfolios"
-          data={marketShareData}
-          source="ReMotive Competitor Database"
-        />
+        <StatGrid stats={heroStats} cols={2} dark />
       </Hero>
 
       {/* 2. Main content */}
-      <div className="magazine-container py-12">
+      <div className="magazine-container py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
+
+          {/* Market share chart panel */}
           
           {/* Main content column (8 Columns) */}
           <div className="lg:col-span-8 space-y-12">
+
+            {/* Pie chart panel */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3 flex-wrap">
+                <SectionHeader eyebrow="Market Structure" headline="Premium Expat Sector Market Share" border={false} />
+                <ConfidenceBadge level="validated" compact />
+              </div>
+              <div className="bg-white border border-gray-100 rounded-sm premium-shadow p-5">
+                <PieChartMagazine
+                  title=""
+                  subtitle="Estimated allocation of high-net-worth expat portfolios"
+                  data={marketShareData}
+                  source="ReMotive Competitor Database"
+                />
+              </div>
+            </div>
             <Section
               headline="IPMI Market Structure: Bupa Dominates, Local Networks Under Strain"
               paragraphs={[

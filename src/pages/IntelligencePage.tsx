@@ -1,36 +1,58 @@
 import React, { useState } from "react";
 import { Hero } from "../components/magazine/Hero";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
+import { ProgressBar } from "../components/intelligence/ProgressBar";
+import { SectionHeader } from "../components/intelligence/SectionHeader";
+import { IntelligenceTable, Column } from "../components/intelligence/IntelligenceTable";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 
-// Sample live hypothesis data from strategy instructions
 const hypotheses = [
   {
     id: "H-01",
-    text: "Venezuelan expat segments in Madrid have high private insurance propensities due to cultural distrust of nationalized grids.",
+    text: "Venezuelan expat segments in Madrid have high private insurance propensities due to cultural distrust of nationalised grids.",
     confidence: 88,
-    status: "Validated",
+    status: "validated" as const,
     evidence: "Survey of 500+ expats and broker interview logs (ReMotive Media)",
+    implication: "Focus digital onboarding assets to speak directly to premium expat hospital network needs.",
   },
   {
     id: "H-02",
     text: "MUFACE network strain serves as a trigger event to convert premium local health plans to high-tier IPMI.",
     confidence: 76,
-    status: "Strong Signal",
+    status: "strong" as const,
     evidence: "Adeslas premium adjustments and mystery shopping records",
+    implication: "Time activations to coincide with peak MUFACE disruption windows in Q3 2026.",
   },
   {
     id: "H-03",
     text: "Colombian expat segment represents a secondary growth cohort in high-net-worth brackets.",
     confidence: 52,
-    status: "Emerging",
+    status: "emerging" as const,
     evidence: "Migration flow trends and initial broker feedback (Canaries & Barcelona)",
+    implication: "Begin data collection programme to close confidence gap before Phase 3.",
+  },
+  {
+    id: "H-04",
+    text: "Broker-first dark-social channel yields 5x higher qualified lead conversion than paid digital.",
+    confidence: 84,
+    status: "validated" as const,
+    evidence: "WhatsApp directory audits and referral chain mapping by ReMotive Media",
+    implication: "Allocate 70% of acquisition budget to broker onboarding and enablement.",
   },
 ];
 
-const decisions = [
+interface Decision {
+  date: string;
+  action: string;
+  reversibility: string;
+  status: string;
+}
+
+const decisions: Decision[] = [
   {
     date: "15 May 2026",
-    action: "Shortlisted 18 premium boutique brokers specializing in expat segments",
+    action: "Shortlisted 18 premium boutique brokers specialising in expat segments",
     reversibility: "High",
     status: "Active",
   },
@@ -46,186 +68,244 @@ const decisions = [
     reversibility: "Medium",
     status: "Active",
   },
+  {
+    date: "01 May 2026",
+    action: "Commissioned full Venezuelan expat demographic audit with INE data",
+    reversibility: "High",
+    status: "Completed",
+  },
+];
+
+const decisionColumns: Column<Decision>[] = [
+  {
+    key: "date",
+    label: "Date",
+    width: "110px",
+    render: (row) => (
+      <span className="font-mono text-[11px] text-gray-400 font-semibold tabular-nums">{row.date}</span>
+    ),
+  },
+  {
+    key: "action",
+    label: "Decision & Action",
+    render: (row) => (
+      <span className="font-sans text-sm font-semibold text-vumi-slate">{row.action}</span>
+    ),
+  },
+  {
+    key: "reversibility",
+    label: "Reversibility",
+    width: "130px",
+    render: (row) => (
+      <span className="font-sans text-xs text-gray-400">{row.reversibility}</span>
+    ),
+  },
+  {
+    key: "status",
+    label: "Status",
+    width: "110px",
+    render: (row) => (
+      <span className={`font-heading text-[9px] font-bold uppercase tracking-wider px-2 py-1 rounded-sm ${
+        row.status === "Active"
+          ? "bg-sky-50 text-sky-700 border border-sky-200/50"
+          : "bg-emerald-50 text-emerald-700 border border-emerald-200/50"
+      }`}>
+        {row.status}
+      </span>
+    ),
+  },
 ];
 
 const signals = [
-  { name: "Expats inquiring about premium private networks", trend: "+18% MoM", status: "Strong" },
-  { name: "Traditional local premium cost inflation (Sanitas/Adeslas)", trend: "+6.4%", status: "Strong" },
-  { name: "Expat-focused broker interest in international-grade plans", trend: "High Demand", status: "Emerging" },
-  { name: "Regulatory audits on cross-border coverage by DGSFP", trend: "No concerns", status: "Stable" },
+  { name: "Expats inquiring about premium private networks", trend: "+18% MoM", status: "Strong", statusLevel: "validated" as const },
+  { name: "Traditional local premium cost inflation (Sanitas/Adeslas)", trend: "+6.4%", status: "Strong", statusLevel: "validated" as const },
+  { name: "Expat-focused broker interest in international-grade plans", trend: "High Demand", status: "Emerging", statusLevel: "strong" as const },
+  { name: "Regulatory audits on cross-border coverage by DGSFP", trend: "No concerns", status: "Stable", statusLevel: "validated" as const },
+];
+
+const dataGaps = [
+  { label: "Colombian Expat Pricing Corridor", priority: "High", color: "text-rose-500" },
+  { label: "Barcelona Local Network Capacity", priority: "Medium", color: "text-amber-500" },
+  { label: "Canaries Expat Broker Channels", priority: "Low", color: "text-gray-400" },
+  { label: "Mexican Cohort Household Incomes", priority: "Medium", color: "text-amber-500" },
+];
+
+const heroStats: StatItem[] = [
+  { label: "Active Signals", value: "48", sub: "Weekly feed", positive: true },
+  { label: "Decisions Logged", value: "18+", sub: "All documented", positive: true },
+  { label: "Validated Hypotheses", value: "8 / 10", sub: "2 emerging", positive: true },
+  { label: "Known Data Gaps", value: "14", sub: "Tracked actively" },
 ];
 
 export const IntelligencePage: React.FC = () => {
-  const [selectedHypothesis, setSelectedHypothesis] = useState<string | null>(null);
+  const [expandedHypothesis, setExpandedHypothesis] = useState<string | null>(null);
 
   return (
     <div className="space-y-0 bg-vumi-pearl">
-      {/* 1. Hero Section */}
       <Hero
         badge="Command Center"
         headline="Strategic Intelligence & Real-Time Market Signals"
         dek="A central hub consolidating live GTM hypotheses, operational decisions, active market signals, and core database metrics to guide VUMI Europe's leadership through the Spain launch."
       >
-        <div className="grid grid-cols-2 gap-4 text-left">
-          <div className="p-4 bg-white/5 rounded border border-white/10">
-            <span className="text-xs text-vumi-sky uppercase tracking-wider block">Active Signals</span>
-            <span className="text-3xl font-heading font-bold text-white">48</span>
-          </div>
-          <div className="p-4 bg-white/5 rounded border border-white/10">
-            <span className="text-xs text-vumi-sky uppercase tracking-wider block">Decisions Logged</span>
-            <span className="text-3xl font-heading font-bold text-white">18+</span>
-          </div>
-          <div className="p-4 bg-white/5 rounded border border-white/10">
-            <span className="text-xs text-vumi-sky uppercase tracking-wider block">Validated Hypotheses</span>
-            <span className="text-3xl font-heading font-bold text-white">8 / 10</span>
-          </div>
-          <div className="p-4 bg-white/5 rounded border border-white/10">
-            <span className="text-xs text-vumi-sky uppercase tracking-wider block">Known Data Gaps</span>
-            <span className="text-3xl font-heading font-bold text-white">14</span>
-          </div>
-        </div>
+        <StatGrid stats={heroStats} cols={2} dark />
       </Hero>
 
-      {/* 2. Main Dashboard Content */}
       <div className="magazine-container py-12">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
-          
-          {/* Main Column - Hypotheses & Decisions (8 Columns) */}
+
+          {/* Main column — 8 cols */}
           <div className="lg:col-span-8 space-y-12">
-            
-            {/* Hypotheses Section */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-vumi-blue font-heading tracking-tight">
-                Live Strategic Hypotheses
-              </h2>
-              <div className="space-y-4">
-                {hypotheses.map((h) => (
-                  <div
+
+            {/* Hypotheses */}
+            <div className="space-y-5">
+              <SectionHeader
+                eyebrow="GTM Hypotheses"
+                headline="Live Strategic Hypotheses"
+                dek="Evidence-backed assertions driving the Spain GTM strategy. Click any hypothesis to expand the evidence trail."
+              />
+              <div className="space-y-3">
+                {hypotheses.map((h, i) => (
+                  <motion.div
                     key={h.id}
-                    onClick={() => setSelectedHypothesis(selectedHypothesis === h.id ? null : h.id)}
-                    className="p-6 bg-white border border-gray-100 rounded-lg premium-shadow cursor-pointer hover:border-vumi-sky transition duration-200"
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true, margin: "-40px" }}
+                    transition={{ duration: 0.45, delay: i * 0.06, ease: "easeOut" }}
+                    onClick={() => setExpandedHypothesis(expandedHypothesis === h.id ? null : h.id)}
+                    className="bg-white border border-gray-100 rounded-sm premium-shadow cursor-pointer hover:border-vumi-sky/40 transition-colors duration-200"
                   >
-                    <div className="flex justify-between items-start gap-4">
-                      <span className="text-xs font-bold font-heading text-vumi-sky uppercase bg-vumi-sky/10 px-2 py-0.5 rounded">
-                        {h.id}
-                      </span>
-                      <span
-                        className={`text-xs font-semibold px-2 py-0.5 rounded-full ${
-                          h.status === "Validated"
-                            ? "bg-emerald-50 text-emerald-700"
-                            : h.status === "Strong Signal"
-                            ? "bg-sky-50 text-sky-700"
-                            : "bg-amber-50 text-amber-700"
-                        }`}
-                      >
-                        {h.status} ({h.confidence}% Conf.)
-                      </span>
+                    <div className="p-5">
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div className="flex items-center gap-2.5">
+                          <span className="font-mono text-[9px] font-bold text-gray-300 shrink-0">{h.id}</span>
+                          <ConfidenceBadge level={h.status} score={h.confidence} />
+                        </div>
+                        <motion.div
+                          animate={{ rotate: expandedHypothesis === h.id ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-gray-300 shrink-0 mt-0.5"
+                        >
+                          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                            <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </motion.div>
+                      </div>
+                      <p className="font-sans text-sm font-semibold text-vumi-slate leading-relaxed mb-3">
+                        {h.text}
+                      </p>
+                      <ProgressBar
+                        value={h.confidence}
+                        height="thin"
+                        color={h.status === "validated" ? "#10b981" : h.status === "strong" ? "#00A9E0" : "#f59e0b"}
+                        delay={i * 0.1}
+                      />
                     </div>
-                    <p className="font-sans text-base font-semibold text-vumi-slate mt-3 leading-relaxed">
-                      {h.text}
-                    </p>
-                    
-                    {selectedHypothesis === h.id && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: "auto" }}
-                        className="mt-4 pt-4 border-t border-gray-100 text-sm font-sans text-gray-500 space-y-2"
-                      >
-                        <p>
-                          <strong className="text-vumi-blue font-heading text-xs uppercase tracking-wider block">Evidence Trail:</strong>
-                          {h.evidence}
-                        </p>
-                        <p>
-                          <strong className="text-vumi-blue font-heading text-xs uppercase tracking-wider block mt-2">Actionable Implication:</strong>
-                          Focus digital onboarding assets to speak directly to premium expat hospital network needs.
-                        </p>
-                      </motion.div>
-                    )}
-                  </div>
+
+                    <AnimatePresence>
+                      {expandedHypothesis === h.id && (
+                        <motion.div
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: "auto" }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25, ease: "easeOut" }}
+                          className="overflow-hidden"
+                        >
+                          <div className="px-5 pb-5 pt-1 border-t border-gray-50 space-y-3">
+                            <div>
+                              <span className="font-heading text-[9px] font-bold uppercase tracking-widest text-gray-400 block mb-1">Evidence Trail</span>
+                              <p className="font-sans text-xs text-gray-500 font-light leading-relaxed">{h.evidence}</p>
+                            </div>
+                            <div>
+                              <span className="font-heading text-[9px] font-bold uppercase tracking-widest text-vumi-blue block mb-1">Strategic Implication</span>
+                              <p className="font-sans text-xs text-vumi-slate font-semibold leading-relaxed">{h.implication}</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Decisions Logged */}
-            <div className="space-y-6">
-              <h2 className="text-2xl font-bold text-vumi-blue font-heading tracking-tight">
-                Recent Strategic Decisions
-              </h2>
-              <div className="bg-white border border-gray-100 rounded-lg premium-shadow overflow-hidden">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-100">
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Date</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Decision & Action</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Reversibility</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {decisions.map((d, i) => (
-                      <tr key={i} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition">
-                        <td className="p-4 font-sans text-xs text-gray-400 font-semibold">{d.date}</td>
-                        <td className="p-4 font-sans text-sm font-semibold text-vumi-slate">{d.action}</td>
-                        <td className="p-4 font-sans text-xs text-gray-500">{d.reversibility}</td>
-                        <td className="p-4">
-                          <span className="text-xs font-semibold px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded-full">
-                            {d.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            {/* Decisions table */}
+            <div className="space-y-5">
+              <SectionHeader
+                eyebrow="Decision Log"
+                headline="Recent Strategic Decisions"
+                dek="Operational commitments logged with reversibility scoring and current status."
+              />
+              <IntelligenceTable
+                columns={decisionColumns}
+                rows={decisions}
+                zebra
+              />
             </div>
+
           </div>
 
-          {/* Sidebar Columns - Signals & Gaps (4 Columns) */}
-          <div className="lg:col-span-4 space-y-8">
-            <div className="bg-white p-6 border border-gray-100 rounded-lg premium-shadow space-y-6">
-              <h3 className="font-heading text-lg font-bold text-vumi-blue border-b border-gray-100 pb-3 uppercase tracking-wider">
-                Active Signals (Weekly)
-              </h3>
-              <div className="space-y-4">
+          {/* Sidebar — 4 cols */}
+          <div className="lg:col-span-4 space-y-6">
+
+            {/* Weekly Signals */}
+            <div className="bg-white border border-gray-100 rounded-sm premium-shadow overflow-hidden">
+              <div className="px-5 py-3.5 border-b border-gray-50 flex items-center justify-between">
+                <span className="font-heading text-xs font-bold uppercase tracking-widest text-vumi-blue">Active Signals</span>
+                <span className="font-mono text-[9px] text-gray-300">Weekly</span>
+              </div>
+              <div className="divide-y divide-gray-50">
                 {signals.map((s, idx) => (
-                  <div key={idx} className="flex justify-between items-start gap-4">
-                    <div>
-                      <p className="font-sans text-sm font-semibold text-vumi-slate leading-tight">{s.name}</p>
-                      <span className="text-xs text-gray-400 font-medium">Preset Filter: Spain Launch</span>
+                  <div key={idx} className="px-5 py-3.5 flex justify-between items-start gap-3 intel-row">
+                    <div className="min-w-0">
+                      <p className="font-sans text-xs font-semibold text-vumi-slate leading-snug">{s.name}</p>
+                      <ConfidenceBadge level={s.statusLevel} compact />
                     </div>
-                    <div className="text-right shrink-0">
-                      <span className="text-sm font-heading font-bold text-vumi-sky">{s.trend}</span>
-                      <span className="block text-[10px] uppercase font-bold text-gray-400">{s.status}</span>
-                    </div>
+                    <span className="font-heading text-xs font-bold text-vumi-sky shrink-0">{s.trend}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="bg-vumi-slate text-white p-6 border border-vumi-slate/15 rounded-lg premium-shadow space-y-4">
-              <h3 className="font-heading text-lg font-bold text-vumi-sky uppercase tracking-wider">
-                Outstanding Data Gaps
-              </h3>
-              <p className="font-sans text-xs text-gray-300 font-light leading-relaxed">
-                We are actively tracking 14 specific data gaps needed to fully resolve second-tier GTM opportunities (e.g. detailed Colombian expat pricing corridors).
-              </p>
-              <div className="space-y-2 pt-2 text-xs font-sans">
-                <div className="flex justify-between py-1.5 border-b border-white/5">
-                  <span className="text-gray-300">Colombian Expat Pricing</span>
-                  <span className="text-vumi-sky font-bold">High Priority</span>
-                </div>
-                <div className="flex justify-between py-1.5 border-b border-white/5">
-                  <span className="text-gray-300">Barcelona Local Network Capacity</span>
-                  <span className="text-amber-500 font-bold">Medium Priority</span>
-                </div>
-                <div className="flex justify-between py-1.5">
-                  <span className="text-gray-300">Canaries Expat Broker Channels</span>
-                  <span className="text-gray-400 font-bold">Low Priority</span>
+            {/* Data Gaps */}
+            <div className="bg-vumi-slate text-white rounded-sm premium-shadow overflow-hidden">
+              <div className="px-5 py-3.5 border-b border-white/[0.07]">
+                <span className="font-heading text-xs font-bold uppercase tracking-widest text-vumi-sky">Outstanding Data Gaps</span>
+              </div>
+              <div className="p-5 space-y-4">
+                <p className="font-sans text-xs text-gray-300 font-light leading-relaxed">
+                  14 specific data gaps tracked to fully resolve second-tier GTM opportunities. Priority order:
+                </p>
+                <div className="space-y-0 divide-y divide-white/[0.05]">
+                  {dataGaps.map((g, i) => (
+                    <div key={i} className="flex justify-between items-center py-2.5">
+                      <span className="font-sans text-xs text-gray-300 font-light">{g.label}</span>
+                      <span className={`font-heading text-[9px] font-bold uppercase tracking-wider ${g.color}`}>{g.priority}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
+
+            {/* Confidence legend */}
+            <div className="bg-white border border-gray-100 rounded-sm premium-shadow p-5 space-y-3">
+              <span className="font-heading text-[10px] font-bold uppercase tracking-widest text-gray-400 block">Confidence Key</span>
+              <div className="space-y-2">
+                {([
+                  { level: "validated", label: "Validated — empirical evidence trail" },
+                  { level: "strong", label: "Strong Signal — directionally confirmed" },
+                  { level: "emerging", label: "Emerging — early data only" },
+                  { level: "gap", label: "Data Gap — insufficient evidence" },
+                ] as const).map((item) => (
+                  <div key={item.level} className="flex items-center gap-2">
+                    <ConfidenceBadge level={item.level} compact />
+                    <span className="font-sans text-[10px] text-gray-400 font-light">{item.label}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
           </div>
-          
+
         </div>
       </div>
     </div>

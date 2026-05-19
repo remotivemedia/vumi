@@ -3,11 +3,21 @@ import { Hero } from "../components/magazine/Hero";
 import { Section } from "../components/magazine/Section";
 import { Sidebar, WhatThisMeans } from "../components/magazine/Sidebar";
 import { DataCallout } from "../components/magazine/DataCallout";
+import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
+import { SectionHeader } from "../components/intelligence/SectionHeader";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 
 const commissionTierList = [
   { volume: "1 - 10 active policies", commission: "15% standard GWP share" },
   { volume: "11 - 25 active policies", commission: "18% accelerated GWP share" },
   { volume: "26+ active policies", commission: "20% elite volume trigger share" },
+];
+
+const heroStats: StatItem[] = [
+  { label: "Reimbursement Guarantee", value: "48 Hrs", sub: "Market-leading standard", positive: true },
+  { label: "Elite Commission Tier", value: "20%", sub: "26+ active policies", positive: true },
+  { label: "Standard Commission", value: "15%", sub: "1–10 active policies", positive: true },
+  { label: "Hospital Network", value: "3 Direct", sub: "Ruber, Quirónsalud, HM", positive: true },
 ];
 
 export const PitchPage: React.FC = () => {
@@ -17,33 +27,35 @@ export const PitchPage: React.FC = () => {
       <Hero
         badge="Broker Enablement"
         headline="Winning Expat Families: The VUMI Broker Sales Playbook"
-        dek="Empower your advisory team with our high-conversion expat sales blueprint. By focusing on VUMI Spain's borderless clinic access, rapid claim reimbursement speeds, and LATAM-optimized family riders, you offer clients an unmatched medical shield."
+        dek="Empower your advisory team with our high-conversion expat sales blueprint. By focusing on VUMI Spain's borderless clinic access, rapid claim reimbursement speeds, and LATAM-optimised family riders, you offer clients an unmatched medical shield."
       >
-        <div className="space-y-4 text-left font-sans text-xs">
-          <span className="font-heading font-bold text-xs uppercase tracking-wider text-vumi-sky">Marketing Material Assets</span>
-          <div className="grid grid-cols-1 gap-2 pt-2">
-            <a
-              href="#/download-brochure"
-              className="p-3 bg-white/5 border border-white/10 rounded flex justify-between items-center hover:bg-white/10 transition cursor-pointer"
-            >
-              <span className="text-white font-semibold">Expat GTM Brochure (English & Spanish)</span>
-              <span className="text-vumi-sky uppercase font-bold text-[10px]">PDF • 3.2MB</span>
-            </a>
-            <a
-              href="#/download-kit"
-              className="p-3 bg-white/5 border border-white/10 rounded flex justify-between items-center hover:bg-white/10 transition cursor-pointer"
-            >
-              <span className="text-white font-semibold">Broker Client Presentation Kit</span>
-              <span className="text-vumi-sky uppercase font-bold text-[10px]">PPTX • 12MB</span>
-            </a>
+        <div className="space-y-4 text-left">
+          <StatGrid stats={heroStats.slice(0, 2)} cols={2} dark />
+          <div className="hairline-dark" />
+          <div className="space-y-2">
+            <span className="font-heading font-bold text-[10px] uppercase tracking-[0.18em] text-vumi-sky/70 block">
+              Marketing Assets
+            </span>
+            {[
+              { label: "Expat GTM Brochure (EN & ES)", meta: "PDF · 3.2MB" },
+              { label: "Broker Client Presentation Kit", meta: "PPTX · 12MB" },
+            ].map((a, i) => (
+              <div
+                key={i}
+                className="flex justify-between items-center p-3 bg-white/[0.05] border border-white/10 rounded-sm hover:bg-white/10 transition cursor-pointer"
+              >
+                <span className="font-sans text-xs text-white font-light">{a.label}</span>
+                <span className="font-heading text-[9px] font-bold text-vumi-sky uppercase tracking-wider">{a.meta}</span>
+              </div>
+            ))}
           </div>
         </div>
       </Hero>
 
       {/* 2. Main content */}
-      <div className="magazine-container py-12">
+      <div className="magazine-container py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
-          
+
           {/* Main narrative column (8 Columns) */}
           <div className="lg:col-span-8 space-y-12">
             <Section
@@ -56,30 +68,32 @@ export const PitchPage: React.FC = () => {
             />
 
             {/* Commission Accelerators */}
-            <div className="space-y-6">
-              <h3 className="font-heading text-xl font-bold text-vumi-blue tracking-tight">
-                Commission Tier & Volume Accelerators
-              </h3>
-              <p className="font-sans text-sm text-gray-500 font-light leading-relaxed">
-                VUMI Spain rewards premium brokers with robust standard compensation models and highly attractive volume accelerations based on active policy thresholds.
-              </p>
-              <div className="bg-white border border-gray-100 rounded-lg premium-shadow overflow-hidden">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-100">
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Volume Bracket</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">GWP Share Tier</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {commissionTierList.map((c, i) => (
-                      <tr key={i} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition">
-                        <td className="p-4 font-sans text-sm font-bold text-vumi-slate">{c.volume}</td>
-                        <td className="p-4 font-sans text-xs text-vumi-blue font-semibold">{c.commission}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="space-y-5">
+              <SectionHeader
+                eyebrow="Commercial Terms"
+                headline="Commission Tier & Volume Accelerators"
+                dek="VUMI Spain rewards premium brokers with robust standard compensation models and highly attractive volume accelerations based on active policy thresholds."
+              />
+              <div className="space-y-3">
+                {commissionTierList.map((c, i) => (
+                  <div
+                    key={i}
+                    className="bg-white border border-gray-100 rounded-sm premium-shadow p-4 flex items-center justify-between gap-4"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="font-mono text-[10px] font-bold text-gray-300 tabular-nums shrink-0">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                      <span className="font-sans text-sm font-semibold text-vumi-slate">{c.volume}</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="font-heading text-sm font-bold text-vumi-sky">{c.commission}</span>
+                      {i === commissionTierList.length - 1 && (
+                        <ConfidenceBadge level="validated" label="Elite" compact />
+                      )}
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
