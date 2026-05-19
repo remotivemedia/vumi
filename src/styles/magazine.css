@@ -109,3 +109,71 @@
 .min-height-svh {
   min-height: 100svh;
 }
+
+/* Intelligence module card — glass-style panel */
+.intel-panel {
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(0,51,160,0.04), 0 1px 2px rgba(0,51,160,0.03);
+}
+
+/* KPI tile accent border-top — premium indicator */
+.kpi-tile {
+  border-top: 2px solid #00A9E0;
+  padding-top: 1rem;
+}
+
+/* Status dot pulse */
+.status-pulse {
+  animation: pulse-opacity 2s ease-in-out infinite;
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* Hairline separator utility */
+.hairline {
+  height: 1px;
+  background: rgba(226, 232, 240, 1);
+}
+
+/* Dark hairline for dark panels */
+.hairline-dark {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Intelligence row — hover highlight */
+.intel-row {
+  transition: background-color 0.15s ease;
+}
+.intel-row:hover {
+  background-color: rgba(0, 169, 224, 0.025);
+}
+
+/* Monospace data cell */
+.data-cell {
+  font-family: 'Courier New', monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #0033A0;
+}
+
+/* Premium badge-style label */
+.label-badge {
+  display: inline-flex;
+  align-items: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 2px 6px;
+  border-radius: 2px;
+  border: 1px solid currentColor;
+  opacity: 0.8;
+}

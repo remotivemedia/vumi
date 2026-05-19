@@ -6,6 +6,8 @@ import { DataCallout } from "../components/magazine/DataCallout";
 import { PullQuote } from "../components/magazine/PullQuote";
 import { BarChartMagazine } from "../components/charts/BarChartMagazine";
 import { Footer } from "../components/magazine/Footer";
+import { SectionHeader } from "../components/intelligence/SectionHeader";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 
 const budgetAllocation = [
   { segment: "Broker BD & Enablement", budget: 45 },
@@ -15,6 +17,13 @@ const budgetAllocation = [
   { segment: "General Admin", budget: 5 },
 ];
 
+const heroStats: StatItem[] = [
+  { label: "Year 1 GWP Potential", value: "€12M", sub: "P0 focus only", positive: true },
+  { label: "Phase 1 Capital", value: "€120k", sub: "Madrid pilot budget", positive: true },
+  { label: "Madrid Validation Phase", value: "90 Days", sub: "Before Phase 2 expansion" },
+  { label: "Shortlisted Active Brokers", value: "18", sub: "P0 + P1 tiers", positive: true },
+];
+
 export const StrategyPage: React.FC = () => {
   return (
     <div className="space-y-0 bg-vumi-pearl">
@@ -22,21 +31,29 @@ export const StrategyPage: React.FC = () => {
       <Hero
         badge="Strategic Directive"
         headline="The Spain Blueprint: Broker-Led, LATAM-First GTM Recommendation"
-        dek="Our comprehensive go-to-market recommendation for VUMI Europe's entry into the Spain premium private healthcare market. By targeting high-net-worth Latin American expats through specialized broker partnerships, we bypass legacy incumbents with maximum capital efficiency."
+        dek="Our comprehensive go-to-market recommendation for VUMI Europe's entry into the Spain premium private healthcare market. By targeting high-net-worth Latin American expats through specialist broker partnerships, we bypass legacy incumbents with maximum capital efficiency."
       >
-        <BarChartMagazine
-          title="GTM Budget Allocation (%)"
-          subtitle="Distribution of initial €120,000 pilot capital"
-          data={budgetAllocation}
-          xKey="budget"
-          yKey="segment"
-          source="ReMotive GTM Capital Proposal"
-          color="#00A9E0"
-        />
+        <StatGrid stats={heroStats} cols={2} dark />
       </Hero>
 
       {/* 2. Main Content Grid */}
-      <div className="magazine-container py-12">
+      <div className="magazine-container py-10 sm:py-14">
+
+        {/* Budget allocation chart */}
+        <div className="mb-10 space-y-4">
+          <SectionHeader eyebrow="Capital Allocation" headline="GTM Budget Allocation — Phase 1" dek="Distribution of initial €120,000 pilot capital across activation channels." border={false} />
+          <div className="bg-white border border-gray-100 rounded-sm premium-shadow p-5">
+            <BarChartMagazine
+              title=""
+              subtitle="Percentage of Phase 1 budget"
+              data={budgetAllocation}
+              xKey="budget"
+              yKey="segment"
+              source="ReMotive GTM Capital Proposal"
+              color="#00A9E0"
+            />
+          </div>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Main Article column (8 Columns) */}

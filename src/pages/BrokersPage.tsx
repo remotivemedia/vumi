@@ -3,6 +3,11 @@ import { Hero } from "../components/magazine/Hero";
 import { BarChartMagazine } from "../components/charts/BarChartMagazine";
 import { Section } from "../components/magazine/Section";
 import { Sidebar, WhatThisMeans } from "../components/magazine/Sidebar";
+import { ConfidenceBadge } from "../components/intelligence/ConfidenceBadge";
+import { SectionHeader } from "../components/intelligence/SectionHeader";
+import { IntelligenceTable, Column } from "../components/intelligence/IntelligenceTable";
+import { ProgressBar } from "../components/intelligence/ProgressBar";
+import { StatGrid, StatItem } from "../components/intelligence/StatGrid";
 
 // Strategy based data for 5 key broker partners
 const brokerScores = [
@@ -48,79 +53,114 @@ const brokersList = [
   },
 ];
 
+interface BrokerRow {
+  name: string;
+  specialty: string;
+  volume: string;
+  score: number;
+  status: string;
+}
+
+const brokerColumns: Column<BrokerRow>[] = [
+  {
+    key: "name",
+    label: "Partner",
+    render: (row) => <span className="font-sans text-sm font-bold text-vumi-slate">{row.name}</span>,
+  },
+  {
+    key: "specialty",
+    label: "Segment Specialty",
+    render: (row) => <span className="font-sans text-xs text-gray-500 font-light">{row.specialty}</span>,
+  },
+  {
+    key: "volume",
+    label: "Volume",
+    width: "80px",
+    render: (row) => <span className="font-sans text-xs text-gray-600">{row.volume}</span>,
+  },
+  {
+    key: "score",
+    label: "Fit Index",
+    width: "130px",
+    render: (row) => (
+      <div className="space-y-1 min-w-[80px]">
+        <span className="font-heading text-xs font-bold text-vumi-blue">{row.score}/100</span>
+        <ProgressBar value={row.score} height="thin" color="#00A9E0" />
+      </div>
+    ),
+  },
+  {
+    key: "status",
+    label: "Status",
+    width: "120px",
+    render: (row) => (
+      <ConfidenceBadge
+        level={row.status === "P0 Activation" ? "validated" : "strong"}
+        label={row.status}
+        compact
+      />
+    ),
+  },
+];
+
+const heroStats: StatItem[] = [
+  { label: "Audited Agencies", value: "40+", sub: "Across Madrid, BCN, Andalucia" },
+  { label: "Shortlisted Brokers", value: "18", sub: "P0 & P1 tiers", positive: true },
+  { label: "P0 Top Fit Score", value: "94 / 100", sub: "Seguros Expats", positive: true },
+  { label: "Addressable GWP", value: "€12M+", sub: "Via top 5 partners", positive: true },
+];
+
 export const BrokersPage: React.FC = () => {
   return (
     <div className="space-y-0 bg-vumi-pearl">
       {/* 1. Hero Section */}
       <Hero
         badge="Channel Intelligence"
-        headline="20 Specialized Broker Partners Selected to Drive Premium Growth"
+        headline="18 Specialist Broker Partners Selected to Drive Premium Growth"
         dek="Our channel audit has identified and shortlisted 18 high-performing boutique brokers who command over 65% of the Venezuelan and premium international expat market share in Madrid. A targeted, tier-one onboard campaign launches in Q3 2026."
       >
-        <BarChartMagazine
-          title="Top Broker Partner Fit Score Ranking"
-          subtitle="Composite index: Audience concentration × IPMI capability × digital readiness"
-          data={brokerScores}
-          xKey="score"
-          yKey="name"
-          source="ReMotive Media Broker Audit"
-          color="#00A9E0"
-        />
+        <StatGrid stats={heroStats} cols={2} dark />
       </Hero>
 
       {/* 2. Main content grid */}
-      <div className="magazine-container py-12">
+      <div className="magazine-container py-10 sm:py-14">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* Main content column (8 Columns) */}
           <div className="lg:col-span-8 space-y-12 text-left">
+
+            {/* Fit score chart */}
+            <div className="space-y-4">
+              <SectionHeader eyebrow="Ranking" headline="Broker Fit Score Index" dek="Composite index: audience concentration × IPMI capability × digital readiness." border={false} />
+              <div className="bg-white border border-gray-100 rounded-sm premium-shadow p-5">
+                <BarChartMagazine
+                  title=""
+                  subtitle="Score out of 100"
+                  data={brokerScores}
+                  xKey="score"
+                  yKey="name"
+                  source="ReMotive Media Broker Audit"
+                  color="#00A9E0"
+                />
+              </div>
+            </div>
+
             <Section
               headline="The GTM Distribution Engine: Quality over Mass Reach"
               paragraphs={[
                 "International private medical insurance (IPMI) is not a commodity bought online; it is a consultative high-trust product mediated by specialist brokers. Rather than deploying massive consumer advertising, VUMI's entry into Spain will rely on a dedicated B2B2C broker distribution engine.",
                 "Out of 40+ surveyed agencies in Madrid, Barcelona, and Andalucia, we have qualified a premium shortlist of 18 boutique brokers. These firms have established, decade-long relationships with high-net-worth expat families, managing their wealth, real estate holdings, and corporate portfolios."
               ]}
-              implication="By partnering with the top 5 'P0' brokers who specialize in the Venezuelan diaspora, VUMI Spain gains immediate access to a warm lead pool representing €12M+ in potential premium volume."
+              implication="By partnering with the top 5 'P0' brokers who specialise in the Venezuelan diaspora, VUMI Spain gains immediate access to a warm lead pool representing €12M+ in potential premium volume."
             />
 
-            {/* Shortlist Table */}
-            <div className="space-y-6">
-              <h3 className="font-heading text-xl font-bold text-vumi-blue tracking-tight">
-                Shortlisted Broker Partners
-              </h3>
-              <div className="bg-white border border-gray-100 rounded-lg premium-shadow overflow-hidden">
-                <table className="w-full text-left border-collapse">
-                  <thead>
-                    <tr className="bg-gray-50 border-b border-gray-100">
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Partner</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Segment Specialty</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Est. Volume</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Fit Index</th>
-                      <th className="p-4 font-heading text-xs font-bold uppercase text-gray-500">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {brokersList.map((b, i) => (
-                      <tr key={i} className="border-b border-gray-50 last:border-0 hover:bg-gray-50/50 transition">
-                        <td className="p-4 font-sans text-sm font-bold text-vumi-slate">{b.name}</td>
-                        <td className="p-4 font-sans text-xs text-gray-500">{b.specialty}</td>
-                        <td className="p-4 font-sans text-xs text-gray-600">{b.volume}</td>
-                        <td className="p-4 font-sans text-xs font-bold text-vumi-blue">{b.score}/100</td>
-                        <td className="p-4">
-                          <span
-                            className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${
-                              b.status === "P0 Activation"
-                                ? "bg-sky-50 text-vumi-blue"
-                                : "bg-gray-50 text-gray-500"
-                            }`}
-                          >
-                            {b.status}
-                          </span>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            {/* Shortlist Table — upgraded */}
+            <div className="space-y-5">
+              <SectionHeader eyebrow="Shortlist" headline="Shortlisted Broker Partners" border={false} />
+              <IntelligenceTable
+                columns={brokerColumns}
+                rows={brokersList}
+                zebra
+              />
             </div>
           </div>
 
