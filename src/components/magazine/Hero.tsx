@@ -18,8 +18,8 @@ export const Hero: React.FC<HeroProps> = ({ badge, headline, dek, children }) =>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_20%_50%,rgba(0,169,224,0.12),transparent_55%)] pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_80%_20%,rgba(0,51,160,0.2),transparent_50%)] pointer-events-none" />
 
-      <div className="magazine-container relative z-10 py-20 md:py-28">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 items-center">
+      <div className="magazine-container relative z-10 py-12 sm:py-16 md:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
 
           {/* Hero Narrative */}
           <div className="lg:col-span-7 text-left space-y-7">
@@ -60,7 +60,7 @@ export const Hero: React.FC<HeroProps> = ({ badge, headline, dek, children }) =>
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
-              className="font-sans text-base md:text-lg text-gray-300 font-light leading-relaxed max-w-xl"
+              className="font-sans text-sm sm:text-base md:text-lg text-gray-300 font-light leading-relaxed max-w-xl"
             >
               {dek}
             </motion.p>
@@ -74,7 +74,7 @@ export const Hero: React.FC<HeroProps> = ({ badge, headline, dek, children }) =>
               transition={{ duration: 0.6, delay: 0.3 }}
               className="lg:col-span-5 bg-white/[0.04] backdrop-blur-sm border border-white/10 rounded-sm w-full overflow-hidden flex flex-col"
             >
-              <div className="p-6 flex-1">
+              <div className="p-4 sm:p-6 flex-1">
                 {children}
               </div>
               <div className="border-t border-white/[0.07] px-6 py-3 flex items-center gap-2">
